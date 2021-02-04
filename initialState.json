@@ -1,0 +1,34 @@
+{
+    "products":[
+        {
+            "id":1,
+            "image": "URL_IMAGE",
+            "title": "Pakistani Chicken Platter",
+            "reviews": {
+                "five_start": 5,
+                "for_start": 3,
+                "three_start": 1,
+                "two_start": 20,
+                "one_start": 0
+            },
+            "prices": [
+                {
+                    "cost": 45,
+                    "moneda": "$"
+                }
+            ],
+            "from":["Indian","Pakistani"],
+            "time_delivery": "10-20",
+            "type": "lunch",
+            "cuisine": ["asian" , "peruvian"],
+            "ingredients": ["tomato" , "apple" , "water"],
+            "subtitle": "subtitle PRODUCT",
+            "allergen_info":["gluten"],
+            "dietary_restricion": ["Organic"],
+            "descriptions":{
+                "product": "Description....",
+                "portion": "Description porcion..."
+            }
+        }
+    ]
+}

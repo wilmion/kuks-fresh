@@ -1,0 +1,60 @@
+@import "../../../app.component.scss";
+.intro {
+  &__title {
+    font-size: 4.5rem;
+    text-align: center;
+    margin: 5% 0 1%;
+    color: $color-terciario;
+  }
+  &__author {
+    font-size: 2rem;
+    text-align: right;
+    width: 70%;
+    margin: 0 auto 5%;
+    color: $color-primary;
+  }
+  &-portrait {
+    border-radius: 15px;
+    background-image: url("../../../../assets/jpg/Portada.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-left: 5%;
+    &__title {
+      font-size: 5rem;
+      color: white;
+      padding: 10% 0;
+    }
+    &-buttons {
+      display: flex;
+      padding-bottom: 5%;
+      &__button {
+        @extend %button;
+        display: flex;
+        width: 15%;
+        background-color: $color-secundary;
+        text-decoration: none;
+        color: white;
+        border-radius: 5px;
+        margin: 15px;
+        justify-content: center;
+        img {
+          width: 30px;
+          height: auto;
+          margin-right: 15px;
+        }
+        &--information {
+          margin: auto 0;
+          p {
+            &:nth-child(1) {
+              font-size: 1rem;
+            }
+            &:nth-child(2) {
+              font-size: 1.6rem;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}
