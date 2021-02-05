@@ -35,4 +35,17 @@
       }
     }
   }
+  &-filtered {
+    display: flex;
+    justify-content: left;
+    &-option {
+      width: 15%;
+    }
+  }
+  &-products {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 3% 0;
+    grid-row-gap: 3%;
+  }
 }

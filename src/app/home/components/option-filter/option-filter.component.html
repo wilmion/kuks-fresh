@@ -1,0 +1,6 @@
+<section class="home-filtered-item">
+    <div class="image-content" *ngIf="urlImage" >
+        <img [src]="urlImage" [alt]="title + ' icon ' ">
+    </div>
+    <span class="home-filtered-item__text">{{title}}</span>
+</section>

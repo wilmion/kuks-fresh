@@ -1,0 +1,40 @@
+@import "../../../app.component.scss";
+.home-filtered-item {
+  color: $color-terciario;
+  display: flex;
+  justify-content: center;
+  padding: 5px 15px;
+  border-radius: 15px;
+  margin-left: 15px;
+  transition: 1s;
+  &:hover {
+    background-color: $color-primary;
+  }
+  &:hover .image-content {
+    background-color: #fa9f6a;
+  }
+  &:hover &__text {
+    color: white;
+  }
+  .image-content {
+    height: 40px;
+    transition: 1s;
+    border-radius: 100%;
+    margin-right: 15px;
+    display: flex;
+    align-content: center;
+    img {
+      display: block;
+      margin: auto 10px;
+      width: 20px;
+      height: auto;
+    }
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    margin: 13px 0;
+    font-weight: 600;
+    transition: 1s;
+  }
+}

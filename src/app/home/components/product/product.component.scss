@@ -1,0 +1,66 @@
+@import "../../../app.component.scss";
+
+.home-products-product {
+  width: 90%;
+  margin: 0 auto;
+  border: rgba($color-terciario, $alpha: 0.5) solid 1px;
+  border-radius: 25px;
+  &__image {
+    img {
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+      width: 100%;
+      height: auto;
+    }
+    .type {
+      width: 40px;
+      background-color: #ff88a5;
+      padding: 10px;
+      border-radius: 100%;
+      position: relative;
+      top: -10px;
+      margin-top: -40px;
+      left: 10px;
+      img {
+        border-radius: 0;
+      }
+    }
+  }
+  &__title {
+    font-size: 2rem;
+    margin: 10px 10px;
+    color: $color-secundary;
+  }
+  &-starts {
+    display: flex;
+    margin-left: 15px;
+    &__title {
+      font-size: 1.3rem;
+      margin: auto 0;
+      margin-left: 10px;
+      color: $color-terciario;
+    }
+  }
+  &-footer {
+    margin: 25px 0;
+    display: flex;
+    &__country {
+      color: $color-terciario;
+      margin: auto 15px;
+      font-size: 1.3rem;
+      display: block;
+    }
+    img {
+      margin: auto 0;
+      margin-left: auto;
+      display: block;
+      width: 20px;
+      height: auto;
+    }
+    &__time {
+      font-size: 1.4rem;
+      color: $color-terciario;
+      margin: auto 15px;
+    }
+  }
+}

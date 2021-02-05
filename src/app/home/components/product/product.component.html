@@ -1,1 +1,21 @@
-<p>product works!</p>
+<section class="home-products-product">
+    <section class="home-products-product__image">
+        <img [src]="background" [alt]="title">
+        <div class="type">
+            <img [src]="imageType" alt="type icon">
+        </div>
+    </section>
+    <h2 class="home-products-product__title">{{title}}</h2>
+    <section class="home-products-product-starts">
+        <div class="home-products-product-starts__images">
+            <img src="assets/icon/start-active-icon.svg" *ngFor="let i of starsActive" alt="estrella" />
+            <img src="assets/icon/start-inactive-icon.svg" *ngFor="let i of starsInactive" alt="estrella">
+        </div>
+        <p class="home-products-product-starts__title">{{reviews}} Reviews</p>
+    </section>
+    <section class="home-products-product-footer">
+        <span class="home-products-product-footer__country" *ngFor="let country of countrys">{{country}}</span>
+        <img src="assets/icon/clock-icon.svg" alt="clock">
+        <span class="home-products-product-footer__time">{{cookTime}}</span>
+    </section>
+</section>

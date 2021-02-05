@@ -8,7 +8,20 @@
             <img src="assets/icon/filters-icon.svg" alt="filter icon">
         </picture>
     </section>
-    <!--falta la seccion de filtrado-->
+    <section class="home-filtered">
+        <app-option-filter class="home-filtered-option" [title]="'All '"  ></app-option-filter>
+        <app-option-filter class="home-filtered-option" [title]="'Break Fast'" urlImage="assets\icon\breakfast-icon.svg"  ></app-option-filter>
+        <app-option-filter class="home-filtered-option" [title]="'Lunch'"  urlImage="assets\icon\lunch-icon.svg"></app-option-filter>
+        <app-option-filter class="home-filtered-option" [title]="'Drinks'"  urlImage="assets\icon\drinks-icon.svg"></app-option-filter>
+        <app-option-filter class="home-filtered-option" [title]="'Desserts'"  urlImage="assets\icon\desert-icon.svg"></app-option-filter>
+        <app-option-filter class="home-filtered-option" [title]="'Fast Food'"  urlImage="assets\icon\fastFood-icon.svg"></app-option-filter>
+    </section>
+    <section class="home-products">
+        <app-product [product]="product" ></app-product>
+        <app-product></app-product>
+        <app-product></app-product>
+        <app-product></app-product>
+    </section>
     <!--falta la seccion de todos los productos-->
     <!--falta la seccion de Popular-->
 

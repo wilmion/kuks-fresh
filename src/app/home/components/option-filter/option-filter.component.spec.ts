@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeComponent } from './home.component';
+import { OptionFilterComponent } from './option-filter.component';
 
-xdescribe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+xdescribe('OptionFilterComponent', () => {
+  let component: OptionFilterComponent;
+  let fixture: ComponentFixture<OptionFilterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      declarations: [ OptionFilterComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(OptionFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
