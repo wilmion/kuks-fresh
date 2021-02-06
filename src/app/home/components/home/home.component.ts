@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { IProduct } from '../../../core/models/interfaces';
+import { ApiService } from '../../../core/services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -8,40 +10,66 @@ import { IProduct } from '../../../core/models/interfaces';
 })
 export class HomeComponent implements OnInit {
 
-  product:IProduct = {
-    id:1,
-    image: "assets/jpg/arabic mandi.jpg",
-    title: "Pakistani Chicken Platter",
-    reviews: {
-        five_start: 5,
-        for_start: 3,
-        three_start: 1,
-        two_start: 20,
-        one_start: 0
-    },
-    prices: [
-      {
-        cost: 45,
-        moneda: "$"
-      }
-    ],
-    from:["Indian","Pakistani"],
-    time_delivery: "10-20",
-    type: "lunch",
-    kitchen: ["asian" , "peruvian"],
-    ingredients: ["tomato" , "apple" , "water"],
-    subtitle: "subtitle PRODUCT",
-    diet_info:["gluten"],
-    dietary_restricion: ["Organic"],
-    descriptions:{
-        product: "Description....",
-        portion: "Description porcion..."
+  products:IProduct[] | undefined ;
+  showFilters:boolean = false;
+  typeActive: "lunch" | "drinks" | "breakFast" |"Desserts" | "fastFood" | "all" = "all";
+  productsShow: IProduct[] | undefined | [] = [];
+  productsSort:IProduct[] | undefined;
+  productsFiltered:IProduct[] | undefined | [] = [];
+  isLoading:boolean = true;
+  showFiltersOptions:boolean = false;
+
+  constructor(
+    private apiService:ApiService
+  ) { }
+  
+  ngOnInit(): void {   
+    this.getData();
+  }
+  getData():void {
+    this.apiService.getAll()
+    .subscribe(data => {
+      this.products = data.products; 
+      this.filteredPopular([...data.products]);   
+      this.isLoading = false;
+    });
+  }
+  filteredPopular(products:IProduct[]):void{
+    const productSort = products.sort((a:IProduct , b:IProduct) => {
+      const reviewsA = a.reviews.one_start + a.reviews.two_start + a.reviews.three_start+ a.reviews.for_start +a.reviews.five_start;
+      const reviewsB = b.reviews.one_start + b.reviews.two_start + b.reviews.three_start+ b.reviews.for_start +b.reviews.five_start;
+
+      return reviewsB - reviewsA;
+    });
+    this.productsSort = [ productSort[0] , productSort[1] , productSort[2] ];
+
+   
+  }
+
+  searchProduct(e:any):void{ 
+    const value:string = e.target.value;
+    if(this.products){
+      const filteredValues = this.products.filter(item => item.title.toLowerCase().includes(value.toLocaleLowerCase()));
+      this.productsShow = filteredValues;
     }
   }
 
-  constructor() { }
+  toggleFiltered():void {
+    this.showFilters = !this.showFilters;
+    console.log(this.showFilters);
+  }
 
-  ngOnInit(): void {
+  filterType(type: "lunch" | "drinks" | "breakFast" |"Desserts" | "fastFood" | "all"):void{
+    if(this.products){
+      const filtered = this.products.filter(item => item.type === type);
+      this.productsFiltered = filtered;
+      this.typeActive = type;
+    }
+    
+  }
+
+  toggleFiltersOptions():void {
+    this.showFiltersOptions = !this.showFiltersOptions;
   }
 
 }

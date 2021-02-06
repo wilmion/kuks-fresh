@@ -1,4 +1,5 @@
 import { Component, OnInit , Input} from '@angular/core';
+import { Router } from '@angular/router';
 import { IProduct } from '../../../core/models/interfaces';
 @Component({
   selector: 'app-product',
@@ -20,7 +21,9 @@ export class ProductComponent implements OnInit {
   starsActive:number[] = [1];
   starsInactive:number[]= [1,2,3,4];
 
-  constructor() {
+  constructor(
+    private router:Router
+  ) {
 
   }
 
@@ -80,6 +83,11 @@ export class ProductComponent implements OnInit {
         this.starsActive= [1,2,3,4,5];
         this.starsInactive=[];
         break;
+    }
+  }
+  redirectTo():void{
+    if(this.product){
+      this.router.navigate([`/product/${this.product.id}`])
     }
   }
 

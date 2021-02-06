@@ -2,27 +2,61 @@
 <section class="home">
     <section class="home-firstBlock">
         <h2 class="home-firstBlock__title">OUR MEALS</h2>
-        <input class="home-firstBlock__input" type="text" placeholder="Search by name" >
-        <img src="assets/icon/search-icon.svg" alt="icon Search" class="home-firstBlock__icon-search cursor-pointer">
-        <picture class="home-firstBlock__filter cursor-pointer">
-            <img src="assets/icon/filters-icon.svg" alt="filter icon">
+        <input #search (keyup)="searchProduct($event)" class="home-firstBlock__input" type="text" placeholder="Search by name" >
+        <img src="assets/icon/search-icon.svg" (click)="toggleFiltered()" alt="icon Search" class="home-firstBlock__icon-search cursor-pointer">
+        <picture class="home-firstBlock__filter cursor-pointer" (click)="toggleFiltersOptions()">
+            <img src="assets/icon/filters-icon.svg"  alt="filter icon" >
         </picture>
     </section>
-    <section class="home-filtered">
-        <app-option-filter class="home-filtered-option" [title]="'All '"  ></app-option-filter>
-        <app-option-filter class="home-filtered-option" [title]="'Break Fast'" urlImage="assets\icon\breakfast-icon.svg"  ></app-option-filter>
-        <app-option-filter class="home-filtered-option" [title]="'Lunch'"  urlImage="assets\icon\lunch-icon.svg"></app-option-filter>
-        <app-option-filter class="home-filtered-option" [title]="'Drinks'"  urlImage="assets\icon\drinks-icon.svg"></app-option-filter>
-        <app-option-filter class="home-filtered-option" [title]="'Desserts'"  urlImage="assets\icon\desert-icon.svg"></app-option-filter>
-        <app-option-filter class="home-filtered-option" [title]="'Fast Food'"  urlImage="assets\icon\fastFood-icon.svg"></app-option-filter>
+    <section class="home-filtered" *ngIf="!showFilters && showFiltersOptions">
+        <app-option-filter class="home-filtered-option" (click)="filterType('all')" [title]="'All '"  ></app-option-filter>
+        <app-option-filter class="home-filtered-option" (click)="filterType('breakFast')" [title]="'Break Fast'" urlImage="assets\icon\breakfast-icon.svg"  ></app-option-filter>
+        <app-option-filter class="home-filtered-option" (click)="filterType('lunch')" [title]="'Lunch'"  urlImage="assets\icon\lunch-icon.svg"></app-option-filter>
+        <app-option-filter class="home-filtered-option" (click)="filterType('drinks')" [title]="'Drinks'"  urlImage="assets\icon\drinks-icon.svg"></app-option-filter>
+        <app-option-filter class="home-filtered-option" (click)="filterType('Desserts')" [title]="'Desserts'"  urlImage="assets\icon\desert-icon.svg"></app-option-filter>
+        <app-option-filter class="home-filtered-option" (click)="filterType('fastFood')" [title]="'Fast Food'"  urlImage="assets\icon\fastFood-icon.svg"></app-option-filter>
     </section>
-    <section class="home-products">
-        <app-product [product]="product" ></app-product>
-        <app-product></app-product>
-        <app-product></app-product>
-        <app-product></app-product>
+    <section *ngIf="!showFilters && typeActive != 'all'">
+        <section class="home-popular">
+            <h2 class="home-popular__title">{{typeActive.toUpperCase()}}</h2>
+        </section>
+        <section class="home-products">
+            <app-product  *ngFor="let product of productsFiltered" [product]="product" ></app-product>
+        </section>
     </section>
-    <!--falta la seccion de todos los productos-->
-    <!--falta la seccion de Popular-->
+    <section *ngIf="showFilters && productsShow">
+
+        <section class="home-popular">
+            <h2 class="home-popular__title">Resultados : <strong *ngIf="productsShow.length === 0">No hay resultados de su busquedad</strong> </h2>
+        </section>
+        <section class="home-products">
+            <app-product  *ngFor="let product of productsShow" [product]="product" ></app-product>
+        </section>
+    </section>
+    <section *ngIf="!showFilters && typeActive === 'all' && products" >
+        <app-loading *ngIf="isLoading"></app-loading>
+
+        <section class="home-products" *ngIf="!isLoading">
+            <app-product [product]="products[0]" ></app-product>
+            <app-product [product]="products[1]" ></app-product>
+            <app-product [product]="products[2]" ></app-product>
+            <app-product [product]="products[3]" ></app-product>
+            <app-product [product]="products[4]" ></app-product>
+            <app-product [product]="products[5]" ></app-product>
+        </section>
+        
+
+        <app-loading *ngIf="isLoading"></app-loading>
+
+        <section class="home-popular">
+            <h2 class="home-popular__title">Popular</h2>
+        </section>
+
+        <section class="home-products">
+            <app-product  *ngFor="let product of productsSort" [product]="product" ></app-product>
+        </section>
+
+        
+    </section>
 
 </section>

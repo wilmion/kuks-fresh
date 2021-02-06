@@ -1,12 +1,12 @@
 @import "../../../app.component.scss";
-
+$color-titles: #b91c44;
 .home {
   &-firstBlock {
     margin: 5% 0;
     display: flex;
     &__title {
       font-size: 2.5rem;
-      color: #b91c44;
+      color: $color-titles;
       margin-left: 5px;
       font-weight: 900;
     }
@@ -26,6 +26,10 @@
       margin: 0 15px;
       border-radius: 100%;
       background-color: $color-primary;
+      transition: 1s;
+      &:hover {
+        background-color: #912e01;
+      }
       img {
         width: 26px;
         padding: 17px 0;
@@ -47,5 +51,15 @@
     grid-template-columns: 1fr 1fr 1fr;
     margin: 3% 0;
     grid-row-gap: 3%;
+  }
+  &-popular {
+    margin: 5% 0;
+    &__title {
+      font-size: 2.5rem;
+      color: $color-titles;
+      margin-left: 5px;
+      font-weight: 900;
+      text-align: left;
+    }
   }
 }
