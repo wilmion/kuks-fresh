@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "server": "json-server initialState.json"
+    "server": "json-server db.json --routes=routes.json"
   },
   "private": true,
   "dependencies": {

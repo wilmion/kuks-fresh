@@ -1,0 +1,64 @@
+@import "../../../app.component.scss";
+%demostration {
+  border-radius: 25px;
+  font-style: italic;
+  margin: 5px 5px;
+  padding: 10px;
+  font-size: 1.5rem;
+  transition: 1s;
+}
+.information {
+  &__title {
+    font-size: 2.7rem;
+    color: $color-primary;
+    margin: 25px 0;
+  }
+  &__subtitle {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #48525e;
+    margin: 50px 0;
+  }
+  &__description {
+    font-size: 1.5rem;
+    color: $color-terciario;
+    line-height: 18px;
+  }
+  &-cuisine {
+    margin: 5% 0;
+    display: flex;
+    &__item {
+      @extend %demostration;
+      background-color: $color-primary;
+      color: white;
+      border: none;
+      &:hover {
+        background-color: #923307;
+      }
+    }
+  }
+  &-none-background {
+    margin: 5% 0;
+    display: flex;
+    &__item {
+      @extend %demostration;
+      background: transparent;
+      color: $color-primary;
+      border: $color-terciario solid 1px;
+      &:hover {
+        color: #923307;
+      }
+    }
+  }
+  &-none-background-not-text-color {
+    &__item {
+      @extend %demostration;
+      background: transparent;
+      color: $color-terciario;
+      border: $color-terciario solid 1px;
+      &:hover {
+        color: #48525e;
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+@import "../../../app.component.scss";
+.details {
+  &__title {
+    color: $color-terciario;
+    font-size: 4rem;
+    text-align: center;
+    margin: 50px 0;
+  }
+  &-informations {
+    display: grid;
+    grid-template-columns: 37% 63%;
+    width: 90%;
+    margin: 0 auto;
+  }
+}
