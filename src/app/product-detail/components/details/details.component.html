@@ -1,34 +1,32 @@
-<section class="information">
-    <h2 class="information__title">Moussaka</h2>
-    <p class="information__subtitle">Tomato creamy soup with chicken</p>
-    <p class="information__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quae atque aliquid deleniti numquam omnis commodi obcaecati praesentium cumque minus! Dolor autem ad hic debitis. Doloremque, sed atque alias, deleniti magni debitis ratione provident, optio ipsa inventore vitae! Aliquid quasi dignissimos voluptatibus consequatur recusandae aut ad corporis! Distinctio porro corrupti iusto. Necessitatibus est voluptas praesentium exercitationem inventore sunt explicabo fugiat rem earum, iusto fugit natus nihil atque ipsa ratione, architecto consequuntur ab tempora perferendis molestiae accusamus veniam. Ducimus nulla suscipit eveniet debitis! Aliquid reprehenderit voluptatum dolorum, minima sunt perferendis repellat animi possimus voluptas eius harum distinctio vel expedita velit maiores.</p>
+<section class="information" *ngIf="product">
+    <h2 class="information__title">{{product.title}}</h2>
+    <p class="information__subtitle">{{product.subtitle}}</p>
+    <p class="information__description">{{product.descriptions.product}}</p>
     
     <section class="information-cuisine">
-        <p class="information__subtitle" style="margin: auto 0;">Cuisine : </p>
-        <button class="information-cuisine__item">#American</button>
-        <button class="information-cuisine__item">#Asian</button>
+        <p class="information__subtitle" style="margin: auto 0;">Kitchen : </p>
+        <button class="information-cuisine__item" *ngFor="let i of product.kitchen">#{{i}}</button>
     </section>
     <p class="information__subtitle">Main Ingredients</p>
-    <p class="information__description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur id rem veniam, placeat nostrum mollitia enim voluptas fuga aliquam? Id magni earum quas esse odio eaque libero excepturi officia perferendis.</p>
+    <p class="information__description">{{product.ingredients}}</p>
     
     <section class="information-none-background">
         <p class="information__subtitle" style="margin: auto 0;">Allergen Info: </p>
-        <button class="information-none-background__item">#Diary</button>
-        <button class="information-none-background__item">#Soy</button>
+        <button class="information-none-background__item" *ngFor="let i of product.diet_info">#{{i}}</button>
     </section>
     
     <section class="information-none-background">
         <p class="information__subtitle" style="margin: auto 0;">Dietary Restriction: </p>
-        <button class="information-none-background__item">#Organic</button>
+        <button class="information-none-background__item" *ngFor="let i of product.dietary_restricion">#{{i}}</button>
     </section>
     <p class="information__subtitle">Single Portion Size </p>
-    <p class="information__description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa velit provident a, obcaecati ipsum consequatur molestiae nulla! Animi dolore, dolorem quam dolorum, nulla quo atque voluptates delectus ad eum temporibus?</p>
+    <p class="information__description">{{product.descriptions.portion}}</p>
     <p class="information__subtitle">Also Alvailable on </p>
     <section class="information-none-background-not-text-color">
-        <button class="information-none-background-not-text-color__item">Monday 6 May 2020</button>
-        <button class="information-none-background-not-text-color__item">Saturday 15 May 2020</button>
-        <button class="information-none-background-not-text-color__item">Wednesday 30 June 2020</button>
-        <button class="information-none-background-not-text-color__item">Sunday 1 July 2020</button>
+        <button class="information-none-background-not-text-color__item" *ngFor="let date of dates">{{date}}</button>
     </section>
-
 </section>
+<button class="agree cursor-pointer" (click)="addToCart()"> 
+    <img src="assets/icon/cart-icon.svg" alt="">
+    <span>Add to cart</span>
+</button>

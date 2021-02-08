@@ -23,6 +23,3 @@ export interface IProduct {
         portion: string
     }
 }
-export interface IAPI {
-    products: IProduct[]
-}

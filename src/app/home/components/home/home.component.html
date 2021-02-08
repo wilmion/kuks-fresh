@@ -21,7 +21,7 @@
             <h2 class="home-popular__title">{{typeActive.toUpperCase()}}</h2>
         </section>
         <section class="home-products">
-            <app-product  *ngFor="let product of productsFiltered" [product]="product" ></app-product>
+            <app-product class="cursor-pointer" *ngFor="let product of productsFiltered" [product]="product" ></app-product>
         </section>
     </section>
     <section *ngIf="showFilters && productsShow">
@@ -30,19 +30,19 @@
             <h2 class="home-popular__title">Resultados : <strong *ngIf="productsShow.length === 0">No hay resultados de su busquedad</strong> </h2>
         </section>
         <section class="home-products">
-            <app-product  *ngFor="let product of productsShow" [product]="product" ></app-product>
+            <app-product class="cursor-pointer" *ngFor="let product of productsShow" [product]="product" ></app-product>
         </section>
     </section>
     <section *ngIf="!showFilters && typeActive === 'all' && products" >
         <app-loading *ngIf="isLoading"></app-loading>
 
         <section class="home-products" *ngIf="!isLoading">
-            <app-product [product]="products[0]" ></app-product>
-            <app-product [product]="products[1]" ></app-product>
-            <app-product [product]="products[2]" ></app-product>
-            <app-product [product]="products[3]" ></app-product>
-            <app-product [product]="products[4]" ></app-product>
-            <app-product [product]="products[5]" ></app-product>
+            <app-product class="cursor-pointer" [product]="products[0]" ></app-product>
+            <app-product class="cursor-pointer" [product]="products[1]" ></app-product>
+            <app-product class="cursor-pointer" [product]="products[2]" ></app-product>
+            <app-product class="cursor-pointer" [product]="products[3]" ></app-product>
+            <app-product class="cursor-pointer" [product]="products[4]" ></app-product>
+            <app-product class="cursor-pointer" [product]="products[5]" ></app-product>
         </section>
         
 
@@ -53,7 +53,7 @@
         </section>
 
         <section class="home-products">
-            <app-product  *ngFor="let product of productsSort" [product]="product" ></app-product>
+            <app-product  class="cursor-pointer" *ngFor="let product of productsSort" [product]="product" ></app-product>
         </section>
 
         

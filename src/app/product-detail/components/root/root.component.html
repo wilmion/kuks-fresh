@@ -1,7 +1,8 @@
-<section class="details">
+<app-loading *ngIf="isLoading"></app-loading>
+<section *ngIf="!isLoading" class="details">
     <h2 class="details__title">"Dish Details"</h2>
     <section class="details-informations">
-        <app-product></app-product>
-        <app-details></app-details>
+        <app-product *ngIf="product" [product]="product" ></app-product>
+        <app-details [product]="product" ></app-details>
     </section>
 </section>

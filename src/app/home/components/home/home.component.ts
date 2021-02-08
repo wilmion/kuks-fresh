@@ -29,8 +29,8 @@ export class HomeComponent implements OnInit {
   getData():void {
     this.apiService.getAll()
     .subscribe(data => {
-      this.products = data.products; 
-      this.filteredPopular([...data.products]);   
+      this.products = data; 
+      this.filteredPopular([...data]);   
       this.isLoading = false;
     });
   }

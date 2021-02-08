@@ -51,6 +51,9 @@
     }
   }
   &-none-background-not-text-color {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     &__item {
       @extend %demostration;
       background: transparent;
@@ -60,5 +63,33 @@
         color: #48525e;
       }
     }
+  }
+}
+.agree {
+  @extend %button;
+  width: 50%;
+  background-color: $color-primary;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  display: block;
+  font-weight: 600;
+  margin: 6% auto;
+  transition: 1s;
+  display: flex;
+  justify-content: center;
+  img {
+    width: 30px;
+    height: auto;
+    margin: auto 0;
+    display: block;
+  }
+  span {
+    margin: auto 0;
+    margin-left: 10px;
+    display: block;
+  }
+  &:hover {
+    background-color: #923307;
   }
 }
