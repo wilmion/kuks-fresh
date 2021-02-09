@@ -1,0 +1,21 @@
+<section class="horario">
+    <section class="horario-head">
+        <h3 class="horario-head-item horario-head--control cursor-pointer" (click)="toggleMonth('left')">{{currentSchedule.month !== date.getMonth()? '<':''}}</h3>
+        <h3 class="horario-head-item">{{currentSchedule.fullMonth}} - {{date.getFullYear()}}</h3>
+        <h3 class="horario-head-item horario-head--control cursor-pointer" (click)="toggleMonth('rigth')">{{currentSchedule.month !== 11? '>':''}}</h3>
+    </section>
+    <section class="horario-body">
+        <div class="horario-body-days">
+            <p class="horario-body-days__file" *ngFor="let e of ['SU' ,'MO','TU','WD','TH','FR','SA']">{{e}}</p>
+        </div>
+        <div class="horario-body-dates" *ngFor="let e of makeSchedule">
+            <p 
+                (click)="selectedDate($event)" 
+                *ngFor="let i of e.days" 
+                [class]="(i !== '')? 'horario-body-dates__file cursor-pointer': 'horario-body-dates__file'" 
+            >
+            {{i}}
+            </p>
+        </div>
+    </section>
+</section>

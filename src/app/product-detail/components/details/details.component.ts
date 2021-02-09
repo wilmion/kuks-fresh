@@ -18,7 +18,7 @@ export class DetailsComponent implements OnInit {
   }
   createDates():void {
     //indispensable
-    const days:string[] = ['' , 'Monday' , 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' , 'Sunday'];
+    const days:string[] = ['Sunday' , 'Monday' , 'Tuesday' , 'Wednesday' , 'Thursday' , 'Friday' , 'Saturday' ];
     const months:string[] = ['Jan' , 'Feb' , 'March' , 'April' , 'May' , 'June' , 'July' , 'August', 'Sep' , 'Oct' , 'Nov' , 'Dic'];
     const date:Date = new Date();
     //getters

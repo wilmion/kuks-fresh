@@ -23,3 +23,9 @@ export interface IProduct {
         portion: string
     }
 }
+export interface IControlSchedule {
+    month:number,
+    day:number,
+    dates:number,
+    fullMonth:string,
+}

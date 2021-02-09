@@ -1,0 +1,52 @@
+@import "../../../app.component.scss";
+$color-terciario-oscure: #50627a;
+%estructure {
+  display: flex;
+  justify-content: space-between;
+}
+.horario {
+  width: 90%;
+  &-head {
+    @extend %estructure;
+    margin: 30px 0;
+    &-item {
+      color: $color-terciario-oscure;
+      font-size: 2rem;
+      margin: auto 0;
+    }
+    &--control {
+      font-size: 3rem;
+      font-weight: 100;
+    }
+  }
+  &-body {
+    &-days {
+      @extend %estructure;
+      width: 98%;
+      margin: 0 auto;
+      &__file {
+        font-size: 1.6rem;
+        color: $color-terciario-oscure;
+        font-weight: 700;
+        text-align: center;
+      }
+    }
+    &-dates {
+      @extend %estructure;
+      margin: 15px 0;
+      &__file {
+        font-size: 1.3rem;
+        color: $color-terciario;
+        padding: 7.5px 0;
+        width: 30px;
+        border-radius: 100%;
+        font-weight: 100;
+        text-align: center;
+      }
+      &--active {
+        background-color: $color-primary;
+        color: white;
+      }
+    }
+  }
+}
