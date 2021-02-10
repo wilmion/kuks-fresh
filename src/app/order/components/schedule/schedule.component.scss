@@ -1,0 +1,94 @@
+@import "../../../app.component.scss";
+
+.schedule {
+  width: 35%;
+  padding: 20px;
+  border: rgba($color-terciario, $alpha: 0.4) solid 1px;
+  margin: 30px; //provisional
+  &__close {
+    background-color: $color-terciario;
+    border: none;
+    background: transparent;
+    font-size: 1.6rem;
+    position: relative;
+    margin-left: 95%;
+    padding: 7px 0;
+    width: 30px;
+    transition: 1s;
+    border-radius: 100%;
+    &:hover {
+      color: white;
+      background-color: $color-secundary;
+    }
+  }
+  &__name {
+    font-size: 1.5rem;
+    color: $color-primary;
+    font-weight: 100;
+    margin: 0 0 50px;
+  }
+  &__title {
+    font-size: 2rem;
+    color: #525e6d;
+    margin-bottom: 50px;
+  }
+  &-timeline {
+    &-hours {
+      display: flex;
+      justify-content: space-between;
+      &__hour {
+        color: $color-terciario;
+        font-size: 1.4rem;
+        opacity: 0.7;
+      }
+    }
+  }
+  &-flex {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    &__text {
+      font-size: 1.6rem;
+      opacity: 1;
+    }
+  }
+  &-line {
+    background-color: $color-terciario;
+    width: 100%;
+    height: 1px;
+    opacity: 0.8;
+  }
+  &-total {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    &__button {
+      @extend %button;
+      color: white;
+      background-color: $color-primary;
+      font-size: 1.5rem;
+      border: none;
+      transition: 1s;
+      width: 50%;
+      &:hover {
+        background-color: #8d2e03;
+      }
+    }
+    &__total {
+      @extend .primary;
+      font-size: 2rem;
+      margin: auto 0;
+    }
+  }
+  &__information {
+    font-size: 1.5rem;
+    color: $color-terciario;
+    line-height: 30px;
+  }
+}
+.gris {
+  color: $color-terciario;
+}
+.primary {
+  color: $color-primary;
+}
