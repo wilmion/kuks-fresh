@@ -15,17 +15,22 @@
             <p class="schedule-timeline-hours__hour">8pm</p>
             <p class="schedule-timeline-hours__hour">9pm</p>
         </section>
-        <input type="range" min="0" max="9" value="1.5">
-        <input type="range" min="0" max="9" value="4.5">
-        <section class="schedule-timeline-controls">
-            <div class="schedule-timeline-controls__control--left"></div>
-            <div class="schedule-timeline-controls__control--right"></div>
+        <section class="schedule-timeline-navbar">        
+            <section class="schedule-timeline-navbar-range">
+                <div class="schedule-timeline-navbar-range__range" #range></div>
+                <div class="schedule-timeline-navbar-range__not_available" #rangeEnd></div>
+            </section>
+            
+            
         </section>
-        <section class="schedule-timeline-range">
-            <div class="schedule-timeline-range__empty"></div>
-            <div class="schedule-timeline-range__range"></div>
-            <div class="schedule-timeline-range__not_available"></div>
+        <section class="schedule-timeline__control">
+            <div (mouseover)="beforeControl('left')" class="schedule-timeline__control--left" #controlLeft></div>
+            <div (mouseover)="beforeControl('right')" class="schedule-timeline__control--right" #controlRight></div>
         </section>
+        
+        <input type="range" class="cursor-pointer" (mouseup)="resetInput($event)" (input)="control($event , 'left')" min="0" max="20" value="6">
+        <input type="range" class="cursor-pointer" (mouseup)="resetInput($event)" (input)="control($event , 'right')" min="0" max="20" value="12">
+        
     </section>
     <section class="schedule-flex">
         <p class="schedule-flex__text gris">1:00 pm to 4:00 pm</p>
