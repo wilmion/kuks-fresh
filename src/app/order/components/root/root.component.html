@@ -4,11 +4,22 @@
         <section class="order-select-item">
             <h2 class="order-select-item__title">Select Date and Time</h2>
             <p class="order-select-item__des">Note : If booking right after or before another booking , please factor in 20 mins for commute</p>
-            <app-horario></app-horario>
+            <app-horario (selectDate)="setDateTime($event)"></app-horario>
         </section>
         <section class="order-select-item">
             <img src="assets/jpg/schelude-background.jpg" alt="order schelude">
         </section>
     </section>
-    <app-schedule></app-schedule>
+    <div class="order__line"></div>
+    <section class="order-schedules">
+        <app-schedule (scheduleAdded)="addSchedule($event)" [dateTimes]="dateActual" ></app-schedule>
+        <app-schedule *ngFor="let schedule of schedules;let i = index" 
+            (scheduleAdded)="addSchedule($event)" 
+            [informationShedule]="schedule" 
+            [dateTimes]="schedule.date"
+            [index]="i+2"
+            
+        ></app-schedule>
+    </section>
+    
 </section>

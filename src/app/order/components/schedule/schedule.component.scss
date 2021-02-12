@@ -1,10 +1,10 @@
 @import "../../../app.component.scss";
 
 .schedule {
-  width: 35%;
+  width: 80%;
   padding: 20px;
   border: rgba($color-terciario, $alpha: 0.4) solid 1px;
-  margin: 30px; //provisional
+  margin: 10px auto; //provisional
   &__close {
     background-color: $color-terciario;
     border: none;
@@ -118,10 +118,19 @@
       &:hover {
         background-color: #8d2e03;
       }
+      &:disabled {
+        background-color: gray;
+        color: black;
+      }
     }
     &__total {
       @extend .primary;
       font-size: 2rem;
+      margin: auto 0;
+    }
+    &__completed {
+      color: #50627a;
+      font-size: 1.6rem;
       margin: auto 0;
     }
   }

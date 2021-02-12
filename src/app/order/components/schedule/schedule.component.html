@@ -1,7 +1,7 @@
 <section class="schedule">
     <button class="schedule__close cursor-pointer">x</button>
-    <h4 class="schedule__name">Schedule 1</h4>
-    <h2 class="schedule__title">Select Time for Jun 3rd 2019 , Wednesday</h2>
+    <h4 class="schedule__name">Schedule {{index}}</h4>
+    <h2 class="schedule__title">Select Time for {{informationShedule.date.month}} {{informationShedule.date.date}}rd {{informationShedule.date.year}} , {{informationShedule.date.day}}</h2>
     <section class="schedule-timeline">
         <section class="schedule-timeline-hours">
             <p class="schedule-timeline-hours__hour">12pm</p>
@@ -14,6 +14,7 @@
             <p class="schedule-timeline-hours__hour">7pm</p>
             <p class="schedule-timeline-hours__hour">8pm</p>
             <p class="schedule-timeline-hours__hour">9pm</p>
+            <p class="schedule-timeline-hours__hour">10pm</p>
         </section>
         <section class="schedule-timeline-navbar">        
             <section class="schedule-timeline-navbar-range">
@@ -24,37 +25,38 @@
             
         </section>
         <section class="schedule-timeline__control">
-            <div (mouseover)="beforeControl('left')" class="schedule-timeline__control--left" #controlLeft></div>
-            <div (mouseover)="beforeControl('right')" class="schedule-timeline__control--right" #controlRight></div>
+            <div *ngIf="!informationShedule.finished" (mouseover)="beforeControl('left')" class="schedule-timeline__control--left cursor-pointer" #controlLeft></div>
+            <div *ngIf="!informationShedule.finished" (mouseover)="beforeControl('right')" class="schedule-timeline__control--right cursor-pointer" #controlRight></div>
         </section>
         
-        <input type="range" class="cursor-pointer" (mouseup)="resetInput($event)" (input)="control($event , 'left')" min="0" max="20" value="6">
-        <input type="range" class="cursor-pointer" (mouseup)="resetInput($event)" (input)="control($event , 'right')" min="0" max="20" value="12">
+        <input type="range" class="cursor-pointer" (mouseleave)="resetInput($event)" (mouseup)="resetInput($event)" (input)="control($event , 'left')" min="0" max="20" value="6">
+        <input type="range" class="cursor-pointer" (mouseleave)="resetInput($event)" (mouseup)="resetInput($event)" (input)="control($event , 'right')" min="0" max="20" value="12">
         
     </section>
-    <section class="schedule-flex">
-        <p class="schedule-flex__text gris">1:00 pm to 4:00 pm</p>
-        <p class="schedule-flex__text primary">Available</p>
+    <section class="schedule-flex" [style]="!informationShedule.finished? 'margin-top: -8%;': ''">
+        <p class="schedule-flex__text gris">{{ getNumber(true) }} pm to {{getNumber(false)}} pm</p>
+        <p class="schedule-flex__text primary">{{informationShedule.available? 'Available':'Not Available'}}</p>
     </section>
     <section class="schedule-flex">
         <p class="schedule-flex__text gris">Hourly Rate</p>
-        <p class="schedule-flex__text gris">$25/hr</p>
+        <p class="schedule-flex__text gris">${{informationShedule.hourlyRate}}/hr</p>
     </section>
     <section class="schedule-flex">
         <p class="schedule-flex__text gris">Total Hours</p>
-        <p class="schedule-flex__text gris" >3 hr</p>
+        <p class="schedule-flex__text gris" >{{informationShedule.totalHours}} hr</p>
     </section>
     <section class="schedule-flex">
         <p class="schedule-flex__text gris">Repeat Weekly</p>
-        <p class="schedule-flex__text gris">Save $2/hr</p>
+        <p class="schedule-flex__text gris">Save ${{informationShedule.repeatWeekly}}/hr</p>
     </section>
     <div class="schedule-line"></div>
     <section class="schedule-total">
-        <button class="schedule-total__button cursor-pointer">Add Schedule</button>
-        <h2 class="schedule-total__total">Total $60.5</h2>
+        <button class="schedule-total__button cursor-pointer" (click)="addSchedule()" [disabled]="!isValidOrder()" *ngIf="!informationShedule.finished">Add Schedule</button>
+        <h4 class="schedule-total__completed" *ngIf="informationShedule.finished" >Scheduled Added</h4>
+        <h2 class="schedule-total__total">Total ${{informationShedule.total}}</h2>
     </section>
     <p class="schedule__information">
-        Kuk working hours for the day 12PM 9PM 
+        Kuk working hours for the day 12PM 10PM 
         <br> 
         Minimum 2 hours booking is needed in one schedule
     </p>

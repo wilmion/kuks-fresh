@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { IControlSchedule } from 'src/app/core/models/interfaces';
+import { Component, OnInit , Output , EventEmitter} from '@angular/core';
+import { IControlSchedule, IDateTime } from 'src/app/core/models/interfaces';
 
 @Component({
   selector: 'app-horario',
@@ -7,6 +7,10 @@ import { IControlSchedule } from 'src/app/core/models/interfaces';
   styleUrls: ['./horario.component.scss']
 })
 export class HorarioComponent implements OnInit {
+  //comunicacion con el padre
+  @Output() selectDate = new EventEmitter<IDateTime>();
+
+
   //UI
   selectedProvision:HTMLElement | undefined;
   makeSchedule:{days:( string | number)[]}[] = [];
@@ -102,6 +106,16 @@ export class HorarioComponent implements OnInit {
 
     this.selectedProvision = element;
 
+    //event emit
+
+    const dateTime:IDateTime = {
+      year: this.date.getFullYear(),
+      month: this.currentSchedule.fullMonth,
+      date: Number(element.innerText),
+      day: this.getDay(Number(element.innerText)) || 'Sunday',
+    }
+    this.selectDate.emit(dateTime);
+
   }
   toggleMonth(direction: 'rigth' | 'left'):void{
 
@@ -110,5 +124,12 @@ export class HorarioComponent implements OnInit {
     }else if(direction === "rigth" && this.currentSchedule.month !== 11){
       this.setSchedule(this.currentSchedule.month + 1 );
     }
+  }
+  getDay(date:number):string{
+    const days:string[] = ['Sunday' , 'Monday' , 'Tuesday' , 'Wednesday' , 'Thrusday' , 'Friday' , 'Saturday'];
+    const firstDayMonth:number = this.currentSchedule.day;
+    const day:number = (date%7)+(firstDayMonth - 1);
+    
+    return days[day];
   }
 }

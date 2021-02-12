@@ -29,3 +29,21 @@ export interface IControlSchedule {
     dates:number,
     fullMonth:string,
 }
+export interface IScheduleData {
+    from: number,
+    to: number,
+    available:boolean,
+    hourlyRate: number,
+    totalHours: number,
+    repeatWeekly: number,
+    total: string,
+    finished: boolean ,
+    deliveryOff:number;
+    date: IDateTime
+}
+export interface IDateTime{
+    year: number,
+    day: string,
+    date: number,
+    month: string
+}

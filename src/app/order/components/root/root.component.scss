@@ -30,4 +30,14 @@
       }
     }
   }
+  &-schedules {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  &__line {
+    background-color: rgba($color-terciario, $alpha: 0.7);
+    width: 90%;
+    height: 1px;
+    margin: 20px auto;
+  }
 }
