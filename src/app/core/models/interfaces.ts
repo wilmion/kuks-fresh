@@ -47,3 +47,8 @@ export interface IDateTime{
     date: number,
     month: string
 }
+export interface IUser {
+    email:string;
+    password:string;
+    schedules:IScheduleData[]
+}

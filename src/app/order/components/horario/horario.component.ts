@@ -1,19 +1,26 @@
-import { Component, OnInit , Output , EventEmitter} from '@angular/core';
+import { Component, OnInit , Output ,EventEmitter , ViewChild , Input , OnChanges } from '@angular/core';
 import { IControlSchedule, IDateTime } from 'src/app/core/models/interfaces';
+
+import { months ,datesMonth}from '../../../core/utils/dateUtils';
 
 @Component({
   selector: 'app-horario',
   templateUrl: './horario.component.html',
   styleUrls: ['./horario.component.scss']
 })
-export class HorarioComponent implements OnInit {
+export class HorarioComponent implements OnInit , OnChanges  {
+  //informations
+  @Input() setDatesUser:IDateTime[] = [];
+  @Input() cambios:number = 0;
+  @ViewChild('dates') dateElement:any;
+
   //comunicacion con el padre
   @Output() selectDate = new EventEmitter<IDateTime>();
-
 
   //UI
   selectedProvision:HTMLElement | undefined;
   makeSchedule:{days:( string | number)[]}[] = [];
+
 
   //datos
   date:Date = new Date();
@@ -21,8 +28,7 @@ export class HorarioComponent implements OnInit {
 
   
   constructor() { 
-    const months:string[] = ['Jan' , 'Feb' , 'March' , 'April' , 'May' , 'June' , 'July' , 'August', 'Sep' , 'Oct' , 'Nov' , 'Dic'];
-    const datesMonth:number[] = [31 , 28 , 31 , 30 , 31 , 30 , 31 , 31 , 30 , 31 , 30 , 31];
+    
 
     const dayMont:number = new Date(this.date.getFullYear() , this.date.getMonth() , 1).getDay();
     this.currentSchedule = {
@@ -75,14 +81,40 @@ export class HorarioComponent implements OnInit {
         days: [...numbers ]
       } 
     }
+    setTimeout(() => {
+      this.setDateUser(this.currentSchedule.month);
+    },60)
+    
   }
-
   ngOnInit(): void {
+    
+  }
+  ngOnChanges():void{
+    this.setDateUser(this.currentSchedule.month);
   }
 
+  setDateUser( month:number ):void{
+    const dateElement:any = this.dateElement.nativeElement;
+    const childrens:HTMLElement[] = dateElement.children;
+
+    //select date paint
+
+    const getDate:number[] = this.setDatesUser.filter(e => months.indexOf(e.month) === month).map(e => e.date);
+    for(let childParent of childrens ) {
+      
+      const childrenParent:any = childParent.children;
+      for(let child of childrenParent){
+        const date:number = Number(child.innerText);
+        getDate.forEach(e => {
+          if(e === date){
+            this.selectedProvision = undefined;
+            child.className = "horario-body-dates__file horario-body-dates--active";
+          }
+        })
+      }   
+    };
+  }
   setSchedule(month:number ):void{
-    const months:string[] = ['Jan' , 'Feb' , 'March' , 'April' , 'May' , 'June' , 'July' , 'August', 'Sep' , 'Oct' , 'Nov' , 'Dic'];
-    const datesMonth:number[] = [31 , 28 , 31 , 30 , 31 , 30 , 31 , 31 , 30 , 31 , 30 , 31];
 
     const day : number = new Date(this.date.getFullYear() , month , 1).getDay();
     this.currentSchedule = {
@@ -92,12 +124,29 @@ export class HorarioComponent implements OnInit {
       fullMonth: months[month]
     }
     this.makeScheduleF();
+    
   }
   selectedDate(e:any):void | null{
     const element : HTMLElement = e.target;
+    let cancel = false;
     if(element.innerText === ""){
       return;
     }
+    
+    this.setDatesUser.forEach(dateUser => {
+      if(dateUser.date === Number(element.innerText)){
+        cancel = true;
+      }
+    })
+    if(this.date.getMonth() === this.currentSchedule.month && Number(element.innerText) <= this.date.getDate()){
+      cancel = true;
+    }
+    if(cancel){
+      return;
+    }
+
+    //funcionalidad
+
     if(this.selectedProvision){
       this.selectedProvision.className = "horario-body-dates__file cursor-pointer";
     }
@@ -117,13 +166,15 @@ export class HorarioComponent implements OnInit {
     this.selectDate.emit(dateTime);
 
   }
-  toggleMonth(direction: 'rigth' | 'left'):void{
+  toggleMonth( direction: 'rigth' | 'left'):void{
 
     if(direction === "left" && this.currentSchedule.month !== this.date.getMonth()){
       this.setSchedule(this.currentSchedule.month - 1 );
     }else if(direction === "rigth" && this.currentSchedule.month !== 11){
       this.setSchedule(this.currentSchedule.month + 1 );
     }
+    
+    
   }
   getDay(date:number):string{
     const days:string[] = ['Sunday' , 'Monday' , 'Tuesday' , 'Wednesday' , 'Thrusday' , 'Friday' , 'Saturday'];

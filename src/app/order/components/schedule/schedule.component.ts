@@ -60,7 +60,7 @@ export class ScheduleComponent implements OnInit , AfterViewInit , OnChanges {
     range_end.style.left = `${this.scalableSize*(this.informationShedule.deliveryOff*2)}%`
   }
   setInputValue(input:HTMLInputElement , value:number):void{
-    input.value = `${value}`;
+    input.value = `${value*2}`;
   }
   setGraphic():void{
     const range:any = this.range.nativeElement;
@@ -84,7 +84,7 @@ export class ScheduleComponent implements OnInit , AfterViewInit , OnChanges {
     
 
     range.style.left = `${this.scalableSize * Number(input_left.value)}%`;
-    range.style.width = `${this.scalableSize*(Number(input_right.value) - Number(input_left.value))}%`;
+    range.style.width = `${this.scalableSize*( Number(input_right.value) - Number(input_left.value))}%`;
   }
 
 

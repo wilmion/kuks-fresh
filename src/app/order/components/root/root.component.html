@@ -4,7 +4,7 @@
         <section class="order-select-item">
             <h2 class="order-select-item__title">Select Date and Time</h2>
             <p class="order-select-item__des">Note : If booking right after or before another booking , please factor in 20 mins for commute</p>
-            <app-horario (selectDate)="setDateTime($event)"></app-horario>
+            <app-horario [setDatesUser]="dates" [cambios]="dates.length" (selectDate)="setDateTime($event)"></app-horario>
         </section>
         <section class="order-select-item">
             <img src="assets/jpg/schelude-background.jpg" alt="order schelude">

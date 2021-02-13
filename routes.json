@@ -1,3 +1,4 @@
 {
-  "/product/:id" : "/products/:id"
+  "/product/:id" : "/products/:id",
+  "/user/:email": "/users?email=:email"
 }

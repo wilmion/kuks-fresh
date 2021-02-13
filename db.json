@@ -150,6 +150,31 @@
                 "portion": "A traditional mandi is either made of meat or sometimes chicken"
             }
         }
-    ]
+    ],
+    "users": [
+        {
+            "email": "wilmion92@gmail.com",
+            "password": "123456789",
+            "schedules": [
+                {
+                    "from": 3,
+                    "to": 5,
+                    "available":true,
+                    "hourlyRate": 5,
+                    "totalHours": 2,
+                    "repeatWeekly": 2,
+                    "total": "200.00",
+                    "finished": true ,
+                    "deliveryOff":10,
+                    "date": {
+                        "year": 2021,
+                        "day": "Monday",
+                        "date": 15,
+                        "month": "Feb"
+                    }
+                }
+            ]
+        }
+    ] 
     
 }

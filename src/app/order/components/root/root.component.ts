@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IDateTime, IScheduleData } from 'src/app/core/models/interfaces';
 
+import { months , getDay }from '../../../core/utils/dateUtils';
+
 @Component({
   selector: 'app-root',
   templateUrl: './root.component.html',
@@ -9,16 +11,19 @@ import { IDateTime, IScheduleData } from 'src/app/core/models/interfaces';
 export class RootComponent implements OnInit {
 
   dateActual:IDateTime;
+  dates:IDateTime[] = [];
   schedules:IScheduleData[] = [];
 
   constructor() {
+    const date:Date = new Date();
+    const datefirstMonth:Date = new Date(date.getFullYear() , date.getMonth() , 1);
     this.dateActual= {
-      year: 2021,
-      month: 'Jun',
-      date: 12,
-      day: 'Monday'
+      year: date.getFullYear(),
+      month: months[date.getMonth()],
+      date: date.getDate() + 1,
+      day: getDay(date.getDate() + 1 , datefirstMonth.getDay())
     }
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -31,6 +36,7 @@ export class RootComponent implements OnInit {
     const scheduleDateExist = this.schedules.find(schedule => schedule.date === valueRefined.date);
     if(!scheduleDateExist){
       this.schedules.push(valueRefined);
+      this.dates.push(valueRefined.date);
     }
     
   }
