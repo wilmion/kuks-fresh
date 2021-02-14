@@ -4,11 +4,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 //modules
 import { SharedModule } from './shared/shared.module';
-
-
 import { AppRoutingModule } from './app-routing.module';
+import { StoreModule } from '@ngrx/store';
+
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
+
+import { countReducer } from './store/store.reducer'
+
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { LayoutComponent } from './layout/layout.component';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({count: countReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

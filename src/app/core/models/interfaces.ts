@@ -49,6 +49,14 @@ export interface IDateTime{
 }
 export interface IUser {
     email:string;
-    password:string;
+    id:number;
     schedules:IScheduleData[]
+}
+export interface IScheduleConfigDay{
+    day: string,
+    from: number,
+    to: number,
+    deliveryOff: number,
+    hourlyRate: number,
+    repeatWeekly: number
 }

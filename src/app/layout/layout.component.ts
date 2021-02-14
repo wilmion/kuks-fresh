@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { increment } from '../store/store.actions';
 
 @Component({
   selector: 'app-layout',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+  count$: Observable<number> ;
+
+
+  constructor(
+    private store : Store<{count:number}>
+  ) { 
+    this.count$ = store.select('count');
+  }
 
   ngOnInit(): void {
   }
-
+  increment():void{
+    this.store.dispatch(increment())
+  }
 }

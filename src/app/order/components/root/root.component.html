@@ -1,4 +1,5 @@
 <section class="order">
+    <h1>{{count$ | async}}</h1>
     <h2 class="order__title">"Schedule a Kuk"</h2>
     <section class="order-select">
         <section class="order-select-item">
@@ -11,15 +12,17 @@
         </section>
     </section>
     <div class="order__line"></div>
-    <section class="order-schedules">
-        <app-schedule (scheduleAdded)="addSchedule($event)" [dateTimes]="dateActual" ></app-schedule>
+    <section class="order-schedules" *ngIf="!isLoading && scheduleConfigActual">
+        <app-schedule (scheduleAdded)="addSchedule($event)" [dateTimes]="dateActual" [informationShedule]="scheduleConfigActual"  ></app-schedule>
         <app-schedule *ngFor="let schedule of schedules;let i = index" 
-            (scheduleAdded)="addSchedule($event)" 
+            (scheduleAdded)="addSchedule($event)"
+            (scheduleRemove)="deleteSchedule($event)" 
             [informationShedule]="schedule" 
             [dateTimes]="schedule.date"
             [index]="i+2"
             
         ></app-schedule>
     </section>
-    
+    <app-loading *ngIf="isLoading"></app-loading>
 </section>
+

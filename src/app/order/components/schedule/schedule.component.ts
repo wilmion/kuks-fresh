@@ -8,6 +8,7 @@ import { IScheduleData , IDateTime} from 'src/app/core/models/interfaces';
 })
 export class ScheduleComponent implements OnInit , AfterViewInit , OnChanges {
   @Output() scheduleAdded = new EventEmitter<IScheduleData>()
+  @Output() scheduleRemove = new EventEmitter<IScheduleData>()
 
   @Input() index:number = 1;
   @Input() dateTimes:IDateTime = {
@@ -54,6 +55,11 @@ export class ScheduleComponent implements OnInit , AfterViewInit , OnChanges {
       ...this.informationShedule ,
       date:this.dateTimes 
     }
+    setTimeout(() => {
+      this.setRangeEnd();
+      this.setGraphic();
+    }, 10)
+    
   }
   setRangeEnd():void{
     const range_end:HTMLDivElement = this.range_end.nativeElement;
@@ -166,6 +172,9 @@ export class ScheduleComponent implements OnInit , AfterViewInit , OnChanges {
   }
   addSchedule():void{
     this.scheduleAdded.emit(this.informationShedule);
+  }
+  removeSchedule():void{
+    this.scheduleRemove.emit(this.informationShedule);
   }
   //Computed
   getNumber(from:boolean):string{

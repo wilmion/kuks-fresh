@@ -1,7 +1,13 @@
 <section class="schedule">
-    <button class="schedule__close cursor-pointer">x</button>
+    <button class="schedule__close cursor-pointer" (click)="removeSchedule()" >x</button>
     <h4 class="schedule__name">Schedule {{index}}</h4>
-    <h2 class="schedule__title">Select Time for {{informationShedule.date.month}} {{informationShedule.date.date}}rd {{informationShedule.date.year}} , {{informationShedule.date.day}}</h2>
+    <h2 class="schedule__title">
+        Select Time for 
+        {{informationShedule.date.month}} 
+        {{informationShedule.date.date}}rd 
+        {{informationShedule.date.year}} , 
+        {{informationShedule.date.day}}
+    </h2>
     <section class="schedule-timeline">
         <section class="schedule-timeline-hours">
             <p class="schedule-timeline-hours__hour">12pm</p>
