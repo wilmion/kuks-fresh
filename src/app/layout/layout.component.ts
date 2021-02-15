@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 
-import { increment } from '../store/store.actions';
+import { ApiService } from '../core/services/api.service';
+
+import { IProduct, IUser , IScheduleConfigDay } from '../core/models/interfaces';
+
+//store 
+import { SET_PRODUCTS } from '../store/products/products.actions';
+import { setConfigs } from '../store/scheduleConfig/scheduleConfig.actions';
+import { signUp } from '../store/user/user.actions';
 
 @Component({
   selector: 'app-layout',
@@ -11,18 +17,37 @@ import { increment } from '../store/store.actions';
 })
 export class LayoutComponent implements OnInit {
 
-  count$: Observable<number> ;
-
 
   constructor(
-    private store : Store<{count:number}>
+    private productsState : Store<{products:IProduct[]}>,
+    private userState : Store<{user:IUser}>,
+    private schedulesConfigState : Store<{scheduleConfigs:IScheduleConfigDay[]}>,
+    private apiService : ApiService
   ) { 
-    this.count$ = store.select('count');
+    
   }
 
   ngOnInit(): void {
+    this.setProducts();
+    this.signUp();
+    this.setScheduleConfig();
   }
-  increment():void{
-    this.store.dispatch(increment())
+  setProducts():void{
+    this.apiService.getAll()
+    .subscribe(data => {
+      this.productsState.dispatch(SET_PRODUCTS({ products: data }));
+    })
+  }
+  signUp():void{
+    this.apiService.getUser(1)
+    .subscribe(data => {
+      this.userState.dispatch(signUp({user:data}))
+    })
+  }
+  setScheduleConfig():void{
+    this.apiService.getSchedulesConfigDay()
+    .subscribe(data => {
+      this.schedulesConfigState.dispatch(setConfigs({configs: data}))
+    });
   }
 }

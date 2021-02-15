@@ -8,7 +8,7 @@ import { IScheduleData , IDateTime} from 'src/app/core/models/interfaces';
 })
 export class ScheduleComponent implements OnInit , AfterViewInit , OnChanges {
   @Output() scheduleAdded = new EventEmitter<IScheduleData>()
-  @Output() scheduleRemove = new EventEmitter<IScheduleData>()
+  @Output() scheduleRemove = new EventEmitter<number>()
 
   @Input() index:number = 1;
   @Input() dateTimes:IDateTime = {
@@ -174,7 +174,7 @@ export class ScheduleComponent implements OnInit , AfterViewInit , OnChanges {
     this.scheduleAdded.emit(this.informationShedule);
   }
   removeSchedule():void{
-    this.scheduleRemove.emit(this.informationShedule);
+    this.scheduleRemove.emit(this.index - 2);
   }
   //Computed
   getNumber(from:boolean):string{

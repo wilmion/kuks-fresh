@@ -17,9 +17,6 @@ export class ApiService {
   getAll():Observable<IProduct[]> {
     return this.http.get<IProduct[]>(`${this.API}/products`);
   }
-  getProduct(id:number):Observable<IProduct> {
-    return this.http.get<IProduct>(`${this.API}/product/${id}`);
-  }
   getUser(password:number):Observable<IUser>{
     return this.http.get<IUser>(`${this.API}/users/${password}`);
   }

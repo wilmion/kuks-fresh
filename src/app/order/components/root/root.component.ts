@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { IDateTime, IScheduleConfigDay, IScheduleData , IUser } from 'src/app/core/models/interfaces';
 import { ApiService } from '../../../core/services/api.service';
 import { Store } from '@ngrx/store';
+import { signUp } from '../../../store/user/user.actions';
 
 import { months , getDay }from '../../../core/utils/dateUtils';
 
-import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-root',
@@ -26,11 +26,10 @@ export class RootComponent implements OnInit {
   isLoading:boolean = false;
   //provisional
   user:IUser | undefined;
-  count$:Observable<number>
 
   constructor(
     private apiService:ApiService,
-    private store : Store<{count:number}>
+    private store : Store<{user:IUser , scheduleConfigs:IScheduleConfigDay[]}>
   ) {
     const date:Date = new Date();
     const datefirstMonth:Date = new Date(date.getFullYear() , date.getMonth() , 1);
@@ -40,24 +39,24 @@ export class RootComponent implements OnInit {
       date: date.getDate() + 1,
       day: getDay(date.getDate() + 1 , datefirstMonth.getDay())
     }
-    this.count$ = store.select('count');
   }
 
   ngOnInit(): void {
-    this.isLoading = true;
-    this.apiService.getUser(1)
+    //Obtiendo datos del store
+
+    this.store.select('user')
     .subscribe(data => {
       const schedules:IScheduleData[] = data.schedules;
       this.schedules = schedules;
       this.dates = schedules.map(schedule => schedule.date);
       this.user = data;
-      this.isLoading = false;
+      this.isLoading = data.email !== 'NONE'
     })
     
-    this.apiService.getSchedulesConfigDay()
+    this.store.select('scheduleConfigs')
     .subscribe(data => {
-      this.sheduleInformation=data;
-      this.isLoading = false;
+      this.sheduleInformation = data;
+      this.isLoading = data.length === 0;
     });
 
   }
@@ -85,9 +84,9 @@ export class RootComponent implements OnInit {
       }
       this.apiService.updateUser(userUpdated)
       .subscribe(data => {
-        this.schedules.push(valueRefined);
-        this.dates.push(valueRefined.date);
+        this.store.dispatch(signUp({user : userUpdated}));
         this.isLoading = false;
+
       },
       error => this.isLoading = false)
     }
@@ -114,20 +113,18 @@ export class RootComponent implements OnInit {
       }
     }
   }
-  deleteSchedule(value:IScheduleData):void{
+  deleteSchedule(index:number):void{
     this.isLoading = true;
-    const index:number = this.schedules.indexOf(value);
-    this.schedules.splice(index , 1);
 
     if(this.user){
       const userUpdated:IUser = {
         ...this.user,
-        id:2,
-        schedules: this.user.schedules
+        schedules: this.user.schedules.filter((v , i) => i !== index)
       }
 
       this.apiService.updateUser(userUpdated)
       .subscribe(data => {
+        this.store.dispatch(signUp({user : userUpdated}));
         this.isLoading = false;
       },
       error => console.log(error)

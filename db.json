@@ -271,7 +271,25 @@
       "id": 1,
       "email": "wilmion92@gmail.com",
       "password": "123456789",
-      "schedules": []
+      "schedules": [
+        {
+          "from": 3,
+          "to": 5,
+          "deliveryOff": 6,
+          "hourlyRate": 45,
+          "repeatWeekly": 15,
+          "available": true,
+          "finished": true,
+          "totalHours": 2,
+          "date": {
+            "year": 2021,
+            "month": "Feb",
+            "date": 18,
+            "day": "Thrusday"
+          },
+          "total": "60.00"
+        }
+      ]
     }
   ],
   "orderScheduleTime": [

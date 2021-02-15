@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Params , ActivatedRoute } from '@angular/router'
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IProduct } from 'src/app/core/models/interfaces';
-import { ApiService } from '../../../core/services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +15,9 @@ export class RootComponent implements OnInit {
   isLoading:boolean = true;
 
   constructor(
-    private apiService:ApiService,
-    private router: ActivatedRoute
-  ) { }
+    private router: ActivatedRoute,
+    private store:Store<{products:IProduct[]}>
+  ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -28,11 +28,11 @@ export class RootComponent implements OnInit {
     });
   }
   getProduct(id:number):void{
-    this.apiService.getProduct(id)
+    this.store.select('products')
     .subscribe(data => {
-      this.product = data;
-      this.isLoading = false;
-    })
+      this.product = data.find(p => p.id === id);
+      this.isLoading = data.length === 0;
+    });
   }
 
 }

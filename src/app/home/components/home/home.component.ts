@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 import { IProduct } from '../../../core/models/interfaces';
-import { ApiService } from '../../../core/services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -20,19 +20,16 @@ export class HomeComponent implements OnInit {
   showFiltersOptions:boolean = false;
 
   constructor(
-    private apiService:ApiService
-  ) { }
-  
-  ngOnInit(): void {   
-    this.getData();
-  }
-  getData():void {
-    this.apiService.getAll()
-    .subscribe(data => {
+    private store:Store<{products: IProduct[]}>
+  ) { 
+    store.select('products').subscribe(data => {
       this.products = data; 
       this.filteredPopular([...data]);   
-      this.isLoading = false;
+      this.isLoading = data.length === 0;
     });
+  }
+  
+  ngOnInit(): void {
   }
   filteredPopular(products:IProduct[]):void{
     const productSort = products.sort((a:IProduct , b:IProduct) => {

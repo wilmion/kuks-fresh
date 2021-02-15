@@ -7,10 +7,14 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 
+//components
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
 
-import { countReducer } from './store/store.reducer'
+//state
+import { productsReducer } from './store/products/products.reducer';
+import { userReducer } from './store/user/user.reducers';
+import { scheduleConfigReducer } from './store/scheduleConfig/scheduleConfig.reducers';
 
 
 @NgModule({
@@ -23,7 +27,11 @@ import { countReducer } from './store/store.reducer'
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    StoreModule.forRoot({count: countReducer})
+    StoreModule.forRoot({
+      products : productsReducer , 
+      user: userReducer , 
+      scheduleConfigs: scheduleConfigReducer
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -90,13 +90,18 @@ export class HorarioComponent implements OnInit , OnChanges  {
     
   }
   ngOnChanges():void{
-    this.setDateUser(this.currentSchedule.month);
+    setTimeout(() => {
+      this.setSchedule(this.currentSchedule.month);
+      console.log('updated' , this.currentSchedule.month);
+    },30)
+    
+    
   }
 
   setDateUser( month:number ):void{
     const dateElement:any = this.dateElement.nativeElement;
     const childrens:HTMLElement[] = dateElement.children;
-
+    
     //select date paint
 
     const getDate:number[] = this.setDatesUser.filter(e => months.indexOf(e.month) === month).map(e => e.date);
