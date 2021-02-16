@@ -1,0 +1,56 @@
+@import "../../../app.component.scss";
+.admin-footer {
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+  width: 80%;
+  margin: 5% auto;
+  &-first {
+    display: flex;
+    &__text {
+      font-size: 1.6rem;
+      color: $color-terciario;
+      margin: auto 0;
+      margin-right: 25px;
+    }
+    &__option {
+      font-size: 1.6rem;
+      margin: auto 15px;
+      width: 30px;
+      padding: 7px;
+      border-radius: 100%;
+      text-align: center;
+
+      &--selected {
+        background-color: $color-primary;
+        color: white;
+      }
+      &--unselected {
+        background: transparent;
+        color: $color-terciario;
+        @extend .cursor-pointer;
+      }
+    }
+  }
+  &-second {
+    display: flex;
+    justify-content: space-between;
+    &__control {
+      color: $color-terciario;
+      text-decoration: underline;
+      font-size: 1.6rem;
+      margin: auto 7px;
+    }
+    &__nPage {
+      @extend .cursor-pointer;
+      font-size: 1.5rem;
+      margin: auto 7px;
+      &--selected {
+        color: #50627a;
+      }
+      &--unselected {
+        color: $color-terciario;
+      }
+    }
+  }
+}

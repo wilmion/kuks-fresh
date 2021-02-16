@@ -21,7 +21,9 @@ export interface IProduct {
     descriptions:{
         product: string,
         portion: string
-    }
+    };
+    dateItemAdded:IDateTime;
+    itemSold:number;
 }
 export interface IControlSchedule {
     month:number,
@@ -39,7 +41,7 @@ export interface IScheduleData {
     total: string,
     finished: boolean ,
     deliveryOff:number;
-    date: IDateTime
+    date: IDateTime;
 }
 export interface IDateTime{
     year: number,

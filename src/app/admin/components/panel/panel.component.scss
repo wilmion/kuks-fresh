@@ -1,0 +1,15 @@
+@import "../../../app.component.scss";
+.admin {
+  &__title {
+    font-size: 4rem;
+    color: $color-terciario;
+    margin: 50px 0;
+    font-weight: 700;
+    text-align: center;
+  }
+  &-navigation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+}

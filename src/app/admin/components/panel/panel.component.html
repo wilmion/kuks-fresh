@@ -1,3 +1,11 @@
-<app-nav-menu></app-nav-menu>
-<app-content></app-content>
-<app-footer></app-footer>
+<section class="admin">
+    <h2 class="admin__title">"Admin Panel"</h2>
+    <section class="admin-navigation">
+        <app-nav-menu class="cursor-pointer" *ngFor="let n of mapNavigation" [content]="n.text" [icon]="n.icon" ></app-nav-menu>
+    </section>
+    <app-content></app-content>
+    <app-footer></app-footer>
+</section>
+
+
+

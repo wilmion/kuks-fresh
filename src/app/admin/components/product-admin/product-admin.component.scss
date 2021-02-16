@@ -1,0 +1,92 @@
+@import "../../../app.component.scss";
+$color-terciario-oscure: #50627a;
+%texts {
+  font-size: 1.5rem;
+  color: $color-terciario;
+}
+%titlesInformation {
+  @extend %texts;
+  font-weight: 600;
+  font-size: 1.8rem;
+  text-align: right;
+  margin-bottom: 30px;
+}
+.product {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+  &__background {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 100%;
+    margin-right: 50px;
+    img {
+      width: 300px;
+      height: auto;
+      transform: translateX(-25%);
+    }
+  }
+  &-information {
+    height: inherit;
+    display: block;
+    &__title {
+      color: $color-terciario-oscure;
+      font-weight: 700;
+      font-size: 2rem;
+      margin: 10px 0;
+    }
+    &-stars {
+      display: flex;
+      margin-bottom: auto;
+      img {
+        margin: 0 0;
+      }
+    }
+    &-footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      &__reviews {
+        @extend %texts;
+        font-weight: 600;
+      }
+      &__country {
+        @extend %texts;
+        opacity: 0.7;
+      }
+    }
+  }
+  &-price {
+    margin: auto 40px 0;
+    &__price {
+      @extend %titlesInformation;
+    }
+    &__text {
+      @extend %texts;
+    }
+  }
+  &-date {
+    margin: auto 40px 0;
+    &__date {
+      @extend %titlesInformation;
+    }
+    &__text {
+      @extend %texts;
+    }
+  }
+  &-sold {
+    margin: auto 40px 0;
+    &__sold {
+      @extend %titlesInformation;
+    }
+    &__text {
+      @extend %texts;
+    }
+  }
+  &__icon {
+    margin: auto 10px;
+    font-size: 2rem;
+    color: $color-terciario-oscure;
+  }
+}
