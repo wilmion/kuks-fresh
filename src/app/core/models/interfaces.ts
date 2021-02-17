@@ -9,7 +9,7 @@ export interface IProduct {
         two_start: number,
         one_start: number
     },
-    prices: { cost: 45, moneda: '$' | '€'}[],
+    prices: { cost: number, moneda: '$' | '€'}[],
     from:string[],
     time_delivery: string,
     type: "lunch" | "drinks" | "breakFast" |"Desserts" | "fastFood",

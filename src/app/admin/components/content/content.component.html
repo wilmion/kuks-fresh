@@ -1,5 +1,5 @@
-<app-product-admin></app-product-admin>
-<app-product-admin></app-product-admin>
-<app-product-admin></app-product-admin>
-<app-product-admin></app-product-admin>
-<app-product-admin></app-product-admin>
+<article *ngIf="items === 'items'">
+    <app-product-admin  *ngFor="let product of data" [product]="product"></app-product-admin>
+</article>
+
+

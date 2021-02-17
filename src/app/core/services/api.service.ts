@@ -10,6 +10,9 @@ import { IProduct ,IScheduleConfigDay,IUser } from '../models/interfaces';
 export class ApiService {
 
   API:string = "http://localhost:3000";
+  
+
+  
   constructor(
     private http:HttpClient
   ) { }

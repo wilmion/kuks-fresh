@@ -3,8 +3,8 @@
     <section class="admin-navigation">
         <app-nav-menu class="cursor-pointer" *ngFor="let n of mapNavigation" [content]="n.text" [icon]="n.icon" ></app-nav-menu>
     </section>
-    <app-content></app-content>
-    <app-footer></app-footer>
+    <app-content [data]="data" [items]="getParam()"></app-content>
+    <app-footer [param]="getParam()"></app-footer>
 </section>
 
 

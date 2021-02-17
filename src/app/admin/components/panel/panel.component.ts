@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { Store } from '@ngrx/store';
+import { IProduct } from '../../../core/models/interfaces';
+import { actions } from '../../../core/models/tuplas';
 
 @Component({
   selector: 'app-panel',
@@ -6,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./panel.component.scss']
 })
 export class PanelComponent implements OnInit {
+  //Map
 
   mapNavigation:IMapNavigation[] = [];
-  constructor() { 
+
+  //datas
+
+  data:IProduct[] = [];
+
+
+  constructor(
+    private productsState:Store<{products:IProduct[]}>,
+    private router:ActivatedRoute
+  ) { 
     this.mapNavigation = [
       {
         icon: "far fa-user",
@@ -30,10 +45,31 @@ export class PanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const action: actions = this.getParam();
+      this.setFuncionality(action);
+  }
+  setFuncionality( action: actions ):void{
+    if(action === 'items'){
+
+      this.productsState.select('products')
+      .subscribe(data => {
+        this.data = data;
+      })
+
+    }
   }
 
+  //computed
+  getParam():actions{
+    let param:actions = 'items';
+    this.router.params.subscribe(d => {
+      param = d.action;
+    })
+    return param;
+  }
 }
 interface IMapNavigation{
   icon:string;
   text:string;
 }
+
