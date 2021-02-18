@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 
 import { UpdateStoreService } from '../../../core/services/updateStore/update-store.service';
-
+import { ApiService } from '../../../core/services/api.service';
 import { IProduct } from '../../../core/models/interfaces';
 
 @Component({
@@ -13,11 +14,15 @@ export class ProductAdminComponent implements OnInit {
 
   @Input() product:IProduct | undefined;
 
+  //map
+
   starsActive:number[] = [1];
   starsInactive:number[] = [1,2,3,4];
 
   constructor(
-    private updateStoreService:UpdateStoreService
+    private router:Router,
+    private updateStoreService:UpdateStoreService,
+    private apiService:ApiService
   ) { }
 
   ngOnInit(): void {
@@ -57,7 +62,23 @@ export class ProductAdminComponent implements OnInit {
   refresh():void{
     this.updateStoreService.updated();
   }
+  removeProduct():void | null{
+    if(!this.product) return null;
+    const productId:number = this.product.id;
 
+    this.apiService.deleteProduct(productId)
+    .subscribe(()=> {
+      this.updateStoreService.updated();
+    },
+    error => console.log(error));
+  }
+  editProduct():void | null {
+    if(!this.product) return null;
+
+    const url:string = `/admin/items/edit/${this.product.id}`;
+    
+    this.router.navigate([url]);
+  }
   //computed
 
   getTotalReviews():number{

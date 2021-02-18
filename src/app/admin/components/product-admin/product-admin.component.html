@@ -25,7 +25,7 @@
         <h3 class="product-sold__sold">{{product.itemSold}}</h3>
         <p class="product-sold__text">Item sold</p>
     </section>
-    <i class="fas fa-trash-alt product__icon cursor-pointer"></i>
-    <i class="fas fa-pencil-alt product__icon cursor-pointer"></i>
+    <i class="fas fa-trash-alt product__icon cursor-pointer" (click)="removeProduct()"></i>
+    <i class="fas fa-pencil-alt product__icon cursor-pointer" (click)="editProduct()"></i>
     <i class="fas fa-sync product__icon cursor-pointer" (click)="refresh()"></i>
 </section>

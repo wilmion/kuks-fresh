@@ -26,7 +26,16 @@ export class ApiService {
   getSchedulesConfigDay():Observable<IScheduleConfigDay[]>{
     return this.http.get<IScheduleConfigDay[]>(`${this.API}/orderScheduleTime`);
   }
+
+  //Put
+
   updateUser(user:IUser) {
     return this.http.put(`${this.API}/users/1`, user)
+  }
+
+  //Delete
+
+  deleteProduct(productId:number){
+    return this.http.delete(`${this.API}/product/${productId}`);
   }
 }

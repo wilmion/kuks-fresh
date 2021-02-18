@@ -1,17 +1,17 @@
 <section class="admin-footer" *ngIf="param === 'items'">
     <section class="admin-footer-first">
         <p class="admin-footer-first__text">Items per page: </p>
-        <h6 class="admin-footer-first__option admin-footer-first__option--selected">5</h6>
-        <h6 class="admin-footer-first__option admin-footer-first__option--unselected">10</h6>
-        <h6 class="admin-footer-first__option admin-footer-first__option--unselected">15</h6>
+        <h6 class="admin-footer-first__option admin-footer-first__option--selected" (click)="ItemsperPage($event , 5)" >5</h6>
+        <h6 class="admin-footer-first__option admin-footer-first__option--unselected" (click)="ItemsperPage($event , 10)">10</h6>
+        <h6 class="admin-footer-first__option admin-footer-first__option--unselected" (click)="ItemsperPage($event , 15)">15</h6>
     </section>
     <section class="admin-footer-second">
-        <p class="admin-footer-second__control">Previous</p>
-        <p class="admin-footer-second__nPage admin-footer-second__nPage--selected">1</p>
-        <p class="admin-footer-second__nPage admin-footer-second__nPage--unselected">2</p>
-        <p class="admin-footer-second__nPage admin-footer-second__nPage--unselected">3</p>
-        <p class="admin-footer-second__nPage admin-footer-second__nPage--unselected">4</p>
-        <p class="admin-footer-second__nPage admin-footer-second__nPage--unselected">5</p>
-        <p class="admin-footer-second__control">Next</p>
+        <p class="admin-footer-second__control cursor-pointer" *ngIf="currentPage !== 1" (click)="togglePage('left')">Previous</p>
+        <p
+         [class]="((i + 1) === currentPage)? 'admin-footer-second__nPage admin-footer-second__nPage--selected': 'admin-footer-second__nPage admin-footer-second__nPage--unselected'"
+         *ngFor="let page of getPagesItems() ; let i = index" 
+         (click)="togglePage('none' , $event)"
+        >{{i+1}}</p>
+        <p class="admin-footer-second__control cursor-pointer" *ngIf="currentPage <= totalPages" (click)="togglePage('rigth')">Next</p>
     </section>
 </section>
