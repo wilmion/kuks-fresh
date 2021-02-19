@@ -1,1 +1,85 @@
-<p>root works!</p>
+<section class="edit-items">
+    <h2 class="edit-items__title">Edit Product : Name product</h2>
+    <form>
+        <label for="title">
+            <input name="title" type="text" placeholder="Title of product"  >
+        </label>
+        <label for="sub-title">
+            <input name="sub-title" type="text" placeholder="Subtitle of product" >
+        </label>
+        <label for="image">
+            <input name="image" type="text" placeholder="Image URL" >
+        </label>
+        <label for="price">
+            <input name="price" type="number" placeholder="Price of product" >
+            <span> $</span>
+        </label>
+        <label for="product-desc">
+            <input name="product-desc" type="text" placeholder="Description of the product" >
+        </label>
+        <label for="portion-desc">
+            <input name="portion-desc" type="text" placeholder="Description of product portion" >
+        </label>
+        <label for="time">
+            <input name="time" type="text" placeholder="Time cook (x - y)" >
+        </label>
+        <div class="edit-items-array-form">
+            <div class="flex">
+                <h3 class="edit-items-array-form__title">From's </h3>
+                <button class="edit-items-array-form__add">+</button>
+            </div>
+            <label for="from">
+                <input name="from" type="text" placeholder="From product">
+                <button class="edit-items-array-form__delete">-</button>
+            </label>
+        </div>
+        <div class="edit-items-array-form">
+            <div class="flex">
+                <h3 class="edit-items-array-form__title">Kitchen's </h3>
+                <button class="edit-items-array-form__add">+</button>
+            </div>
+            <label for="Kitchen">
+                <input name="Kitchen" type="text" placeholder="Kitchen product">
+                <button class="edit-items-array-form__delete">-</button>
+            </label>
+        </div>
+        <div class="edit-items-array-form">
+            <div class="flex">
+                <h3 class="edit-items-array-form__title">Ingredient's </h3>
+                <button class="edit-items-array-form__add">+</button>
+            </div>
+            <label for="ingredient">
+                <input name="ingredient" type="text" placeholder="Ingredient product">
+                <button class="edit-items-array-form__delete">-</button>
+            </label>
+        </div>
+        <div class="edit-items-array-form">
+            <div class="flex">
+                <h3 class="edit-items-array-form__title">Diet's </h3>
+                <button class="edit-items-array-form__add">+</button>
+            </div>
+            <label for="diet">
+                <input name="diet" type="text" placeholder="Another diet product">
+                <button class="edit-items-array-form__delete">-</button>
+            </label>
+        </div>
+        <div class="edit-items-array-form">
+            <div class="flex">
+                <h3 class="edit-items-array-form__title">dietary Restriction's </h3>
+                <button class="edit-items-array-form__add">+</button>
+            </div>
+            <label for="dietary_restriction">
+                <input name="dietary_restriction" type="text" placeholder="Dietary Restriction product">
+                <button class="edit-items-array-form__delete">-</button>
+            </label>
+        </div>
+        <select name="type-product" class="edit-items__type">
+            <option value="lunch">Lunch</option>
+            <option value="drinks">Drink</option>
+            <option value="breackFast">Breack Fast</option>
+            <option value="Desserts">Dessert</option>
+            <option value="fastFood">Fast Food</option>
+        </select>
+        <button class="edit-items__send">Create Product...</button>
+    </form>
+</section>

@@ -1,0 +1,114 @@
+@import "../../../app.component.scss";
+
+.edit-items {
+  &__title {
+    color: $color-terciario;
+    font-weight: 700;
+    font-size: 3.2rem;
+    text-align: center;
+    margin: 50px 0;
+  }
+  &-array-form {
+    margin-top: 35px;
+    &__title {
+      font-size: 2rem;
+      font-weight: 100;
+      margin: auto 0;
+      text-transform: uppercase;
+    }
+    button {
+      border-radius: 100%;
+      padding: 12px 0;
+      border: none;
+      width: 40px;
+      margin: auto 0;
+      margin-left: 20px;
+      transition: 1s;
+      cursor: pointer;
+    }
+    &__add {
+      background-color: rgb(38, 124, 38);
+      color: white;
+      &:hover {
+        background-color: rgb(30, 66, 30);
+      }
+      &:focus {
+        outline: rgb(30, 66, 30) solid 1px;
+      }
+    }
+    &__delete {
+      background-color: rgb(126, 38, 38);
+      color: white;
+      &:hover {
+        background-color: rgb(68, 23, 23);
+      }
+      &:focus {
+        outline: rgb(156, 26, 26) solid 1px;
+      }
+    }
+  }
+  &__type {
+    margin: 30px auto;
+    width: 40%;
+    height: 50px;
+    padding: 0 15px;
+    border-radius: 40px;
+    display: block;
+    border: $color-terciario solid 1px;
+    color: $color-terciario;
+    font-size: 1.8rem;
+    transition: 1s;
+    &:focus {
+      outline: $color-primary dotted 1px;
+    }
+  }
+  &__send {
+    background-color: $color-primary;
+    width: 70%;
+    display: block;
+    margin: 15px auto;
+    height: 40px;
+    border-radius: 40px;
+    color: white;
+    border: none;
+    font-size: 2rem;
+    font-family: monospace;
+    transition: 1s;
+    cursor: pointer;
+    &:hover {
+      background-color: #792b07;
+    }
+    &:focus {
+      outline: #fa4f00 dashed 1px;
+    }
+  }
+}
+.flex {
+  display: flex;
+  justify-content: center;
+}
+label {
+  display: block;
+  margin: 25px auto;
+  width: 50%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  input {
+    border: none;
+    border-bottom: $color-terciario solid 1px;
+    padding: 0 15px;
+    width: 90%;
+    &:focus {
+      outline: $color-primary solid 1px;
+      transition: 1s;
+    }
+  }
+  span {
+    font-size: 2.5rem;
+    color: $color-terciario;
+    font-weight: 500;
+    margin: auto 0;
+    margin-left: 25px;
+  }
+}
