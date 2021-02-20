@@ -1,85 +1,150 @@
 <section class="edit-items">
     <h2 class="edit-items__title">Edit Product : Name product</h2>
-    <form>
+    <form [formGroup]="form" >
         <label for="title">
-            <input name="title" type="text" placeholder="Title of product"  >
+            <input 
+                name="title" 
+                type="text" 
+                placeholder="Title of product" 
+                formControlName="title" 
+            >
         </label>
         <label for="sub-title">
-            <input name="sub-title" type="text" placeholder="Subtitle of product" >
+            <input
+                name="sub-title"
+                type="text"
+                placeholder="Subtitle of product"
+                formControlName="subTitle" 
+            >
         </label>
         <label for="image">
-            <input name="image" type="text" placeholder="Image URL" >
+            <input 
+                name="image"
+                type="text"
+                placeholder="Image URL"
+                formControlName="image"
+            >
         </label>
         <label for="price">
-            <input name="price" type="number" placeholder="Price of product" >
+            <input 
+                name="price" 
+                type="number" 
+                placeholder="Price of product" 
+                formControlName="price" 
+            >
             <span> $</span>
         </label>
         <label for="product-desc">
-            <input name="product-desc" type="text" placeholder="Description of the product" >
+            <input 
+                name="product-desc" 
+                type="text" 
+                placeholder="Description of the product" 
+                formControlName="descProduct"
+            >
         </label>
         <label for="portion-desc">
-            <input name="portion-desc" type="text" placeholder="Description of product portion" >
+            <input 
+                name="portion-desc" 
+                type="text" 
+                placeholder="Description of product portion" 
+                formControlName="descPortion"
+            >
         </label>
         <label for="time">
-            <input name="time" type="text" placeholder="Time cook (x - y)" >
+            <input 
+                name="time" 
+                type="text"
+                placeholder="Time cook (x - y)"
+                formControlName="time" 
+            >
         </label>
         <div class="edit-items-array-form">
             <div class="flex">
                 <h3 class="edit-items-array-form__title">From's </h3>
-                <button class="edit-items-array-form__add">+</button>
+                <button class="edit-items-array-form__add" (click)="addItem($event , 'froms')" >+</button>
             </div>
-            <label for="from">
-                <input name="from" type="text" placeholder="From product">
-                <button class="edit-items-array-form__delete">-</button>
+            <label for="from" *ngFor="let n of inputsArr.froms.arr ; let i = index" >
+                <input 
+                name="from" 
+                type="text" 
+                (input)="writeValue( $event , i , 'froms')" 
+                [value]="setValueCreated( this , i , 'froms')" 
+                placeholder="From product"  
+                >
+                <button class="edit-items-array-form__delete"  (click)="deleteItem($event , i , 'froms')" >-</button>
             </label>
         </div>
         <div class="edit-items-array-form">
             <div class="flex">
                 <h3 class="edit-items-array-form__title">Kitchen's </h3>
-                <button class="edit-items-array-form__add">+</button>
+                <button class="edit-items-array-form__add" (click)="addItem($event , 'kitchens')">+</button>
             </div>
-            <label for="Kitchen">
-                <input name="Kitchen" type="text" placeholder="Kitchen product">
-                <button class="edit-items-array-form__delete">-</button>
+            <label for="Kitchen" *ngFor="let n of inputsArr.kitchens.arr ; let i = index" >
+                <input 
+                name="Kitchen" 
+                type="text" 
+                placeholder="Kitchen product" 
+                (input)="writeValue( $event , i , 'kitchens')"
+                [value]="setValueCreated( this , i , 'kitchens')"
+                >
+                <button class="edit-items-array-form__delete" (click)="deleteItem($event , i , 'kitchens')">-</button>
             </label>
         </div>
         <div class="edit-items-array-form">
             <div class="flex">
                 <h3 class="edit-items-array-form__title">Ingredient's </h3>
-                <button class="edit-items-array-form__add">+</button>
+                <button class="edit-items-array-form__add" (click)="addItem($event , 'ingredients')">+</button>
             </div>
-            <label for="ingredient">
-                <input name="ingredient" type="text" placeholder="Ingredient product">
-                <button class="edit-items-array-form__delete">-</button>
+            <label for="ingredient" *ngFor="let n of inputsArr.ingredients.arr ; let i = index">
+                <input 
+                    name="ingredient" 
+                    type="text" 
+                    placeholder="Ingredient product" 
+                    (input)="writeValue( $event , i , 'ingredients')"
+                    [value]="setValueCreated( this , i , 'ingredients')"
+                >
+                <button class="edit-items-array-form__delete" (click)="deleteItem($event , i , 'ingredients')">-</button>
             </label>
         </div>
         <div class="edit-items-array-form">
             <div class="flex">
                 <h3 class="edit-items-array-form__title">Diet's </h3>
-                <button class="edit-items-array-form__add">+</button>
+                <button class="edit-items-array-form__add" (click)="addItem($event , 'diets')">+</button>
             </div>
-            <label for="diet">
-                <input name="diet" type="text" placeholder="Another diet product">
-                <button class="edit-items-array-form__delete">-</button>
+            <label for="diet" *ngFor="let n of inputsArr.diets.arr ; let i = index">
+                <input 
+                    name="diet" 
+                    type="text" 
+                    placeholder="Another diet product" 
+                    (input)="writeValue( $event , i , 'diets')"
+                    [value]="setValueCreated( this , i , 'diets')"
+                >
+                <button class="edit-items-array-form__delete" (click)="deleteItem($event , i , 'diets')">-</button>
             </label>
         </div>
         <div class="edit-items-array-form">
             <div class="flex">
                 <h3 class="edit-items-array-form__title">dietary Restriction's </h3>
-                <button class="edit-items-array-form__add">+</button>
+                <button class="edit-items-array-form__add" (click)="addItem($event , 'dietaryRestriction')">+</button>
             </div>
-            <label for="dietary_restriction">
-                <input name="dietary_restriction" type="text" placeholder="Dietary Restriction product">
-                <button class="edit-items-array-form__delete">-</button>
+            <label for="dietary_restriction" *ngFor="let n of inputsArr.dietaryRestriction.arr ; let i = index">
+                <input 
+                name="dietary_restriction" 
+                type="text" 
+                placeholder="Dietary Restriction product" 
+                (input)="writeValue( $event , i , 'dietaryRestriction')"
+                [value]="setValueCreated( this , i , 'dietaryRestriction')"
+                >
+                <button class="edit-items-array-form__delete" (click)="deleteItem($event , i , 'dietaryRestriction')">-</button>
             </label>
         </div>
-        <select name="type-product" class="edit-items__type">
+        <select name="type-product" formControlName="types" class="edit-items__type">
             <option value="lunch">Lunch</option>
             <option value="drinks">Drink</option>
             <option value="breackFast">Breack Fast</option>
             <option value="Desserts">Dessert</option>
             <option value="fastFood">Fast Food</option>
         </select>
-        <button class="edit-items__send">Create Product...</button>
+        <button class="edit-items__send" (click)="onSubmit($event)" >Create Product...</button>
     </form>
 </section>

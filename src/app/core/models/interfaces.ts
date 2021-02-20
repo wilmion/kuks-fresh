@@ -62,3 +62,15 @@ export interface IScheduleConfigDay{
     hourlyRate: number,
     repeatWeekly: number
 }
+
+export interface IFormProductArrays {
+    froms: IProductArrData;
+    kitchens: IProductArrData;
+    ingredients: IProductArrData;
+    diets:IProductArrData;
+    dietaryRestriction:IProductArrData;
+}
+interface IProductArrData {
+    arr : undefined[];
+    values: string[]
+}

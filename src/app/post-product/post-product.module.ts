@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 
 import { PostProductRoutingModule } from './post-product-routing.module';
 import { RootComponent } from './components/root/root.component';
@@ -9,7 +10,9 @@ import { RootComponent } from './components/root/root.component';
   declarations: [RootComponent],
   imports: [
     CommonModule,
-    PostProductRoutingModule
+    PostProductRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PostProductModule { }
