@@ -2,27 +2,26 @@
   "products": [
     {
       "id": 1,
-      "image": "https://firebasestorage.googleapis.com/v0/b/kuksfresh.appspot.com/o/pakistani%20chicken%20platter.jpg?alt=media&token=513939aa-2b04-4365-be0d-48b8a86ef28f",
       "title": "Pakistani Chicken Platter",
-      "reviews": {
-        "five_start": 45,
-        "for_start": 35,
-        "three_start": 25,
-        "two_start": 15,
-        "one_start": 5
-      },
+      "subtitle": "Excelent chicken , is beatifull!",
+      "image": "https://firebasestorage.googleapis.com/v0/b/kuksfresh.appspot.com/o/pakistani%20chicken%20platter.jpg?alt=media&token=513939aa-2b04-4365-be0d-48b8a86ef28f",
       "prices": [
         {
           "cost": 35,
           "moneda": "$"
         }
       ],
-      "from": [
-        "Indian",
-        "Pakistani"
-      ],
+      "descriptions": {
+        "product": "Pakistani Chicken Scotch Egg Curry. Chicken Karahi Keema – Stir-fried Minced Chicken in a Ginger and Tomato Sauce. Chicken Kofta Curry – A Traditional and Authentic Pakistani Recipe. Palak Murgh – Spinach & Chicken Curry + My 1st Anniversary. Malai Boneless Chicken Karahi ",
+        "portion": "Excellently tasty low-fat portion"
+      },
       "time_delivery": "20 - 30",
       "type": "lunch",
+      "from": [
+        "Indian",
+        "Pakistania",
+        "Fruit"
+      ],
       "kitchen": [
         "American",
         "Asian",
@@ -33,24 +32,27 @@
         "Potato",
         "Chicken"
       ],
-      "subtitle": "Excelent chicken , is beatifull!",
       "diet_info": [
-        "Aniamal",
-        "Vegetal"
+        "Animal",
+        "Vegetal",
+        "Fruit"
       ],
       "dietary_restricion": [
         "Organic"
       ],
-      "descriptions": {
-        "product": "Pakistani Chicken Scotch Egg Curry. Chicken Karahi Keema – Stir-fried Minced Chicken in a Ginger and Tomato Sauce. Chicken Kofta Curry – A Traditional and Authentic Pakistani Recipe. Palak Murgh – Spinach & Chicken Curry + My 1st Anniversary. Malai Boneless Chicken Karahi ",
-        "portion": "Excellently tasty low-fat portion"
+      "itemSold": 0,
+      "reviews": {
+        "five_start": 0,
+        "for_start": 0,
+        "three_start": 0,
+        "two_start": 0,
+        "one_start": 0
       },
-      "itemSold" : 15 ,
       "dateItemAdded": {
         "year": 2021,
         "month": "Feb",
-        "date": 1,
-        "day": "Monday"
+        "date": 21,
+        "day": "Sunday"
       }
     },
     {
@@ -96,7 +98,7 @@
         "product": "traditional Italian food made by gradually adding a broth to the rice, along with other ingredients that vary according to specific risotto recipes. It is one of the most common ways of cooking rice in Italy",
         "portion": "Its portion has a low amount in fat"
       },
-      "itemSold" : 150 ,
+      "itemSold": 150,
       "dateItemAdded": {
         "year": 2021,
         "month": "Feb",
@@ -145,7 +147,7 @@
         "product": "Round golden blinis are the symbols of the sun and thus of spring! They look like crepes, but they are thinner. We believe that if a woman knows how to cook, her blinis are almost transparent.",
         "portion": "Excellently tasty low-fat portion"
       },
-      "itemSold" : 52 ,
+      "itemSold": 52,
       "dateItemAdded": {
         "year": 2021,
         "month": "Feb",
@@ -197,7 +199,7 @@
         "product": "traditional dish from the Balkans and the Middle East made from eggplants, especially popular in Palestinian cuisine",
         "portion": "excellent portion very vegan and apart with chicken"
       },
-      "itemSold" : 75 ,
+      "itemSold": 75,
       "dateItemAdded": {
         "year": 2021,
         "month": "Feb",
@@ -248,7 +250,7 @@
         "product": "Cappuccino is a drink born in Italy, prepared with espresso and steamed milk to give it creaminess. A cappuccino consists of 125 ml of milk and 25 ml of espresso coffee, sometimes cocoa powder or cinnamon is added according to the consumer's taste",
         "portion": "A portion of these would keep you up all night"
       },
-      "itemSold" : 175 ,
+      "itemSold": 175,
       "dateItemAdded": {
         "year": 2021,
         "month": "Feb",
@@ -299,11 +301,59 @@
         "product": "The Arabian Chicken Mandi Recipe is a delicious preparation of chicken cooked with mandi powder served over a layer of basmati rice.",
         "portion": "A traditional mandi is either made of meat or sometimes chicken"
       },
-      "itemSold" : 200 ,
+      "itemSold": 200,
       "dateItemAdded": {
         "year": 2021,
         "month": "Feb",
         "date": 7,
+        "day": "Sunday"
+      }
+    },
+    {
+      "id": 7,
+      "title": "Huevo Frito",
+      "subtitle": "Un plato peruano",
+      "image": "https://cocina-casera.com/wp-content/uploads/2018/02/huevo-frito-en-el-microondas-2.jpg",
+      "prices": [
+        {
+          "cost": 7,
+          "moneda": "$"
+        }
+      ],
+      "descriptions": {
+        "product": "Un plato de calidad peruana de alta satisfaccion , se puede agregar con arroz",
+        "portion": "Puede contener calorias"
+      },
+      "time_delivery": "5 - 10",
+      "type": "breakFast",
+      "from": [
+        "Peru"
+      ],
+      "kitchen": [
+        "Everyone"
+      ],
+      "ingredients": [
+        "Huevo"
+      ],
+      "diet_info": [
+        "Animal"
+      ],
+      "dietary_restricion": [
+        "Vegetal",
+        "Fruit"
+      ],
+      "itemSold": 0,
+      "reviews": {
+        "five_start": 0,
+        "for_start": 0,
+        "three_start": 0,
+        "two_start": 0,
+        "one_start": 0
+      },
+      "dateItemAdded": {
+        "year": 2021,
+        "month": "Feb",
+        "date": 21,
         "day": "Sunday"
       }
     }

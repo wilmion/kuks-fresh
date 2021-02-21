@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder , FormGroup , Validators} from '@angular/forms'
+import { ActivatedRoute  } from '@angular/router';
+import { Subscription } from 'rxjs'
+import { Store } from '@ngrx/store';
+
+import { ApiService } from '../../../core/services/api.service';
+import { UpdateStoreService } from '../../../core/services/updateStore/update-store.service';
+
 
 import { months , days } from '../../../core/utils/dateUtils';
 import { IFormProductArrays, IProduct } from 'src/app/core/models/interfaces';
@@ -12,6 +19,13 @@ import { parameterOfProduct } from 'src/app/core/models/tuplas';
 })
 export class RootComponent implements OnInit {
 
+  //dates
+
+  stateSubcription:Subscription;
+  productsCount:number = 0;
+  product:IProduct | undefined;
+  id:number | 'create' = 0;
+
   //form
 
   form:FormGroup;
@@ -20,9 +34,14 @@ export class RootComponent implements OnInit {
   //build form
 
   inputsArr:IFormProductArrays;
+  isLoading:boolean = false;
 
   constructor(
-    private formBuilder:FormBuilder
+    private formBuilder:FormBuilder,
+    private apiService:ApiService,
+    private updateService:UpdateStoreService,
+    private router:ActivatedRoute,
+    private productState:Store<{products:IProduct[]}>
   ) { 
     this.inputsArr = {
       froms: {
@@ -56,9 +75,16 @@ export class RootComponent implements OnInit {
       time: ['' , Validators.required],
       types: ['lunch']
     })
+    this.stateSubcription = this.productState.select('products').subscribe(data => {
+      this.isLoading = data.length === 0;
+      this.product = data.find(p => p.id === Number(this.id));
+      this.productsCount = data.length;
+      this.setInputsArr(data);
+    });
+    this.router.params.subscribe(param => (this.id = param.id))
   }
   ngOnInit(): void {
-
+    
   }
 
   addItem(e:Event , type:parameterOfProduct):void{
@@ -86,7 +112,7 @@ export class RootComponent implements OnInit {
 
     this.inputsArr[type].values[index] = value;
 
-    console.log(value , this.inputsArr[type].values);
+    
   }
 
   setValueCreated(e:any , index:number , type:parameterOfProduct):string{
@@ -95,7 +121,7 @@ export class RootComponent implements OnInit {
     return this.inputsArr[type].values[index];
   }
 
-  onSubmit (e:Event):void {
+  onSubmit (e:Event ):void {
     e.preventDefault();
     const values = this.form.value;
     const otherValues = this.inputsArr;
@@ -139,12 +165,109 @@ export class RootComponent implements OnInit {
         day: days[date.getDay()]
       }
     }
-    console.log(newProduct);
+    this.isLoading = true;
+    if(this.id !== 'create'){
+      newProduct.id = Number(this.id);
+
+      this.apiService.updateProduct(newProduct)
+      .subscribe(() => {
+        
+        this.updatingStore();
+        this.isLoading = false;
+      },
+      error => {
+        console.log(error);
+        this.isLoading = false;
+      });
+
+    }else{
+      newProduct.id = this.productsCount + 1;
+
+      this.apiService.postProduct(newProduct)
+      .subscribe(() => {
+        
+        this.updatingStore();
+        this.isLoading = false;
+      },
+      error => {
+        console.log(error)
+        this.isLoading = false;
+      })
+    }
+    
   }
 
-  //terminar el envio de datos a la api
-  //posicionar datos cuando viene los datos en la url
-  //terminar el put de datos a la api
-  //obtener un ID unico
+  //build date
+  
+  setInputsArr(products:IProduct[]):void{
+    const product:IProduct | undefined = products.find(item => item.id === Number(this.id));
 
+    if(product){
+      this.inputsArr = {
+        froms: {
+            arr: [...product.from].fill(''),
+            values: [...product.from]
+          },
+        kitchens:{
+            arr: [...product.kitchen].fill(''),
+            values: [...product.kitchen]
+          },
+        ingredients: {
+            arr: [...product.ingredients].fill(''),
+            values: [...product.ingredients]
+          },
+        diets: {
+            arr: [...product.diet_info].fill(''),
+            values: [...product.diet_info]
+          },
+        dietaryRestriction: {
+            arr: [...product.dietary_restricion].fill(''),
+            values: [...product.dietary_restricion]
+          }
+      }
+      this.form = this.formBuilder.group({
+        title:[product.title , Validators.required],
+        subTitle:[product.subtitle , Validators.required],
+        image: [product.image , Validators.required],
+        price: [product.prices[0].cost , Validators.required],
+        descProduct: [product.descriptions.product , Validators.required],
+        descPortion: [product.descriptions.portion , Validators.required],
+        time: [product.time_delivery , Validators.required],
+        types: [product.type]
+      })
+      console.log('updated');
+      this.stateSubcription.unsubscribe();
+    }
+  }
+  updatingStore():void{
+    this.updateService.updated();
+    this.inputsArr = {
+      froms: {
+          arr: [],
+          values: []
+        },
+      kitchens:{
+          arr: [],
+          values: []
+        },
+      ingredients: {
+          arr: [],
+          values: []
+        },
+      diets: {
+          arr: [],
+          values: []
+        },
+      dietaryRestriction: {
+          arr: [],
+          values: []
+        }
+    }
+    this.stateSubcription = this.productState.select('products').subscribe(data => {
+      this.isLoading = data.length === 0;
+      this.product = data.find(p => p.id === Number(this.id));
+      this.productsCount = data.length;
+      this.setInputsArr(data);
+    });
+  }
 } 

@@ -71,6 +71,6 @@ export interface IFormProductArrays {
     dietaryRestriction:IProductArrData;
 }
 interface IProductArrData {
-    arr : undefined[];
+    arr : (string | undefined)[];
     values: string[]
 }

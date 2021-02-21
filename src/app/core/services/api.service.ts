@@ -32,10 +32,19 @@ export class ApiService {
   updateUser(user:IUser) {
     return this.http.put(`${this.API}/users/1`, user)
   }
+  updateProduct(product:IProduct ):Observable<IProduct>{
+    return this.http.put<IProduct>(`${this.API}/product/${product.id}` , product);
+  }
 
   //Delete
 
   deleteProduct(productId:number){
     return this.http.delete(`${this.API}/product/${productId}`);
+  }
+
+  //Post
+
+  postProduct(product:IProduct):Observable<IProduct>{
+    return this.http.post<IProduct>(`${this.API}/products` , product);
   }
 }

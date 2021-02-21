@@ -4,6 +4,7 @@ import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 
 import { PostProductRoutingModule } from './post-product-routing.module';
 import { RootComponent } from './components/root/root.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { RootComponent } from './components/root/root.component';
     CommonModule,
     PostProductRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class PostProductModule { }

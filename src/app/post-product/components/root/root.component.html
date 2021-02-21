@@ -1,5 +1,5 @@
-<section class="edit-items">
-    <h2 class="edit-items__title">Edit Product : Name product</h2>
+<section class="edit-items" *ngIf="!isLoading" >
+    <h2 class="edit-items__title">{{id !== 'create' && product? product.title : 'Create Product'}}</h2>
     <form [formGroup]="form" >
         <label for="title">
             <input 
@@ -141,10 +141,11 @@
         <select name="type-product" formControlName="types" class="edit-items__type">
             <option value="lunch">Lunch</option>
             <option value="drinks">Drink</option>
-            <option value="breackFast">Breack Fast</option>
+            <option value="breakFast">Break Fast</option>
             <option value="Desserts">Dessert</option>
             <option value="fastFood">Fast Food</option>
         </select>
-        <button class="edit-items__send" (click)="onSubmit($event)" >Create Product...</button>
+        <button class="edit-items__send" (click)="onSubmit($event )" >{{id === 'create'? 'Create' : 'Update'}} Product...</button>
     </form>
 </section>
+<app-loading *ngIf="isLoading" ></app-loading>
