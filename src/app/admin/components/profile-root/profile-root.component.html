@@ -1,0 +1,33 @@
+<section class="profile" *ngIf="user && !isLoading">
+    <h2 class="profile__title">My Profile</h2>
+
+    <article class="profile-head">
+        <img [src]="user.image" alt="photo profile">
+        <section class="profile-head-content">
+            <h3 class="profile-head-content__name">{{user.name}}</h3>
+            <h5 class="profile-head-content__job">{{user.job}}</h5>
+            <h5 class="profile-head-content__job">Support</h5>
+        </section>
+    </article>
+    <article class="profile-edit">
+        <h2 class="profile-edit__title">Edit Data</h2>
+
+        <form [formGroup]="form" (submit)="updateUser()">
+            <label for="name">
+                <h3 class="profile-edit__editTitle">Replace Name :</h3>
+                <input type="text" name="name" placeholder="Your Name" formControlName="name" required>
+            </label>
+            <label for="image">
+                <h3 class="profile-edit__editTitle">Replace Image :</h3>
+                <input type="text" name="image" placeholder="ImageUrl" formControlName="image" required>
+            </label>
+            <label for="job">
+                <h3 class="profile-edit__editTitle">Replace Job :</h3>
+                <input type="text" name="job" placeholder="Your Job" formControlName="job" required>
+            </label>
+            <button type="submit" class="profile-edit__button cursor-pointer" [disabled]="!form.valid" >Update Information</button>
+        </form>
+
+    </article>
+</section>
+<app-loading *ngIf="isLoading"></app-loading>

@@ -7,6 +7,10 @@ import { IUser } from '../../core/models/interfaces';
 const userState:IUser = {
     id: -1,
     email: 'NONE',
+    name : "NONE",
+    job: "NONE",
+    admin:false,
+    image: "NONEURL",
     schedules: [],
 };
 
@@ -16,6 +20,10 @@ const _userReducer = createReducer(
     on(logOut , (state) => ({
         id: -1,
         email: 'NONE',
+        name : "NONE",
+        job: "NONE",
+        admin:false,
+        image: "NONEURL",
         schedules: []
     }))
 )

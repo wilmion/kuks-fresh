@@ -52,6 +52,10 @@ export interface IDateTime{
 export interface IUser {
     email:string;
     id:number;
+    name: string,
+    job: string,
+    admin: boolean,
+    image: string,
     schedules:IScheduleData[]
 }
 export interface IScheduleConfigDay{

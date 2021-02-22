@@ -1,4 +1,4 @@
-<section class="nav-item">
-    <i [class]="icon + ' nav-item__icon' " ></i>
+<section class="nav-item" (click)="navigateToUrl()" >
+    <i [class]="icon + ' nav-item__icon'"></i>
     <p class="nav-item__content">{{content}}</p>
 </section>

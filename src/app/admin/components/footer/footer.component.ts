@@ -5,7 +5,7 @@ import { IProduct } from 'src/app/core/models/interfaces';
 
 import { actions } from '../../../core/models/tuplas';
 @Component({
-  selector: 'app-footer',
+  selector: 'app-footer-admin',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })

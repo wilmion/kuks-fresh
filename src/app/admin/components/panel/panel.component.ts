@@ -18,6 +18,7 @@ export class PanelComponent implements OnInit {
   //datas
 
   data:IProduct[] = [];
+  action:actions = 'items';
 
 
   constructor(
@@ -27,26 +28,33 @@ export class PanelComponent implements OnInit {
     this.mapNavigation = [
       {
         icon: "far fa-user",
-        text: "My Profile"
+        text: "My Profile",
+        param: "profile"
       },
       {
         icon: "fas fa-mug-hot",
-        text: "Your Items"
+        text: "Your Items",
+        param: "items"
       },
       {
         icon: "fas fa-shipping-fast",
-        text: "Your Order"
+        text: "Your Order",
+        param: "orders"
       },
       {
         icon: "far fa-handshake",
-        text: "Payment Method"
+        text: "Payment Method",
+        param : "payments"
       }
     ]
   }
 
   ngOnInit(): void {
-    const action: actions = this.getParam();
-      this.setFuncionality(action);
+    
+    this.router.params.subscribe(d => {
+      this.action = d.action;
+      this.setFuncionality(this.action);
+    })
   }
   setFuncionality( action: actions ):void{
     if(action === 'items'){
@@ -58,18 +66,10 @@ export class PanelComponent implements OnInit {
 
     }
   }
-
-  //computed
-  getParam():actions{
-    let param:actions = 'items';
-    this.router.params.subscribe(d => {
-      param = d.action;
-    })
-    return param;
-  }
 }
 interface IMapNavigation{
   icon:string;
   text:string;
+  param:actions
 }
 

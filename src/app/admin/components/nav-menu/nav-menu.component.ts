@@ -1,4 +1,7 @@
 import { Component, OnInit , Input } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { actions } from 'src/app/core/models/tuplas';
 
 @Component({
   selector: 'app-nav-menu',
@@ -9,10 +12,19 @@ export class NavMenuComponent implements OnInit {
 
   @Input() content:string = 'My Profile';
   @Input() icon:string = 'far fa-user';
+  @Input() paramElement:actions = "items";
 
-  constructor() { }
+  constructor(
+    private router : Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  navigateToUrl():void{
+    const url:string = `/admin/${this.paramElement}`;
+
+    this.router.navigate([url]);
   }
 
 }

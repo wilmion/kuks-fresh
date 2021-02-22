@@ -1,5 +1,14 @@
+<article *ngIf="param === 'profile'" >
+    <app-profile-root></app-profile-root>
+</article>
+<article *ngIf="param === 'orders'" >
+    <app-order-root></app-order-root>
+</article>
 <article *ngIf="param === 'items'">
     <app-product-admin  *ngFor="let product of dataShow" [product]="product"></app-product-admin>
+</article>
+<article *ngIf="param === 'payments'" >
+    <app-payment-method></app-payment-method>
 </article>
 
 

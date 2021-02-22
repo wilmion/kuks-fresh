@@ -20,7 +20,7 @@ import { scheduleConfigReducer } from './store/scheduleConfig/scheduleConfig.red
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

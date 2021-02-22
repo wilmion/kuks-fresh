@@ -363,6 +363,10 @@
       "id": 1,
       "email": "wilmion92@gmail.com",
       "password": "123456789",
+      "name": "Wilmion Navarrete",
+      "job": "Frontend Enginner",
+      "admin": false,
+      "image": "https://firebasestorage.googleapis.com/v0/b/kuksfresh.appspot.com/o/Users%2FPerfil_Photo.jpg?alt=media&token=5ac9cb7c-6ba8-4340-8c41-2c6b82aa51f9",
       "schedules": [
         {
           "from": 3,

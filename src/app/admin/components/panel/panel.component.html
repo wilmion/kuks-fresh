@@ -1,10 +1,10 @@
 <section class="admin">
     <h2 class="admin__title">"Admin Panel"</h2>
     <section class="admin-navigation">
-        <app-nav-menu class="cursor-pointer" *ngFor="let n of mapNavigation" [content]="n.text" [icon]="n.icon" ></app-nav-menu>
+        <app-nav-menu class="cursor-pointer" *ngFor="let n of mapNavigation" [content]="n.text" [icon]="n.icon" [paramElement]="n.param" ></app-nav-menu>
     </section>
-    <app-content [data]="data" [param]="getParam()"></app-content>
-    <app-footer [data]="data" [param]="getParam()"></app-footer>
+    <app-content [data]="data" [param]="action"></app-content>
+    <app-footer-admin [data]="data" [param]="action"></app-footer-admin>
 </section>
 
 
