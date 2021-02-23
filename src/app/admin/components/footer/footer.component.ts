@@ -1,4 +1,4 @@
-import { Component, OnInit , Input } from '@angular/core';
+import { Component, OnInit , Input , OnChanges } from '@angular/core';
 import { GlobalEventsService } from '../../../core/services/globalEvents/global-events.service';
 
 import { IProduct } from 'src/app/core/models/interfaces';
@@ -9,7 +9,7 @@ import { actions } from '../../../core/models/tuplas';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit , OnChanges {
 
   @Input() param:actions = "items";
   @Input() data:IProduct[] = [];
@@ -22,9 +22,13 @@ export class FooterComponent implements OnInit {
 
   constructor(
     private globalEventsService:GlobalEventsService
-  ) { }
+  ) {
+    
+  }
 
   ngOnInit(): void {
+  }
+  ngOnChanges():void {
     if(this.param === "items"){
       setTimeout(() => {
         this.globalEventsService.emitOrderProduct(this.count , this.currentPage)

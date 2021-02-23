@@ -2,7 +2,7 @@
     <h2 class="profile__title">My Profile</h2>
 
     <article class="profile-head">
-        <img [src]="user.image" alt="photo profile">
+        <img [src]="user.image" alt="photo profile" loading="lazy" >
         <section class="profile-head-content">
             <h3 class="profile-head-content__name">{{user.name}}</h3>
             <h5 class="profile-head-content__job">{{user.job}}</h5>
@@ -15,7 +15,7 @@
         <form [formGroup]="form" (submit)="updateUser()">
             <label for="name">
                 <h3 class="profile-edit__editTitle">Replace Name :</h3>
-                <input type="text" name="name" placeholder="Your Name" formControlName="name" required>
+                <input type="text" [value]="user.name" name="name" placeholder="Your Name" formControlName="name" required>
             </label>
             <label for="image">
                 <h3 class="profile-edit__editTitle">Replace Image :</h3>

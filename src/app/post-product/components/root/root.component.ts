@@ -21,7 +21,7 @@ export class RootComponent implements OnInit {
 
   //dates
 
-  stateSubcription:Subscription;
+  stateSubcription:Subscription | undefined;
   productsCount:number = 0;
   product:IProduct | undefined;
   id:number | 'create' = 0;
@@ -75,16 +75,23 @@ export class RootComponent implements OnInit {
       time: ['' , Validators.required],
       types: ['lunch']
     })
+    
+    this.router.params.subscribe(param => {
+      this.id = param.id;
+      this.subscription();
+    })
+  }
+  ngOnInit(): void {
+    
+  }
+
+  subscription():void {
     this.stateSubcription = this.productState.select('products').subscribe(data => {
       this.isLoading = data.length === 0;
       this.product = data.find(p => p.id === Number(this.id));
       this.productsCount = data.length;
       this.setInputsArr(data);
     });
-    this.router.params.subscribe(param => (this.id = param.id))
-  }
-  ngOnInit(): void {
-    
   }
 
   addItem(e:Event , type:parameterOfProduct):void{
@@ -236,7 +243,10 @@ export class RootComponent implements OnInit {
         types: [product.type]
       })
       console.log('updated');
-      this.stateSubcription.unsubscribe();
+      if(this.stateSubcription){
+        this.stateSubcription.unsubscribe();
+      }
+      
     }
   }
   updatingStore():void{

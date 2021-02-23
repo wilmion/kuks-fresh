@@ -25,6 +25,7 @@ export class RootComponent implements OnInit {
     .subscribe((param:Params) => {
       const id:string = param.id;
       this.getProduct(Number(id));
+      
     });
   }
   getProduct(id:number):void{

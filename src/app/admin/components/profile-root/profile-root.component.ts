@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , OnDestroy} from '@angular/core';
 import { FormBuilder , FormGroup , Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Subscription } from'rxjs';
 
 import { UpdateStoreService } from '../../../core/services/updateStore/update-store.service'
 import { ApiService } from '../../../core/services/api.service'
@@ -12,34 +13,44 @@ import { IUser } from 'src/app/core/models/interfaces';
   templateUrl: './profile-root.component.html',
   styleUrls: ['./profile-root.component.scss']
 })
-export class ProfileRootComponent implements OnInit {
+export class ProfileRootComponent implements OnInit , OnDestroy {
 
   user:IUser | undefined;
   isLoading:boolean = true;
 
   form:FormGroup;
 
+  //subcripcion
+
+  userSubcription:Subscription;
+
   constructor(
     private userState:Store<{user:IUser}>,
     private formBuilder:FormBuilder,
     private updateStore:UpdateStoreService,
     private apiService:ApiService
-  ) {
-    this.userState.select('user').subscribe(
-      data => {
-        this.isLoading = data.id === -1;
-        this.user = data;
-        this.setValuesInputs();
-      }
-    )
+  ) { 
     this.form = this.formBuilder.group({
       name: ['' , Validators.required ],
       image: ['' , Validators.required ],
       job: ['' , Validators.required ]
     })
+    this.userSubcription = this.userState.select('user').subscribe(
+      data => {
+        this.isLoading = data.id === -1;
+        this.user = data;
+        this.setValuesInputs();
+      }
+    );
+    
   }
 
   ngOnInit(): void {
+    
+  }
+
+  ngOnDestroy():void {
+    this.userSubcription.unsubscribe()
   }
 
   setValuesInputs():void{

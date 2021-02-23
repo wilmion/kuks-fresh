@@ -1,1 +1,98 @@
-<p>order-root works!</p>
+<section class="ordersAdmin">
+    <h2 class="ordersAdmin__title">Orders</h2>
+
+    <section class="ordersAdmin-actions">
+        <section class="ordersAdmin-actions-filters">
+            <select name="active" id="">
+                <option value="active-orders">Active Orders</option>
+                <option value="desactive-orders">Desactive Orders</option>
+            </select>
+            <select name="aproved" id="">
+                <option value="aproved-orders">Aproved Orders</option>
+                <option value="pendings-orders">Pendings Orders</option>
+            </select>
+        </section>
+        <section class="ordersAdmin-actions-search">
+            <div class="cursor-pointer">
+                <i class="fas fa-link"></i>
+            </div>
+            <!--Deslocked : <i class="fas fa-unlink"></i>-->
+            <input type="text" placeholder="Search orders">
+        </section>
+    </section>
+
+    <section class="ordersAdmin-information">
+        <div class="ordersAdmin-information-item">
+            <h5 class="ordersAdmin-information-item__subtitle">Total</h5>
+            <h3 class="ordersAdmin-information-item__title">15 <small>orders</small></h3>
+        </div>
+        <div class="ordersAdmin-information-item">
+            <h5 class="ordersAdmin-information-item__subtitle">Sum</h5>
+            <h3 class="ordersAdmin-information-item__title">400 <small>USD</small></h3>
+        </div>
+        <div class="ordersAdmin-information-item">
+            <h5 class="ordersAdmin-information-item__subtitle">Total pendding</h5>
+            <h3 class="ordersAdmin-information-item__title">7 <small>orders</small></h3>
+        </div>
+    </section>
+
+    <section class="table">
+        <table>
+            <tr class="table-file table-file-head">
+                <td class="table-file-item"></td>
+                <td class="table-file-item">Date</td>
+                <td class="table-file-item">ID</td>
+                <td class="table-file-item">Usuario</td>
+                <td class="table-file-item">Products</td>
+
+                <td class="table-file-item">Direccion</td>
+                <td class="table-file-item">City</td>
+                <td class="table-file-item">Country</td>
+            
+                <td class="table-file-item">Status</td>
+                <td class="table-file-item">Total</td>
+            </tr>
+            <!--order-->
+            <tr class="table-file">
+                <td class="table-file-item">
+                    <input type="checkbox" name="" class="table-file-item__checkBox">
+                </td>
+                <td class="table-file-item">13-02-2019</td>
+                <td class="table-file-item">999</td>
+                <td class="table-file-item">WILMION NAVARRETE</td>
+                <td class="table-file-item">
+                    <button class="table-file-item__button tbl-btn__pdtcs">3 products</button>
+                </td>
+
+                <td class="table-file-item">Mz I Lote 12 Urb</td>
+                <td class="table-file-item">Lima</td>
+                <td class="table-file-item">Peru</td>
+            
+                <td class="table-file-item">
+                    <button class="table-file-item__button tbl-btn__pndg">Pending</button>
+                </td>
+                <td class="table-file-item">$ 1000.0</td>
+            </tr>
+            <tr class="table-file">
+                <td class="table-file-item">
+                    <input type="checkbox" name="" class="table-file-item__checkBox">
+                </td>
+                <td class="table-file-item">13-02-2019</td>
+                <td class="table-file-item">999</td>
+                <td class="table-file-item">WILMION NAVARRETE</td>
+                <td class="table-file-item">
+                    <button class="table-file-item__button tbl-btn__pdtcs">3 products</button>
+                </td>
+
+                <td class="table-file-item">Mz I Lote 12 Urb</td>
+                <td class="table-file-item">Lima</td>
+                <td class="table-file-item">Peru</td>
+            
+                <td class="table-file-item">
+                    <button class="table-file-item__button tbl-btn__apvrd">Aproved</button>
+                </td>
+                <td class="table-file-item">$ 1000.0</td>
+            </tr>
+        </table>
+    </section>
+</section>
