@@ -100,6 +100,7 @@ export class RootComponent implements OnInit {
     if(configData){
       const TotalHours:number = configData.to - configData.from;
       this.scheduleConfigActual = {
+        id: 0,
         from : configData.from,
         to : configData.to,
         deliveryOff: configData.deliveryOff,
@@ -109,7 +110,13 @@ export class RootComponent implements OnInit {
         finished: false,
         totalHours: TotalHours,
         date: value,
-        total: ((TotalHours*configData.hourlyRate)-(TotalHours*configData.repeatWeekly)).toFixed(2)
+        total: ((TotalHours*configData.hourlyRate)-(TotalHours*configData.repeatWeekly)).toFixed(2),
+        pendding: true,
+        location: {
+          city: "Lima",
+          country: "Peru",
+          direction: "Mz los pepitos de la wea"
+        }
       }
     }
   }

@@ -3,36 +3,38 @@
 
     <section class="ordersAdmin-actions">
         <section class="ordersAdmin-actions-filters">
-            <select name="active" id="">
-                <option value="active-orders">Active Orders</option>
-                <option value="desactive-orders">Desactive Orders</option>
+            <select name="active" id="" (input)="filteredActiveOrders($event)">
+                <option value="none" selected>--Select Option--</option>
+                <option value="true">Active Orders</option>
+                <option value="false">Desactive Orders</option>
             </select>
-            <select name="aproved" id="">
-                <option value="aproved-orders">Aproved Orders</option>
-                <option value="pendings-orders">Pendings Orders</option>
+            <select name="aproved" id="" (input)="filteredAprovedOrders($event)">
+                <option value="none" selected>--Select Option--</option>
+                <option value="true">Aproved Orders</option>
+                <option value="false">Pendings Orders</option>
             </select>
         </section>
         <section class="ordersAdmin-actions-search">
-            <div class="cursor-pointer">
-                <i class="fas fa-link"></i>
+            <div class="cursor-pointer" (click)="changeActivateSearch()">
+                <i class="fas fa-link" *ngIf="activedSearch"></i>
+                <i class="fas fa-unlink" *ngIf="!activedSearch"></i>
             </div>
-            <!--Deslocked : <i class="fas fa-unlink"></i>-->
-            <input type="text" placeholder="Search orders">
+            <input type="text" placeholder="Search orders" (input)="filteredSearch($event)">
         </section>
     </section>
 
     <section class="ordersAdmin-information">
         <div class="ordersAdmin-information-item">
             <h5 class="ordersAdmin-information-item__subtitle">Total</h5>
-            <h3 class="ordersAdmin-information-item__title">15 <small>orders</small></h3>
+            <h3 class="ordersAdmin-information-item__title">{{showOrders.length}} <small>orders</small></h3>
         </div>
         <div class="ordersAdmin-information-item">
             <h5 class="ordersAdmin-information-item__subtitle">Sum</h5>
-            <h3 class="ordersAdmin-information-item__title">400 <small>USD</small></h3>
+            <h3 class="ordersAdmin-information-item__title">{{getSumTotal()}} <small>USD</small></h3>
         </div>
         <div class="ordersAdmin-information-item">
             <h5 class="ordersAdmin-information-item__subtitle">Total pendding</h5>
-            <h3 class="ordersAdmin-information-item__title">7 <small>orders</small></h3>
+            <h3 class="ordersAdmin-information-item__title">{{getNOrdersPendding().length}} <small>orders</small></h3>
         </div>
     </section>
 
@@ -53,45 +55,25 @@
                 <td class="table-file-item">Total</td>
             </tr>
             <!--order-->
-            <tr class="table-file">
+            <tr class="table-file" *ngFor="let order of showOrders">
                 <td class="table-file-item">
                     <input type="checkbox" name="" class="table-file-item__checkBox">
                 </td>
-                <td class="table-file-item">13-02-2019</td>
-                <td class="table-file-item">999</td>
-                <td class="table-file-item">WILMION NAVARRETE</td>
+                <td class="table-file-item">{{convertData(order.date)}}</td>
+                <td class="table-file-item">{{order.id}}</td>
+                <td class="table-file-item">{{order.user_name}}</td>
                 <td class="table-file-item">
                     <button class="table-file-item__button tbl-btn__pdtcs">3 products</button>
                 </td>
 
-                <td class="table-file-item">Mz I Lote 12 Urb</td>
-                <td class="table-file-item">Lima</td>
-                <td class="table-file-item">Peru</td>
+                <td class="table-file-item">{{order.location.direction}}</td>
+                <td class="table-file-item">{{order.location.city}}</td>
+                <td class="table-file-item">{{order.location.country}}</td>
             
                 <td class="table-file-item">
-                    <button class="table-file-item__button tbl-btn__pndg">Pending</button>
+                    <button class="table-file-item__button tbl-btn__pndg">{{order.pendding ? 'pendding' : 'completed'}}</button>
                 </td>
-                <td class="table-file-item">$ 1000.0</td>
-            </tr>
-            <tr class="table-file">
-                <td class="table-file-item">
-                    <input type="checkbox" name="" class="table-file-item__checkBox">
-                </td>
-                <td class="table-file-item">13-02-2019</td>
-                <td class="table-file-item">999</td>
-                <td class="table-file-item">WILMION NAVARRETE</td>
-                <td class="table-file-item">
-                    <button class="table-file-item__button tbl-btn__pdtcs">3 products</button>
-                </td>
-
-                <td class="table-file-item">Mz I Lote 12 Urb</td>
-                <td class="table-file-item">Lima</td>
-                <td class="table-file-item">Peru</td>
-            
-                <td class="table-file-item">
-                    <button class="table-file-item__button tbl-btn__apvrd">Aproved</button>
-                </td>
-                <td class="table-file-item">$ 1000.0</td>
+                <td class="table-file-item">$ {{order.total}}</td>
             </tr>
         </table>
     </section>

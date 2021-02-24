@@ -23,6 +23,9 @@ export class ApiService {
   getUser(password:number):Observable<IUser>{
     return this.http.get<IUser>(`${this.API}/users/${password}`);
   }
+  getUsers():Observable<IUser[]>{
+    return this.http.get<IUser[]>(`${this.API}/users`);
+  }
   getSchedulesConfigDay():Observable<IScheduleConfigDay[]>{
     return this.http.get<IScheduleConfigDay[]>(`${this.API}/orderScheduleTime`);
   }

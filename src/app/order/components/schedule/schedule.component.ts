@@ -18,6 +18,7 @@ export class ScheduleComponent implements OnInit , AfterViewInit , OnChanges {
     month: 'Jun'
   }
   @Input() informationShedule:IScheduleData = {
+    id: 0,
     from: 0,
     to: 1,
     available:true,
@@ -27,7 +28,13 @@ export class ScheduleComponent implements OnInit , AfterViewInit , OnChanges {
     total: '25.00',
     finished: false ,
     deliveryOff : 10,
-    date: this.dateTimes
+    date: this.dateTimes,
+    pendding: true,
+    location: {
+      city: "Lima",
+      country: "Peru",
+      direction: "DIRECTION"
+    }
   }
 
   @ViewChild('controlLeft') c_left:any;

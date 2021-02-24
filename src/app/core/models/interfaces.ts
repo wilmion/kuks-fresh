@@ -32,6 +32,7 @@ export interface IControlSchedule {
     fullMonth:string,
 }
 export interface IScheduleData {
+    id:number;
     from: number,
     to: number,
     available:boolean,
@@ -42,6 +43,8 @@ export interface IScheduleData {
     finished: boolean ,
     deliveryOff:number;
     date: IDateTime;
+    pendding: boolean,
+    location: ILocation
 }
 export interface IDateTime{
     year: number,
@@ -56,7 +59,7 @@ export interface IUser {
     job: string,
     admin: boolean,
     image: string,
-    schedules:IScheduleData[]
+    schedules:IScheduleData[],
 }
 export interface IScheduleConfigDay{
     day: string,
@@ -77,4 +80,12 @@ export interface IFormProductArrays {
 interface IProductArrData {
     arr : (string | undefined)[];
     values: string[]
+}
+export interface ILocation {
+    city: string,
+    country: string,
+    direction: string,
+}
+export interface IOrder extends IScheduleData{
+    user_name: string;
 }

@@ -369,6 +369,7 @@
       "image": "https://firebasestorage.googleapis.com/v0/b/kuksfresh.appspot.com/o/Users%2FPerfil_Photo.jpg?alt=media&token=5ac9cb7c-6ba8-4340-8c41-2c6b82aa51f9",
       "schedules": [
         {
+          "id": 1,
           "from": 3,
           "to": 5,
           "deliveryOff": 6,
@@ -383,8 +384,17 @@
             "date": 18,
             "day": "Thrusday"
           },
-          "total": "60.00"
+          "total": "60.00",
+          "pendding": true,
+          "location": {
+            "city": "Lima",
+            "country": "Peru",
+            "direction": "MZ I Lote 56 "
+          }
         }
+      ],
+      "orders": [
+
       ]
     }
   ],
