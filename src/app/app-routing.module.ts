@@ -26,6 +26,10 @@ const routes: Routes = [
       {
         path: "admin/items/edit/:id",
         loadChildren: () => import('./post-product/post-product.module').then(m => m.PostProductModule)
+      },
+      {
+        path: "order/:user/:id",
+        loadChildren: () => import('./order-detail/order-detail.module').then(m => m.OrderDetailModule)
       }
     ]
   }

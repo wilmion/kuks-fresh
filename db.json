@@ -390,12 +390,68 @@
             "city": "Lima",
             "country": "Peru",
             "direction": "MZ I Lote 56 "
-          }
+          },
+          "products": [
+            {
+              "id": 1,
+              "amount": 2,
+              "title": "Pakistani Chicken Platter",
+              "subtitle": "Excelent chicken , is beatifull!",
+              "image": "https://firebasestorage.googleapis.com/v0/b/kuksfresh.appspot.com/o/pakistani%20chicken%20platter.jpg?alt=media&token=513939aa-2b04-4365-be0d-48b8a86ef28f",
+              "prices": [
+                {
+                  "cost": 35,
+                  "moneda": "$"
+                }
+              ],
+              "descriptions": {
+                "product": "Pakistani Chicken Scotch Egg Curry. Chicken Karahi Keema – Stir-fried Minced Chicken in a Ginger and Tomato Sauce. Chicken Kofta Curry – A Traditional and Authentic Pakistani Recipe. Palak Murgh – Spinach & Chicken Curry + My 1st Anniversary. Malai Boneless Chicken Karahi ",
+                "portion": "Excellently tasty low-fat portion"
+              },
+              "time_delivery": "20 - 30",
+              "type": "lunch",
+              "from": [
+                "Indian",
+                "Pakistania",
+                "Fruit"
+              ],
+              "kitchen": [
+                "American",
+                "Asian",
+                "African"
+              ],
+              "ingredients": [
+                "Tomato",
+                "Potato",
+                "Chicken"
+              ],
+              "diet_info": [
+                "Animal",
+                "Vegetal",
+                "Fruit"
+              ],
+              "dietary_restricion": [
+                "Organic"
+              ],
+              "itemSold": 0,
+              "reviews": {
+                "five_start": 0,
+                "for_start": 0,
+                "three_start": 0,
+                "two_start": 0,
+                "one_start": 0
+              },
+              "dateItemAdded": {
+                "year": 2021,
+                "month": "Feb",
+                "date": 21,
+                "day": "Sunday"
+              }
+            }
+          ]
         }
       ],
-      "orders": [
-
-      ]
+      "orders": []
     }
   ],
   "orderScheduleTime": [

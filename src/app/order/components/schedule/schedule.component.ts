@@ -34,7 +34,8 @@ export class ScheduleComponent implements OnInit , AfterViewInit , OnChanges {
       city: "Lima",
       country: "Peru",
       direction: "DIRECTION"
-    }
+    },
+    products: []
   }
 
   @ViewChild('controlLeft') c_left:any;

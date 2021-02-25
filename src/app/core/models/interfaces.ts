@@ -44,7 +44,8 @@ export interface IScheduleData {
     deliveryOff:number;
     date: IDateTime;
     pendding: boolean,
-    location: ILocation
+    location: ILocation,
+    products: IProductsUser[];
 }
 export interface IDateTime{
     year: number,
@@ -88,4 +89,7 @@ export interface ILocation {
 }
 export interface IOrder extends IScheduleData{
     user_name: string;
+}
+export interface IProductsUser extends IProduct {
+    amount: number
 }

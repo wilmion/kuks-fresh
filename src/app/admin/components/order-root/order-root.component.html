@@ -13,6 +13,7 @@
                 <option value="true">Aproved Orders</option>
                 <option value="false">Pendings Orders</option>
             </select>
+            <button disabled id="detailsAnchor" (click)="navigateToOrderDetail($event)" class="ordersAdmin-actions-filters__viewDetails" [disabled]="!currentSelectedOrder">View Details</button>
         </section>
         <section class="ordersAdmin-actions-search">
             <div class="cursor-pointer" (click)="changeActivateSearch()">
@@ -21,6 +22,7 @@
             </div>
             <input type="text" placeholder="Search orders" (input)="filteredSearch($event)">
         </section>
+        
     </section>
 
     <section class="ordersAdmin-information">
@@ -39,7 +41,7 @@
     </section>
 
     <section class="table">
-        <table>
+        <table *ngIf="showOrders.length > 0 && !isLoading">
             <tr class="table-file table-file-head">
                 <td class="table-file-item"></td>
                 <td class="table-file-item">Date</td>
@@ -57,13 +59,13 @@
             <!--order-->
             <tr class="table-file" *ngFor="let order of showOrders">
                 <td class="table-file-item">
-                    <input type="checkbox" name="" class="table-file-item__checkBox">
+                    <input type="checkbox" class="table-file-item__checkBox" (click)="setCurrentOrder($event , order)">
                 </td>
                 <td class="table-file-item">{{convertData(order.date)}}</td>
                 <td class="table-file-item">{{order.id}}</td>
                 <td class="table-file-item">{{order.user_name}}</td>
                 <td class="table-file-item">
-                    <button class="table-file-item__button tbl-btn__pdtcs">3 products</button>
+                    <button class="table-file-item__button tbl-btn__pdtcs">{{order.products.length}} products</button>
                 </td>
 
                 <td class="table-file-item">{{order.location.direction}}</td>
@@ -71,10 +73,12 @@
                 <td class="table-file-item">{{order.location.country}}</td>
             
                 <td class="table-file-item">
-                    <button class="table-file-item__button tbl-btn__pndg">{{order.pendding ? 'pendding' : 'completed'}}</button>
+                    <button [class]="order.pendding? 'table-file-item__button tbl-btn__pndg' : 'table-file-item__button tbl-btn__apvrd '" (click)="toggleStateOrder(order)" >{{order.pendding ? 'pendding' : 'completed'}}</button>
                 </td>
                 <td class="table-file-item">$ {{order.total}}</td>
             </tr>
         </table>
+        <h3 *ngIf="showOrders.length === 0 && !isLoading" class="table-notResults">Not Results</h3>
+        <app-loading *ngIf="isLoading"></app-loading>
     </section>
 </section>

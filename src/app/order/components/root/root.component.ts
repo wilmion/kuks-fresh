@@ -116,7 +116,8 @@ export class RootComponent implements OnInit {
           city: "Lima",
           country: "Peru",
           direction: "Mz los pepitos de la wea"
-        }
+        },
+        products: []
       }
     }
   }

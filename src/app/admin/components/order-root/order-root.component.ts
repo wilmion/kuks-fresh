@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { ApiService } from '../../../core/services/api.service';
 
-import { IUser , IOrder, IDateTime } from '../../../core/models/interfaces';
+import { IUser , IOrder, IDateTime, IScheduleData } from '../../../core/models/interfaces';
 import { convertDataToString , months} from '../../../core/utils/dateUtils';
 
 @Component({
@@ -22,16 +24,19 @@ export class OrderRootComponent implements OnInit {
     activeArr: []
   }
 
+  users:IUser[] | undefined;
+
+  currentSelectedOrder:IOrder | undefined;
+
+  isLoading:boolean = false;
+
   constructor(
-    private apiService:ApiService
+    private apiService:ApiService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
-    this.apiService.getUsers()
-    .subscribe(data => {
-      this.convertToSchedules(data);
-    },
-    error => console.log(error))
+    this.fetchData();
   }
   convertToSchedules(users:IUser[]):void {
     const schedules:IOrder[] = [];
@@ -47,6 +52,8 @@ export class OrderRootComponent implements OnInit {
         schedules.push(modifiquedSchedule);
       })
     })
+
+    this.users = users;
 
     this.showOrders = schedules;
     this.schedules = this.showOrders;
@@ -146,6 +153,90 @@ export class OrderRootComponent implements OnInit {
     this.activedSearch = !this.activedSearch;
   }
 
+  setCurrentOrder(event:any , order:IOrder) : void {
+    const el:HTMLInputElement = event.target;
+    const inputsCHND:any = document.querySelectorAll('input')
+
+    const inputs:HTMLInputElement[] = [...inputsCHND];
+
+    inputs.forEach(input => {
+      if(input.type === "checkbox" && input != el){
+        input.checked = false;
+      }
+    })
+
+    const active:boolean = el.checked;
+
+    if(active) {
+      this.currentSelectedOrder = order;
+    }else {
+      this.currentSelectedOrder = undefined;
+    }
+    this.asingDetails()
+
+  }
+
+  asingDetails():void {
+    const buttonDetails:HTMLButtonElement = <HTMLButtonElement> document.getElementById('detailsAnchor');
+
+    const order = this.currentSelectedOrder;
+
+    if(order){
+      buttonDetails.dataset.href = `/order/${order.user_name}/${order.id}`;
+    }
+  }
+
+  toggleStateOrder(order:IOrder):void{
+    order.pendding = !order.pendding ;
+
+    this.isLoading = true;
+
+    if(this.users){
+      const user:IUser = <IUser> this.users.find(u => u.name === order.user_name);
+
+      const schedule:any = {...order};
+
+      delete schedule.user_name;
+
+      const schedules:IScheduleData[] = user.schedules.filter(s => s.id !== schedule.id );
+
+
+      const updateUser : IUser = {
+        ...user ,
+        schedules: [...schedules , schedule]
+      }
+
+      this.apiService.updateUser(updateUser)
+      .subscribe(() => {
+        this.fetchData();
+      }, error => {
+        console.log(error)
+      });
+    }
+
+    
+
+  }
+
+  fetchData():void {
+    this.isLoading = true;
+
+    this.apiService.getUsers()
+    .subscribe(data => {
+      this.convertToSchedules(data);
+      this.isLoading = false;
+    },
+    error => (this.isLoading = false))
+  }
+
+  navigateToOrderDetail(event:any):void {
+    const element:HTMLButtonElement = event.target;
+    
+    const URL:string = <string> element.dataset.href;
+
+    this.router.navigate([URL]);
+  }
+
   //computed
 
   convertData(dateTime:IDateTime):string {
@@ -172,10 +263,3 @@ interface filteresData {
   aprovedsArr : IOrder[],
   activeArr: IOrder[]
 }
-
-//cosas faltantes para terminar para terminar la pagina admin
-
-  //ver detalles (redireccionar a link , manipular la orden seleccionada desde el checkbox)
-  //cambiar estada de la orden
-  //agregar boton para ir a detalles
-  //Indicador cuando no hay ordenes en los filtros
