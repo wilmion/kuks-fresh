@@ -1,0 +1,58 @@
+@import "../../../app.component.scss";
+
+.userCard {
+  padding: 25px;
+  width: 50%;
+  margin: 25px auto;
+  border-radius: 25px;
+  background-image: linear-gradient(
+    to right top,
+    #2b0d32,
+    #2f163f,
+    #31204d,
+    #312a5b,
+    #2e3469,
+    #343c75,
+    #3a4582,
+    #3f4e8f,
+    #52579d,
+    #6660ab,
+    #7a68b9,
+    #8f71c6
+  );
+  &-image-containt {
+    width: 350px;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 100%;
+    box-shadow: rgba($color: #000000, $alpha: 0.3) 0px 20px;
+    margin: 25px auto;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  &__name {
+    font-size: 2.3rem;
+    color: white;
+    text-align: center;
+    margin: 30px 0;
+    font-weight: 100;
+  }
+  &__job {
+    font-size: 1.6rem;
+    color: white;
+    text-align: center;
+    margin: 30px 0;
+    font-weight: 700;
+  }
+  &__email {
+    font-size: 1.8rem;
+    color: white;
+    text-align: center;
+    margin: 70px 0;
+    font-weight: 300;
+    font-style: italic;
+    font-family: monospace;
+  }
+}
