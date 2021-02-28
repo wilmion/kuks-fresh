@@ -1,20 +1,18 @@
-<section class="orderDetail">
-    <h2 class="orderDetail__title">Order N°15 from Wilmion Navarrete</h2>
+<section class="orderDetail" *ngIf="order">
+    <h2 class="orderDetail__title">Order N°{{order.id}} from {{order.user_name}}</h2>
     <section class="orderDetail-time">
-        <h5 class="orderDetail-time__information">From : 7pm</h5>
-        <h5 class="orderDetail-time__information">to : 12pm</h5>
+        <h5 class="orderDetail-time__information">From : {{order.from}} pm</h5>
+        <h5 class="orderDetail-time__information">to :{{order.to}} pm</h5>
     </section>
-    <p class="orderDetail__date">Date: 15 / 10 / 2020</p>
-    <p class="orderDetail__mount">Mount: $100</p>
-    <p class="orderDetail__pennding">Pennding: <small>true</small> </p>
+    <p class="orderDetail__date">Date: {{buildDate(order.date)}}</p>
+    <p class="orderDetail__mount">Mount: ${{order.total}}</p>
+    <p class="orderDetail__pennding">Pennding: <small [style]="order.pendding? '': 'color:green' ">{{order.pendding}}</small> </p>
     <section class="orderDetail__products">
-        <h2>Total Products: 150</h2>
+        <h2>Total Products: {{order.products.length}}</h2>
         <section class="orderDetail__products--grid">
-            <app-product></app-product>
-            <app-product></app-product>
-            <app-product></app-product>
+            <app-product *ngFor="let product of order.products" [product]="product"></app-product>
         </section>
     </section>
     <h4 class="orderDetail__titleUserInformation">User Information: </h4>
-    <app-user-detail></app-user-detail>
+    <app-user-detail [user]="user" ></app-user-detail>
 </section>

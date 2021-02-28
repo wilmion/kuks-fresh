@@ -53,9 +53,11 @@
       margin: 20px 0;
     }
     &--grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      display: flex;
+      justify-content: center;
+      app-product {
+        width: 30%;
+      }
     }
   }
   &__titleUserInformation {
