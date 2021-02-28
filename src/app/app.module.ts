@@ -15,6 +15,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { productsReducer } from './store/products/products.reducer';
 import { userReducer } from './store/user/user.reducers';
 import { scheduleConfigReducer } from './store/scheduleConfig/scheduleConfig.reducers';
+import { cartReducer } from './store/cart/cart.reducers';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { scheduleConfigReducer } from './store/scheduleConfig/scheduleConfig.red
     StoreModule.forRoot({
       products : productsReducer , 
       user: userReducer , 
-      scheduleConfigs: scheduleConfigReducer
+      scheduleConfigs: scheduleConfigReducer ,
+      cart : cartReducer
     })
   ],
   providers: [],
