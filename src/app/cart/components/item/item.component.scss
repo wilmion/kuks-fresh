@@ -1,24 +1,29 @@
 @import "../../../app.component.scss";
 %border {
   border: rgba($color: #000000, $alpha: 0.2) solid 1px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cartItem {
   display: grid;
   width: 98%;
   grid-template-columns: 10% 10% 45% 10% 15% 10%;
-  grid-template-rows: 100px;
+  grid-auto-rows: 100px;
   margin: 0 auto;
   i {
     @extend %border;
     margin: auto;
+    padding: 0 42%;
     font-size: 2rem;
   }
   &-image {
     @extend %border;
     overflow: hidden;
-    width: 90%;
     display: block;
+    width: 100%;
     margin: 0 auto;
     height: 100px;
     img {

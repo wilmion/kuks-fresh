@@ -1,0 +1,61 @@
+@import "../../../app.component.scss";
+
+.cartTotals {
+  margin: 50px 0;
+  margin-left: 50%;
+  margin-right: 10%;
+  width: 40%;
+  &__title {
+    font-size: 2.5rem;
+    text-align: left;
+    margin: 10px 0;
+    color: $color-terciario;
+  }
+  &-line {
+    background-color: rgb(161, 185, 212);
+    width: 100%;
+    height: 2px;
+  }
+  &-information {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: repeat(2, 60px);
+    margin: 10px;
+    &__feature {
+      border: rgba($color: #000000, $alpha: 0.2) solid 1px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      h4 {
+        font-size: 2rem;
+        color: rgb(34, 34, 34);
+        margin-left: 20px;
+        font-weight: 500;
+        text-align: left;
+        text-transform: uppercase;
+      }
+    }
+    &__value {
+      border: rgba($color: #000000, $alpha: 0.2) solid 1px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      h5 {
+        font-size: 1.8rem;
+        color: $color-terciario;
+        margin-left: 20px;
+        font-weight: 100;
+        text-align: left;
+      }
+    }
+  }
+  &-button {
+    width: 50%;
+    color: white;
+    background-color: $color-primary;
+    border: none;
+    font-size: 1.8rem;
+    padding: 10px 0;
+    margin: 15px 10px;
+  }
+}

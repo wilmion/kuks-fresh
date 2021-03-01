@@ -1,14 +1,16 @@
-<section class="cartItem">
-    <i class="far fa-times-circle"></i>
+<section class="cartItem" *ngIf="product">
+    
+    <i class="far fa-times-circle cursor-pointer" (click)="deleteProduct()" ></i>
+
     <div class="cartItem-image">
-        <img src="https://firebasestorage.googleapis.com/v0/b/kuksfresh.appspot.com/o/pakistani%20chicken%20platter.jpg?alt=media&token=513939aa-2b04-4365-be0d-48b8a86ef28f" alt="image product">
+        <img [src]="product.image" alt="image product">
     </div>
-    <p class="cartItem__text">Pakistani chicken </p>
-    <p class="cartItem__text">$35.00</p>
+    <p class="cartItem__text">{{product.title}} </p>
+    <p class="cartItem__text">${{product.prices[0].cost}}</p>
     <div class="cartItem-amount">
-        <button class="cartItem-amount__control remove-color">-</button>
-        <p class="cartItem-amount__amount">1</p>
-        <button class="cartItem-amount__control plus-color">+</button>
+        <button class="cartItem-amount__control remove-color cursor-pointer" (click)="deleteAmount()">-</button>
+        <p class="cartItem-amount__amount">{{product.amount}}</p>
+        <button class="cartItem-amount__control plus-color cursor-pointer" (click)="incrementAmount()" >+</button>
     </div>
-    <p class="cartItem__text">$35.00</p>
+    <p class="cartItem__text">${{(product.prices[0].cost * product.amount).toFixed(2)}}</p>
 </section>

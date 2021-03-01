@@ -1,5 +1,8 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { IProduct } from 'src/app/core/models/interfaces';
+
+import {Store} from '@ngrx/store';
+import { addToCart } from '../../../store/cart/cart.actions';
+import { IProduct, IProductsUser } from 'src/app/core/models/interfaces';
 
 @Component({
   selector: 'app-details',
@@ -11,7 +14,9 @@ export class DetailsComponent implements OnInit {
   @Input() product:IProduct | undefined;
   dates:string[] = [];
 
-  constructor() { }
+  constructor(
+    private store:Store<{cart:IProductsUser[]}>
+  ) {}
 
   ngOnInit(): void {
     this.createDates();
@@ -55,7 +60,7 @@ export class DetailsComponent implements OnInit {
     }
   }
   addToCart():void {
-    
+    this.store.dispatch(addToCart({ product : <IProduct> this.product }))
   }
 
 }

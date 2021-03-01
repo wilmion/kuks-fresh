@@ -8,6 +8,6 @@
         <h4 class="cart-table__title">Quantity</h4>
         <h4 class="cart-table__title">Total</h4>
     </section>
-    <app-item></app-item>
+    <app-item *ngFor="let product of cart" [product]="product"></app-item>
     <app-totals></app-totals>
 </section>
