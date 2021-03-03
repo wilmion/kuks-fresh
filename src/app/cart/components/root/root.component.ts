@@ -24,9 +24,3 @@ export class RootComponent implements OnInit {
   }
 
 }
-
-//cpsas para terminar la pagina de carrito
-
-// calculos del componente totals
-// redireccionar al schedule
-// indicador de que no hay productos en su carrito

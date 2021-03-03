@@ -6,14 +6,14 @@
             <h4>SubTotal</h4>
         </div>
         <div class="cartTotals-information__value">
-            <h5>$35.00</h5>
+            <h5>${{calculateTotal()}}</h5>
         </div>
         <div class="cartTotals-information__feature">
             <h4>Total</h4>
         </div>
         <div class="cartTotals-information__value">
-            <h5>$35.00</h5>
+            <h5>${{calculateTotal()}}</h5>
         </div>
     </section>
-    <button class="cartTotals-button cursor-pointer">Proceed to Schedule</button>
+    <button class="cartTotals-button cursor-pointer" (click)="redirectToSchedule()" >Proceed to Schedule</button>
 </section>

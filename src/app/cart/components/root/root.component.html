@@ -1,6 +1,10 @@
 <section class="cart">
     <h2 class="cart__title">"CART"</h2>
-    <section class="cart-table">
+    <section class="cart-error" *ngIf="cart.length === 0" >
+        <i class="fas fa-cart-arrow-down"></i>
+        <p>No hay productos en su carrito</p>
+    </section>
+    <section class="cart-table" *ngIf="cart.length !== 0">
         <div class="cart-table__title"></div>
         <div class="cart-table__title"></div>
         <h4 class="cart-table__title">Product</h4>
@@ -9,5 +13,5 @@
         <h4 class="cart-table__title">Total</h4>
     </section>
     <app-item *ngFor="let product of cart" [product]="product"></app-item>
-    <app-totals></app-totals>
+    <app-totals [cart]="cart" *ngIf="cart.length !== 0"></app-totals>
 </section>
