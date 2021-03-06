@@ -76,7 +76,7 @@ export class RootComponent implements OnInit {
       this.isLoading = true;
       const userUpdated:IUser = {
         ...this.user,
-        id:2,
+        id:'1',
         schedules: [
           ...this.user.schedules,
           valueRefined

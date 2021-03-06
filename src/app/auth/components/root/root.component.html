@@ -1,12 +1,20 @@
 <section class="auth">
-    <h2 class="auth__logo cursor-pointer">Kuks Fresh</h2>
+    <h2 class="auth__logo cursor-pointer" (click)="navigateToURl('/')">Kuks Fresh</h2>
     <nav class="auth_nav">
         <ul class="auth_nav-list">
-            <li class="auth_nav-list-item auth_nav-list-item-select cursor-pointer">
+            <li 
+                class="auth_nav-list-item cursor-pointer" 
+                [class]="param === 'login'? 'auth_nav-list-item-unselect' : 'auth_nav-list-item-select'" 
+                (click)="navigateToURl('/auth/register')"
+            >
                 <p>CREATE AN ACCOUNT</p>
                 <div class="indicator"></div>
             </li>
-            <li class="auth_nav-list-item auth_nav-list-item-unselect cursor-pointer">
+            <li 
+                class="auth_nav-list-item cursor-pointer" 
+                [class]="param === 'login'? 'auth_nav-list-item-select' : 'auth_nav-list-item-unselect'"
+                (click)="navigateToURl('/auth/login')"
+            >
                 <p>LOG IN</p>
                 <div class="indicator"></div>
             </li>
@@ -14,8 +22,7 @@
         <div class="auth_nav__line"></div>
     </nav>
     <section class="auth-logre">
-        <app-register></app-register>
+        <app-register *ngIf="param === 'register'" (eventLogin)="logIn($event)"></app-register>
+        <app-login *ngIf="param === 'login'" (eventLogin)="logIn($event)"></app-login>
     </section>
-    
-    <!--<app-login></app-login>-->
 </section>

@@ -365,7 +365,7 @@
       "password": "123456789",
       "name": "Wilmion Navarrete",
       "job": "Frontend Enginner",
-      "admin": false,
+      "admin": true,
       "image": "https://firebasestorage.googleapis.com/v0/b/kuksfresh.appspot.com/o/Users%2FPerfil_Photo.jpg?alt=media&token=5ac9cb7c-6ba8-4340-8c41-2c6b82aa51f9",
       "schedules": [
         {
@@ -452,6 +452,33 @@
         }
       ],
       "orders": []
+    },
+    {
+      "id": "samuel123&wilbert121@hotmail.com",
+      "name": "123123 123213",
+      "email": "wilbert121@hotmail.com",
+      "job": "Not Defined",
+      "admin": false,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Crystal_Clear_kdm_user_female.svg/1200px-Crystal_Clear_kdm_user_female.svg.png",
+      "schedules": []
+    },
+    {
+      "id": "samuel123&wilbert120@hotmail.com",
+      "name": "wilbert navarrete",
+      "email": "wilbert120@hotmail.com",
+      "job": "Not Defined",
+      "admin": false,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Crystal_Clear_kdm_user_female.svg/1200px-Crystal_Clear_kdm_user_female.svg.png",
+      "schedules": []
+    },
+    {
+      "id": "samuel123asdf&wilbert11@hotmail.com",
+      "name": "asdsda asdasd",
+      "email": "wilbert11@hotmail.com",
+      "job": "Not Defined",
+      "admin": false,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Crystal_Clear_kdm_user_female.svg/1200px-Crystal_Clear_kdm_user_female.svg.png",
+      "schedules": []
     }
   ],
   "orderScheduleTime": [

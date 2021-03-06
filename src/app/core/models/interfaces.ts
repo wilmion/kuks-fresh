@@ -55,7 +55,7 @@ export interface IDateTime{
 }
 export interface IUser {
     email:string;
-    id:number;
+    id:string;
     name: string,
     job: string,
     admin: boolean,

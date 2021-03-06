@@ -43,10 +43,10 @@ export class LayoutComponent implements OnInit {
     })
   }
   signUp():void{
-    this.apiService.getUser(1)
-    .subscribe(data => {
-      this.userState.dispatch(signUp({user:data}))
-    })
+    // this.apiService.getUser(1)
+    // .subscribe(data => {
+    //   this.userState.dispatch(signUp({user:data}))
+    // })
   }
   setScheduleConfig():void{
     this.apiService.getSchedulesConfigDay()

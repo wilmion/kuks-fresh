@@ -8,14 +8,18 @@
             <li><a routerLink="/plans" class="header-navigation-list__item">Plans</a></li>
             <li><a routerLink="/contact" class="header-navigation-list__item">Contact Us</a></li>
             <li>
-                <a routerLink="/profile" class="header-navigation-list__item header-navigation-list--image">
-                    <img src="https://www.enciclopedia-de-la-alfombra.es/fabricacion/formas-y-tamanos/cuadrada/33538_330.jpg" alt="user icon">
+                <a routerLink="/profile" class="header-navigation-list__item header-navigation-list--image" *ngIf="isLogued">
+                    <img [src]="image" alt="user icon">
                 </a>
             </li>
         </ul>
     </nav>
-    <a routerLink="/cart" class="header__cart">     
-        <img src="assets/icon/cart-icon.svg" alt="cart icon">
+    <a routerLink="/cart" class="header__cart" *ngIf="isLogued">     
+        <img src="assets/icon/cart-icon.svg" alt="cart icon" >
         <span> ({{cart.length}}) items</span>
     </a>
+    <div class="logInButton-container">
+        <a class="logInButton" routerLink="/auth/login" *ngIf="!isLogued">Sign Up</a>
+    </div>
+    
 </header>

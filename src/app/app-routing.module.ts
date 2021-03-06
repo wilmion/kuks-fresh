@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 
+//guards
+
+import { AdminGuardGuard } from './core/guards/admin-guard.guard';
+import { LoginGuard } from './core/guards/login/login.guard';
+
 const routes: Routes = [
   {
     path: "",
@@ -21,11 +26,13 @@ const routes: Routes = [
       },
       {
         path: "admin/:action",
-        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+        canActivate: [AdminGuardGuard]
       },
       {
         path: "admin/items/edit/:id",
-        loadChildren: () => import('./post-product/post-product.module').then(m => m.PostProductModule)
+        loadChildren: () => import('./post-product/post-product.module').then(m => m.PostProductModule),
+        canActivate: [AdminGuardGuard]
       },
       {
         path: "order/:user/:id",
@@ -38,8 +45,9 @@ const routes: Routes = [
     ]
   },
   {
-    path: "auth",
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    path: "auth/:mode",
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    canActivate: [LoginGuard]
   }
 ];
 

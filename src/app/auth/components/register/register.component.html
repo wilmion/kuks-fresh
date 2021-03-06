@@ -1,20 +1,29 @@
 <section class="register">
-    <form action="">
+    <form action="" [formGroup]="form" *ngIf="!registerStatus.loading">
         <label for="" class="register-label">
-            <input type="text" class="register-label__input" placeholder="Name" >
+            <input type="text" class="register-label__input" placeholder="Name" formControlName="name" >
         </label>
         <label for="" class="register-label">
-            <input type="email" class="register-label__input" placeholder="Email">
+            <input type="email" class="register-label__input" placeholder="Email" formControlName="email">
         </label>
         <label for="" class="register-label">
-            <input type="password" class="register-label__input" placeholder="PASSWORD (AT LEAST 8 CHARACTERS)">
+            <input type="password" class="register-label__input" placeholder="PASSWORD (AT LEAST 8 CHARACTERS)" formControlName="password">
         </label>
         <section class="register-finally">
-            <button type="submit" class="register-finally__button cursor-pointer">Create</button>
+            <button 
+            (click)="onSubmit()" 
+            type="submit" 
+            class="register-finally__button cursor-pointer"
+            [disabled]="!form.valid"
+            >Create</button>
             <div class="register-finally-terms ">
-                <input type="checkbox" class="cursor-pointer" >
+                <input type="checkbox" class="cursor-pointer" formControlName="terms" >
                 <p>I accept Terms of Use</p>
             </div>
         </section>
+        <div class="register-error" *ngIf="registerStatus.error">
+            <p>{{registerStatus.error}}</p>
+        </div>
     </form>
+    <app-loading *ngIf="registerStatus.loading"></app-loading>
 </section>

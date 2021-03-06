@@ -72,4 +72,20 @@
       margin: auto 15px;
     }
   }
+  .logInButton {
+    text-align: center;
+    background-color: $color-primary;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    width: 60%;
+    text-decoration: none;
+    font-size: 1.6rem;
+    padding: 15px;
+    &-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }

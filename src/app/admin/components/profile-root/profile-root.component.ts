@@ -37,7 +37,7 @@ export class ProfileRootComponent implements OnInit , OnDestroy {
     })
     this.userSubcription = this.userState.select('user').subscribe(
       data => {
-        this.isLoading = data.id === -1;
+        this.isLoading = Number(data.id) === -1;
         this.user = data;
         this.setValuesInputs();
       }
@@ -54,7 +54,7 @@ export class ProfileRootComponent implements OnInit , OnDestroy {
   }
 
   setValuesInputs():void{
-    if( this.user && this.user.id !== -1){
+    if( this.user && Number(this.user.id) !== -1){
       const user:IUser = this.user;
       this.form = this.formBuilder.group({
         name: [user.name , Validators.required ],

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute , Router } from '@angular/router';
+
+import { Store } from '@ngrx/store';
+import { IUser } from 'src/app/core/models/interfaces';
+import { signUp } from '../../../store/user/user.actions';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +12,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RootComponent implements OnInit {
 
-  constructor() { }
+  param:'login' | 'register' = "login";
+
+  constructor(
+    private route:ActivatedRoute,
+    private router:Router,
+    private StoreUser:Store<{user:IUser}>
+    ) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.param = params.mode;
+    })
+  }
+  navigateToURl(url:string):void {
+    this.router.navigate([url]);
+  }
+  logIn(user:IUser){
+    this.StoreUser.dispatch(signUp({user}));
+    this.router.navigate(['/']);
   }
 
 }
