@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute , Router } from '@angular/router';
 
+import { writeLocalStorage } from '../../../core/utils/generateLocal'; 
+
 import { Store } from '@ngrx/store';
 import { IUser } from 'src/app/core/models/interfaces';
 import { signUp } from '../../../store/user/user.actions';
@@ -30,6 +32,7 @@ export class RootComponent implements OnInit {
   }
   logIn(user:IUser){
     this.StoreUser.dispatch(signUp({user}));
+    writeLocalStorage('user' ,  user );
     this.router.navigate(['/']);
   }
 

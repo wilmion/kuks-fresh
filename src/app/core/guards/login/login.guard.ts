@@ -3,6 +3,9 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } fro
 import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
+import { signUp } from '../../../store/user/user.actions';
+
+import { writeLocalStorage , getItemLocalStorage } from '../../../core/utils/generateLocal';
 import { IUser } from '../../models/interfaces';
 
 @Injectable({
@@ -17,9 +20,24 @@ export class LoginGuard implements CanActivate {
   ) {
     this.store.select('user').subscribe(
       user => {
-        this.logIn = user.id !== '-1';
+        this.logIn = this.logIn? true : user.id !== '-1';
       }
     )
+    this.verificateAuth();
+  }
+
+  verificateAuth():void {
+    const userAuth:null | string = getItemLocalStorage('user');
+    if(userAuth){
+      const user:IUser = <IUser> JSON.parse(userAuth);
+
+      this.store.dispatch(signUp({user}));
+
+      this.logIn = true;
+    }else {
+      this.logIn = false;
+    }
+
   }
 
   canActivate(

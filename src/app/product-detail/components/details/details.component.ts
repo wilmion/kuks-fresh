@@ -1,8 +1,11 @@
 import { Component, OnInit, Input} from '@angular/core';
+import { Router } from '@angular/router';
 
 import {Store} from '@ngrx/store';
 import { addToCart } from '../../../store/cart/cart.actions';
-import { IProduct, IProductsUser } from 'src/app/core/models/interfaces';
+import { IProduct, IProductsUser, IUser } from 'src/app/core/models/interfaces';
+
+import { redirectIsNotAuth } from '../../../core/utils/redirectIsNotAuth';
 
 @Component({
   selector: 'app-details',
@@ -15,7 +18,8 @@ export class DetailsComponent implements OnInit {
   dates:string[] = [];
 
   constructor(
-    private store:Store<{cart:IProductsUser[]}>
+    private store:Store<{cart:IProductsUser[] , user:IUser}>,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -60,7 +64,9 @@ export class DetailsComponent implements OnInit {
     }
   }
   addToCart():void {
-    this.store.dispatch(addToCart({ product : <IProduct> this.product }))
+    redirectIsNotAuth(this.store , this.router , () => {
+      this.store.dispatch(addToCart({ product : <IProduct> this.product }))
+    });
   }
 
 }

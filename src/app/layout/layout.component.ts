@@ -10,6 +10,7 @@ import { IProduct, IUser , IScheduleConfigDay } from '../core/models/interfaces'
 import { SET_PRODUCTS } from '../store/products/products.actions';
 import { setConfigs } from '../store/scheduleConfig/scheduleConfig.actions';
 import { signUp } from '../store/user/user.actions';
+import { getItemLocalStorage } from '../core/utils/generateLocal';
 
 @Component({
   selector: 'app-layout',
@@ -32,9 +33,9 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
     this.updateService.change$.subscribe(() => {
       this.setProducts();
-      this.signUp();
       this.setScheduleConfig();
     });
+    this.signUp();
   }
   setProducts():void{
     this.apiService.getAll()
@@ -43,10 +44,12 @@ export class LayoutComponent implements OnInit {
     })
   }
   signUp():void{
-    // this.apiService.getUser(1)
-    // .subscribe(data => {
-    //   this.userState.dispatch(signUp({user:data}))
-    // })
+    const userAuth:null | string = getItemLocalStorage('user');
+    if(userAuth){
+      const user:IUser = <IUser> JSON.parse(userAuth);
+
+      this.userState.dispatch(signUp({user}));
+    }
   }
   setScheduleConfig():void{
     this.apiService.getSchedulesConfigDay()

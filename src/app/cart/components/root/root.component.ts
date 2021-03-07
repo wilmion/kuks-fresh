@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
-import { IProductsUser } from 'src/app/core/models/interfaces';
+import { IProductsUser, IUser } from 'src/app/core/models/interfaces';
+import { redirectIsNotAuth } from 'src/app/core/utils/redirectIsNotAuth';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class RootComponent implements OnInit {
   cart:IProductsUser[] = []
 
   constructor(
-    private store:Store<{cart:IProductsUser[]}>
+    private store:Store<{cart:IProductsUser[] , user:IUser}>
   ) {
     this.store.select('cart').subscribe(cart => {
       this.cart = cart;
