@@ -1,0 +1,8 @@
+<section class="profile">
+    <app-header-profile [user]="user"></app-header-profile>
+    <section class="profile-settings">
+        <app-information-block *ngFor="let s of settings" [dataFrame]="s"></app-information-block>
+    </section>
+    <button class="profile-logout" (click)="logOut()">Log Out</button>
+</section>
+

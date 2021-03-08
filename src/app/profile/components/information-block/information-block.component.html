@@ -1,0 +1,14 @@
+<section class="profile-setting" *ngIf="dataFrame">
+    <h2 class="profile-setting__title">{{dataFrame.title}}</h2>
+    <article class="profile-setting-content">
+        <section class="profile-setting-content-file" *ngFor="let config of dataFrame.configs , let i = index">
+            <h4 class="profile-setting-content-file__title ">{{config.key}}</h4>
+            <p class="profile-setting-content-file__value " *ngIf="!config.edit">{{config.value}}</p>
+            <input type="text" [(ngModel)]="config.value" [value]="config.value" *ngIf="config.edit">
+            <i 
+                [class]="config.edit? 'fas fa-check cursor-pointer' : 'far fa-edit cursor-pointer'" 
+                (click)="toggleEdit(i)"
+            ></i>
+        </section>
+    </article>
+</section>

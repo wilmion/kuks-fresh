@@ -1,0 +1,48 @@
+@import "../../../app.component.scss";
+
+.profile-setting {
+  width: 90%;
+  margin: 0 auto 50px;
+  &__title {
+    font-size: 1.8rem;
+    color: $color-terciario;
+    text-align: left;
+  }
+  &-content {
+    margin: 15px 0;
+    border: $color-terciario solid 1px;
+    &-file {
+      display: flex;
+      padding: 15px 25px;
+      border-top: $color-terciario solid 1px;
+      border-bottom: $color-terciario solid 1px;
+      justify-content: space-between;
+      align-items: center;
+      &__title {
+        font-size: 1.8rem;
+        font-family: monospace;
+      }
+      &__value {
+        font-size: 1.8rem;
+        font-weight: 100;
+        font-family: monospace;
+      }
+      input {
+        width: 80%;
+        margin: 0 auto;
+        padding: 5px 5px;
+        font-family: monospace;
+        font-size: 1.3rem;
+      }
+      i {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+.disable {
+  opacity: 0;
+}
+.enable {
+  opacity: 1;
+}

@@ -1,0 +1,11 @@
+<section class="headerProfile" *ngIf="user">
+    <section class="headerProfile-banner">
+    </section>
+    <section class="headerProfile-user">
+        <div class="headerProfile-user-image">
+            <img [src]="user.image" alt="profile-user-image">
+        </div>
+        <h2 class="headerProfile-user__name">{{user.name}}</h2>
+        <h5 class="headerProfile-user__job">{{user.job}}</h5>
+    </section>
+</section>

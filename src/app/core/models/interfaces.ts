@@ -93,3 +93,16 @@ export interface IOrder extends IScheduleData{
 export interface IProductsUser extends IProduct {
     amount: number
 }
+
+//builds
+
+export interface IProfileFrame {
+    title:string;
+    configs: IProfileFrameValues[];
+}
+
+export interface IProfileFrameValues {
+    key:string;
+    value:string;
+    edit:boolean;
+}
