@@ -206,7 +206,7 @@ export class OrderRootComponent implements OnInit {
         schedules: [...schedules , schedule]
       }
 
-      this.apiService.updateUser(updateUser)
+      this.apiService.updateUser(updateUser , '1')
       .subscribe(() => {
         this.fetchData();
       }, error => {

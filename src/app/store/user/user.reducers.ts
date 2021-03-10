@@ -11,6 +11,12 @@ const userState:IUser = {
     job: "NONE",
     admin:false,
     image: "NONEURL",
+    city: "Not Defined",
+    country: "Not Defined",
+    direction: "Not Defined",
+    dni: "Not Defined",
+    phoneNumber: "Not Defined",
+    houseNumber: "Not Defined",
     schedules: [],
 };
 
@@ -24,6 +30,12 @@ const _userReducer = createReducer(
         job: "NONE",
         admin:false,
         image: "NONEURL",
+        city: "Not Defined",
+        country: "Not Defined",
+        direction: "Not Defined",
+        dni: "Not Defined",
+        phoneNumber: "Not Defined",
+        houseNumber: "Not Defined",
         schedules: []
     }))
 )

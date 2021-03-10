@@ -23,7 +23,7 @@ const routes: Routes = [
       {
         path: "checkout/order",
         loadChildren: () => import('./order/order.module').then(m => m.OrderModule),
-        canActivate: [!LoginGuard]
+        canActivate: [LoginGuard]
       },
       {
         path: "admin/:action",
@@ -42,11 +42,12 @@ const routes: Routes = [
       {
         path: "cart",
         loadChildren: () => import('./cart/cart.module').then(m => m.CartModule),
-        canActivate: [!LoginGuard]
+        canActivate: [LoginGuard]
       },
       {
         path: "profile",
-        loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+        loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
+        canActivate: [LoginGuard]
       },
     ]
   },

@@ -361,106 +361,33 @@
   "users": [
     {
       "id": 1,
-      "email": "wilmion92@gmail.com",
-      "password": "123456789",
       "name": "Wilmion Navarrete",
-      "job": "Frontend Enginner",
-      "admin": true,
-      "image": "https://firebasestorage.googleapis.com/v0/b/kuksfresh.appspot.com/o/Users%2FPerfil_Photo.jpg?alt=media&token=5ac9cb7c-6ba8-4340-8c41-2c6b82aa51f9",
-      "schedules": [
-        {
-          "id": 1,
-          "from": 3,
-          "to": 5,
-          "deliveryOff": 6,
-          "hourlyRate": 45,
-          "repeatWeekly": 15,
-          "available": true,
-          "finished": true,
-          "totalHours": 2,
-          "date": {
-            "year": 2021,
-            "month": "Feb",
-            "date": 18,
-            "day": "Thrusday"
-          },
-          "total": "60.00",
-          "pendding": true,
-          "location": {
-            "city": "Lima",
-            "country": "Peru",
-            "direction": "MZ I Lote 56 "
-          },
-          "products": [
-            {
-              "id": 1,
-              "amount": 2,
-              "title": "Pakistani Chicken Platter",
-              "subtitle": "Excelent chicken , is beatifull!",
-              "image": "https://firebasestorage.googleapis.com/v0/b/kuksfresh.appspot.com/o/pakistani%20chicken%20platter.jpg?alt=media&token=513939aa-2b04-4365-be0d-48b8a86ef28f",
-              "prices": [
-                {
-                  "cost": 35,
-                  "moneda": "$"
-                }
-              ],
-              "descriptions": {
-                "product": "Pakistani Chicken Scotch Egg Curry. Chicken Karahi Keema – Stir-fried Minced Chicken in a Ginger and Tomato Sauce. Chicken Kofta Curry – A Traditional and Authentic Pakistani Recipe. Palak Murgh – Spinach & Chicken Curry + My 1st Anniversary. Malai Boneless Chicken Karahi ",
-                "portion": "Excellently tasty low-fat portion"
-              },
-              "time_delivery": "20 - 30",
-              "type": "lunch",
-              "from": [
-                "Indian",
-                "Pakistania",
-                "Fruit"
-              ],
-              "kitchen": [
-                "American",
-                "Asian",
-                "African"
-              ],
-              "ingredients": [
-                "Tomato",
-                "Potato",
-                "Chicken"
-              ],
-              "diet_info": [
-                "Animal",
-                "Vegetal",
-                "Fruit"
-              ],
-              "dietary_restricion": [
-                "Organic"
-              ],
-              "itemSold": 0,
-              "reviews": {
-                "five_start": 0,
-                "for_start": 0,
-                "three_start": 0,
-                "two_start": 0,
-                "one_start": 0
-              },
-              "dateItemAdded": {
-                "year": 2021,
-                "month": "Feb",
-                "date": 21,
-                "day": "Sunday"
-              }
-            }
-          ]
-        }
-      ],
-      "orders": []
+      "email": "wilmion121@hotmail.com",
+      "job": "Frontend Developer",
+      "admin": false,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Crystal_Clear_kdm_user_female.svg/1200px-Crystal_Clear_kdm_user_female.svg.png",
+      "schedules": [],
+      "phoneNumber": "NotDefined",
+      "dni": "NotDefined",
+      "direction": "NotDefined",
+      "country": "NotDefined",
+      "city": "NotDefined",
+      "houseNumber": "NotDefined"
     },
     {
       "id": "samuel123&wilbert121@hotmail.com",
-      "name": "123123 123213",
+      "name": "Wilbert Aldair Navarrete Bonilla",
       "email": "wilbert121@hotmail.com",
-      "job": "Not Defined",
+      "job": "Frontend Developer",
       "admin": false,
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Crystal_Clear_kdm_user_female.svg/1200px-Crystal_Clear_kdm_user_female.svg.png",
-      "schedules": []
+      "image": "https://firebasestorage.googleapis.com/v0/b/kuksfresh.appspot.com/o/Users%2FPerfil_Photo.jpg?alt=media&token=5ac9cb7c-6ba8-4340-8c41-2c6b82aa51f9",
+      "schedules": [],
+      "city": "Lima",
+      "country": "Peru",
+      "direction": "Mz i lt 50 urb organizacion etc",
+      "dni": "7704815201",
+      "phoneNumber": "+51924123856",
+      "houseNumber": "+017593215521"
     },
     {
       "id": "samuel123&wilbert120@hotmail.com",

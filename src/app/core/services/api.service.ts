@@ -35,8 +35,8 @@ export class ApiService {
 
   //Put
 
-  updateUser(user:IUser) {
-    return this.http.put(`${this.API}/users/1`, user)
+  updateUser(user:IUser, id:string) {
+    return this.http.put<IUser>(`${this.API}/users/${id}`, user)
   }
   updateProduct(product:IProduct ):Observable<IProduct>{
     return this.http.put<IProduct>(`${this.API}/product/${product.id}` , product);

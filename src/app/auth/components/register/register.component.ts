@@ -64,6 +64,12 @@ export class RegisterComponent implements OnInit {
       job: "Not Defined",
       admin: false,
       image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Crystal_Clear_kdm_user_female.svg/1200px-Crystal_Clear_kdm_user_female.svg.png",
+      city: "Not Defined",
+      country: "Not Defined",
+      direction: "Not Defined",
+      dni: "Not Defined",
+      phoneNumber: "Not Defined",
+      houseNumber: "Not Defined",
       schedules: []
     }
 

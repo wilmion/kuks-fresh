@@ -43,7 +43,10 @@ export class LoginGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return !this.logIn;
+    if(state.url === "/auth/login" || state.url === "/auth/register"){
+      return !this.logIn;
+    }
+    return this.logIn;
   }
   
 }

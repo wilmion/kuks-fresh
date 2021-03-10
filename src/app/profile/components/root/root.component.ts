@@ -20,40 +20,34 @@ export class RootComponent implements OnInit {
   constructor(
     private store:Store<{user:IUser}>,
     private router:Router
-  ) {
-    this.setValueSettings();
+  ) {   
     this.store.select('user').subscribe(user => {
       this.user = user;
+      this.setValueSettings();
     })
   }
   setValueSettings():void {
+    const user:IUser = <IUser> this.user;
     this.settings = [
       {
         title: "Basic Information",
         configs: [
           {
             key: "Name",
-            value: "Wilmion Navarrete",
+            keyObject: "name",
+            value: user.name,
             edit: false
           },
           {
             key: "Job",
-            value: "Frontend Developer",
-            edit: false
-          },
-          {
-            key: "Email",
-            value: "wilbert121@hotmail.com",
-            edit: false
-          },
-          {
-            key: "Password",
-            value: "***********",
+            keyObject: "job",
+            value: user.job,
             edit: false
           },
           {
             key: "ImageUrl",
-            value: "URLImage",
+            keyObject: "image",
+            value: user.image,
             edit: false
           }
         ]
@@ -63,32 +57,38 @@ export class RootComponent implements OnInit {
         configs: [
           {
             key: "City",
-            value: "Not Defined",
+            keyObject: "city",
+            value: user.city,
             edit: false
           },
           {
             key: "Country",
-            value: "Not Defined",
+            keyObject: "country",
+            value: user.country,
             edit: false
           },
           {
             key: "Direction",
-            value: "Not Defined",
+            keyObject: "direction",
+            value: user.direction,
             edit: false
           },
           {
             key: "DNI",
-            value: "Not Defined",
+            keyObject: "dni",
+            value: user.dni,
             edit: false
           },
           {
             key: "Phone Number",
-            value: "Not Defined",
+            keyObject: "phoneNumber",
+            value: user.phoneNumber,
             edit: false
           },
           {
             key: "House Number",
-            value: "Not Defined",
+            keyObject: "houseNumber",
+            value: user.houseNumber,
             edit: false
           }
         ]

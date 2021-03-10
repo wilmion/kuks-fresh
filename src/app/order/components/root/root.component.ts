@@ -82,7 +82,7 @@ export class RootComponent implements OnInit {
           valueRefined
         ]
       }
-      this.apiService.updateUser(userUpdated)
+      this.apiService.updateUser(userUpdated , this.user.id)
       .subscribe(data => {
         this.store.dispatch(signUp({user : userUpdated}));
         this.isLoading = false;
@@ -130,7 +130,7 @@ export class RootComponent implements OnInit {
         schedules: this.user.schedules.filter((v , i) => i !== index)
       }
 
-      this.apiService.updateUser(userUpdated)
+      this.apiService.updateUser(userUpdated , this.user.id)
       .subscribe(data => {
         this.store.dispatch(signUp({user : userUpdated}));
         this.isLoading = false;

@@ -78,7 +78,7 @@ export class ProfileRootComponent implements OnInit , OnDestroy {
         job: value.job
       }
 
-      this.apiService.updateUser(newDatesOfUser).subscribe(
+      this.apiService.updateUser(newDatesOfUser , this.user.id).subscribe(
         () => {
           this.updateStore.updated();
         },

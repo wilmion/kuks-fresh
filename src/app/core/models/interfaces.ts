@@ -60,6 +60,12 @@ export interface IUser {
     job: string,
     admin: boolean,
     image: string,
+    city:string;
+    country:string,
+    direction:string,
+    dni:string,
+    phoneNumber:string,
+    houseNumber:string,
     schedules:IScheduleData[],
 }
 export interface IScheduleConfigDay{
@@ -103,6 +109,7 @@ export interface IProfileFrame {
 
 export interface IProfileFrameValues {
     key:string;
+    keyObject:string;
     value:string;
     edit:boolean;
 }
