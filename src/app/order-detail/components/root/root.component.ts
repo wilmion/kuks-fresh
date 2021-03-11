@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute , Params } from '@angular/router';
+import { ActivatedRoute , Params, Router } from '@angular/router';
 
 import { IDateTime, IOrder , IScheduleData, IUser } from '../../../core/models/interfaces';
 import { ApiService } from '../../../core/services/api.service';
@@ -22,7 +22,8 @@ export class RootComponent implements OnInit {
 
   constructor(
     private router:ActivatedRoute,
-    private ApiService : ApiService
+    private ApiService : ApiService,
+    private route:Router
   ) { }
 
   ngOnInit(): void {
@@ -35,7 +36,7 @@ export class RootComponent implements OnInit {
   getOrder():void {
     this.ApiService.getUsers()
     .subscribe(users => {
-      const user:IUser | undefined = users.find(u => u.name.toLowerCase() === this.user_name);
+      const user:IUser | undefined = users.find(u => u.name.toLowerCase() === this.user_name.toLowerCase());
       if(user){
         const schedules:IScheduleData = <IScheduleData> user.schedules.find(s => s.id === this.order_id);
 
@@ -45,7 +46,7 @@ export class RootComponent implements OnInit {
         }
         this.user = user;
       }else {
-        alert('error');
+        this.route.navigate(['/']);
       }
       
     })

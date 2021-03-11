@@ -6,10 +6,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ProductComponent } from './components/product/product.component';
+import { ErrorAlertComponent } from './components/error-alert/error-alert.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, LoadingComponent , ProductComponent],
+  declarations: [HeaderComponent, FooterComponent, LoadingComponent , ProductComponent, ErrorAlertComponent],
   imports: [CommonModule, SharedRoutingModule ],
-  exports: [HeaderComponent, FooterComponent , LoadingComponent , ProductComponent],
+  exports: [HeaderComponent, FooterComponent , LoadingComponent , ProductComponent , ErrorAlertComponent],
 })
 export class SharedModule {}

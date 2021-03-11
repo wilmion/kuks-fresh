@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { logOut } from '../../../store/user/user.actions';
 
-import { IProfileFrame , IUser } from 'src/app/core/models/interfaces';
+import { IDateTime, IProfileFrame , IUser } from 'src/app/core/models/interfaces';
 import { cleanItemStorage } from 'src/app/core/utils/generateLocal';
+import { convertDataToString } from 'src/app/core/utils/dateUtils';
 
 @Component({
   selector: 'app-root',
@@ -103,6 +104,10 @@ export class RootComponent implements OnInit {
     cleanItemStorage('user');
     this.store.dispatch(logOut());
     this.router.navigate(['/']);
+  }
+
+  convertTime(data:IDateTime):string {
+    return convertDataToString(data);
   }
 
 }

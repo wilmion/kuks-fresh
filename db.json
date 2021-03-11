@@ -360,12 +360,12 @@
   ],
   "users": [
     {
-      "id": 1,
+      "id": "samuel1234&wilmion92@gmail.com",
       "name": "Wilmion Navarrete",
-      "email": "wilmion121@hotmail.com",
+      "email": "wilmion92@gmail.com",
       "job": "Frontend Developer",
-      "admin": false,
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Crystal_Clear_kdm_user_female.svg/1200px-Crystal_Clear_kdm_user_female.svg.png",
+      "admin": true,
+      "image": "https://firebasestorage.googleapis.com/v0/b/kuksfresh.appspot.com/o/Users%2FPerfil_Photo.jpg?alt=media&token=5ac9cb7c-6ba8-4340-8c41-2c6b82aa51f9",
       "schedules": [],
       "phoneNumber": "NotDefined",
       "dni": "NotDefined",
@@ -381,8 +381,88 @@
       "job": "Frontend Developer",
       "admin": false,
       "image": "https://firebasestorage.googleapis.com/v0/b/kuksfresh.appspot.com/o/Users%2FPerfil_Photo.jpg?alt=media&token=5ac9cb7c-6ba8-4340-8c41-2c6b82aa51f9",
-      "schedules": [],
-      "city": "Lima",
+      "schedules": [
+        {
+          "id": 0,
+          "from": 3,
+          "to": 7.5,
+          "deliveryOff": 8,
+          "hourlyRate": 30,
+          "repeatWeekly": 10,
+          "available": true,
+          "finished": true,
+          "totalHours": 4.5,
+          "date": {
+            "year": 2021,
+            "month": "March",
+            "date": 24,
+            "day": "Wednesday"
+          },
+          "total": "90.00",
+          "pendding": true,
+          "location": {
+            "city": "Lima",
+            "country": "Peru",
+            "direction": "Mz i lt 50 urb organizacion etc"
+          },
+          "products": [
+            {
+              "id": 4,
+              "image": "https://firebasestorage.googleapis.com/v0/b/kuksfresh.appspot.com/o/moussaka.jpg?alt=media&token=02af1044-ccb4-464d-bbfe-35e53c469902",
+              "title": "Moussaka",
+              "reviews": {
+                "five_start": 102,
+                "for_start": 207,
+                "three_start": 103,
+                "two_start": 15,
+                "one_start": 20
+              },
+              "prices": [
+                {
+                  "cost": 10,
+                  "moneda": "$"
+                }
+              ],
+              "from": [
+                "Italian",
+                "Greek"
+              ],
+              "time_delivery": "15 - 25",
+              "type": "fastFood",
+              "kitchen": [
+                "American",
+                "Europe"
+              ],
+              "ingredients": [
+                "Tomato",
+                "Potato",
+                "Chicken"
+              ],
+              "subtitle": "Tomato creamy soup with chicken",
+              "diet_info": [
+                "Animal",
+                "Vegetal"
+              ],
+              "dietary_restricion": [
+                "Organic"
+              ],
+              "descriptions": {
+                "product": "traditional dish from the Balkans and the Middle East made from eggplants, especially popular in Palestinian cuisine",
+                "portion": "excellent portion very vegan and apart with chicken"
+              },
+              "itemSold": 75,
+              "dateItemAdded": {
+                "year": 2021,
+                "month": "Feb",
+                "date": 11,
+                "day": "Thrusday"
+              },
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "city": "Not Defined",
       "country": "Peru",
       "direction": "Mz i lt 50 urb organizacion etc",
       "dni": "7704815201",

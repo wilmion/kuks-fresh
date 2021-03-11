@@ -17,3 +17,4 @@
     </section>
     <button class="cartTotals-button cursor-pointer" (click)="redirectToSchedule()" >Proceed to Schedule</button>
 </section>
+<app-error-alert [message]="error" *ngIf="error !== ''"></app-error-alert>

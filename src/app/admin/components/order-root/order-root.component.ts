@@ -31,8 +31,7 @@ export class OrderRootComponent implements OnInit {
   isLoading:boolean = false;
 
   constructor(
-    private apiService:ApiService,
-    private router:Router
+    private apiService:ApiService
   ) { }
 
   ngOnInit(): void {
@@ -206,7 +205,7 @@ export class OrderRootComponent implements OnInit {
         schedules: [...schedules , schedule]
       }
 
-      this.apiService.updateUser(updateUser , '1')
+      this.apiService.updateUser(updateUser , updateUser.id)
       .subscribe(() => {
         this.fetchData();
       }, error => {
@@ -234,7 +233,7 @@ export class OrderRootComponent implements OnInit {
     
     const URL:string = <string> element.dataset.href;
 
-    this.router.navigate([URL]);
+    window.open(URL , '_blank');
   }
 
   //computed

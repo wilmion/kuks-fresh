@@ -1,0 +1,13 @@
+.error-alert {
+  padding: 10px;
+  background-color: rgba($color: rgb(141, 13, 13), $alpha: 0.8);
+  border-radius: 25px;
+  margin: 25px auto;
+  width: 70%;
+  &__information {
+    font-size: 1.8rem;
+    font-style: italic;
+    color: black;
+    text-align: center;
+  }
+}

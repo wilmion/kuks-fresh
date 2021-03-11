@@ -20,10 +20,11 @@ export class LoginGuard implements CanActivate {
   ) {
     this.store.select('user').subscribe(
       user => {
-        this.logIn = this.logIn? true : user.id !== '-1';
+        this.logIn = user.id !== '-1';
       }
     )
     this.verificateAuth();
+    
   }
 
   verificateAuth():void {
@@ -33,7 +34,7 @@ export class LoginGuard implements CanActivate {
 
       this.store.dispatch(signUp({user}));
 
-      this.logIn = true;
+      this.logIn = user.id !== '-1';
     }else {
       this.logIn = false;
     }

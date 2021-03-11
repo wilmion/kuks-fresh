@@ -23,5 +23,6 @@
         ></app-schedule>
     </section>
     <app-loading *ngIf="isLoading"></app-loading>
+    <app-error-alert [message]="error" *ngIf="error !== ''"></app-error-alert>
 </section>
 
