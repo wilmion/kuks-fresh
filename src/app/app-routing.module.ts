@@ -49,12 +49,28 @@ const routes: Routes = [
         loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
         canActivate: [LoginGuard]
       },
+      {
+        path: "howitworks",
+        loadChildren: () => import('./how-it-works/how-it-works.module').then(m => m.HowItWorksModule)
+      },
+      {
+        path: "contact",
+        loadChildren: () => import('./contact-bussines/contact-bussines.module').then(m => m.ContactBussinesModule)
+      },
+      {
+        path: "about",
+        loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
+      }
     ]
   },
   {
     path: "auth/:mode",
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
     canActivate: [LoginGuard]
+  },
+  {
+    path: "**",
+    loadChildren: () => import('./error404/error404.module').then(m => m.Error404Module)
   }
 ];
 

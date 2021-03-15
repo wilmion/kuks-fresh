@@ -1,0 +1,18 @@
+@import "../../../app.component.scss";
+
+.contact {
+  &__title {
+    font-size: 3.4rem;
+    color: $color-terciario;
+    text-align: center;
+    margin: 50px 0;
+  }
+  &__description {
+    font-size: 1.6rem;
+    width: 80%;
+    margin: 0 auto 25px;
+    text-align: center;
+    font-family: monospace;
+    line-height: 17px;
+  }
+}

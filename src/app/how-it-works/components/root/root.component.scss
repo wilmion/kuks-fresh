@@ -1,0 +1,35 @@
+@import "../../../app.component.scss";
+
+.funcionalidad {
+  &__title {
+    font-size: 3.4rem;
+    color: $color-terciario;
+    text-align: center;
+    margin: 50px 0;
+  }
+  &-column {
+    width: 80%;
+    margin: 50px auto;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: $color-terciario solid 1px;
+    i {
+      font-size: 4rem;
+      margin: 0 20px;
+    }
+    &__text {
+      font-size: 2.3rem;
+      font-style: italic;
+      font-family: monospace;
+    }
+  }
+  &__alert {
+    font-size: 1.6rem;
+    text-align: center;
+    margin: 10px auto;
+    color: rgb(145, 45, 45);
+  }
+}

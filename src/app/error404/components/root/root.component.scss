@@ -1,0 +1,51 @@
+@import "../../../app.component.scss";
+
+.error404 {
+  background-color: #1d3249;
+  width: 100%;
+  height: 100vh;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &-body {
+    &__title {
+      color: rgb(133, 167, 219);
+      font-size: 16rem;
+      text-align: center;
+      margin: 1% 0;
+    }
+    &__subtitle {
+      color: rgb(44, 163, 44);
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 900;
+      font-family: monospace;
+    }
+    &__paragrath {
+      color: rgb(116, 146, 212);
+      text-align: center;
+      font-size: 1.8rem;
+      margin: 20px 0;
+    }
+    &__button {
+      border: none;
+      display: block;
+      text-align: center;
+      background-color: rgb(53, 163, 197);
+      padding: 20px 0;
+      width: 70%;
+      margin: 25px auto;
+      border-radius: 25px;
+      font-size: 1.8rem;
+      color: white;
+      transition: 1s;
+      cursor: pointer;
+      text-decoration: none;
+      &:hover {
+        background-color: rgb(56, 86, 117);
+        cursor: pointer;
+      }
+    }
+  }
+}
