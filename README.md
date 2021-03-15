@@ -30,4 +30,6 @@ npm run server
 npm run build
 ```
 
+###### Proyecto terminado  
+
 ###### Recuerda nunca pares de Aprender 💚💚💚💚💚💚
