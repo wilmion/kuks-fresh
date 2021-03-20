@@ -62,3 +62,41 @@
     }
   }
 }
+@media (max-width: 800px) {
+  .intro {
+    &__title {
+      font-size: 2.5rem;
+    }
+    &__author {
+      font-size: 1.6rem;
+      margin: 0 auto 15%;
+    }
+    &-portrait {
+      &__title {
+        font-size: 3rem;
+      }
+      &-buttons {
+        display: flex;
+        padding-bottom: 5%;
+        &__button {
+          @extend %button;
+          margin: 50px auto;
+          width: 45%;
+          img {
+            width: 20px;
+          }
+          &--information {
+            p {
+              &:nth-child(1) {
+                font-size: 0.5rem;
+              }
+              &:nth-child(2) {
+                font-size: 1.2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

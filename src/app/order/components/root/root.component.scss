@@ -41,3 +41,28 @@
     margin: 20px auto;
   }
 }
+
+@media (max-width: 800px) {
+  .order {
+    &__title {
+      font-size: 2.5rem;
+    }
+    &-select {
+      width: 95%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      &-item {
+        &__title {
+          font-size: 2rem;
+        }
+        &__des {
+          font-size: 1.3rem;
+        }
+      }
+    }
+    &-schedules {
+      grid-template-columns: 1fr;
+    }
+  }
+}

@@ -6,11 +6,11 @@ import { removeToCart , addToCart , removeProduct} from '../../../store/cart/car
 import { IProductsUser } from 'src/app/core/models/interfaces';
 
 @Component({
-  selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.scss']
+  selector: 'app-item-rd',
+  templateUrl: './item-rd.component.html',
+  styleUrls: ['./item-rd.component.scss']
 })
-export class ItemComponent implements OnInit {
+export class ItemRdComponent implements OnInit {
 
   @Input() product:IProductsUser | undefined;
 

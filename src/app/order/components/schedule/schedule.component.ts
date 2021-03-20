@@ -216,5 +216,12 @@ export class ScheduleComponent implements OnInit , AfterViewInit , OnChanges {
     }
     return false;
   }
+  rdPm():string {
+    const width:number = window.innerWidth;
+
+    const pm:string = width > 800? 'pm': '';
+
+    return pm;
+  }
 
 }

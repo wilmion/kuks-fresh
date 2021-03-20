@@ -56,3 +56,21 @@
     font-family: monospace;
   }
 }
+@media (max-width: 800px) {
+  .userCard {
+    width: 90%;
+    &-image-containt {
+      width: 150px;
+      height: 150px;
+    }
+    &__name {
+      font-size: 1.6rem;
+    }
+    &__job {
+      font-size: 1.4rem;
+    }
+    &__email {
+      font-size: 1.5rem;
+    }
+  }
+}

@@ -54,3 +54,12 @@
     }
   }
 }
+@media (max-width: 800px) {
+  .paymentAdmin {
+    &-list {
+      &-item {
+        width: 90%;
+      }
+    }
+  }
+}

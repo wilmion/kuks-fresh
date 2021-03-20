@@ -38,3 +38,23 @@
     }
   }
 }
+@media (max-width: 800px) {
+  .cart {
+    &__title {
+      font-size: 3rem;
+    }
+    &-error {
+      width: 90%;
+      margin: 0 auto;
+      i {
+        font-size: 3rem;
+      }
+      p {
+        font-size: 1.8rem;
+      }
+    }
+    &-table {
+      display: none;
+    }
+  }
+}

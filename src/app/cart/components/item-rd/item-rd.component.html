@@ -1,0 +1,24 @@
+<section class="item-rd" *ngIf="product">
+    <i class="far fa-times-circle cursor-pointer" (click)="deleteProduct()" ></i>
+
+    <h3 class="item-rd__title">Product</h3>
+    <h5 class="item-rd__value">{{product.title}}</h5>
+
+    <div class="item-rd__image">
+        <img [src]="product.image" alt="image product">
+    </div>
+
+    <h3 class="item-rd__title">Price</h3>
+    <h5 class="item-rd__value">$ {{product.prices[0].cost}}</h5>
+
+    <h3 class="item-rd__title">Quantity</h3>
+    <div class="item-rd-amount">
+        <button class="item-rd-amount__control remove-color cursor-pointer" (click)="deleteAmount()">-</button>
+        <h5 class="item-rd-amount__value">{{product.amount}}</h5>
+        <button class="item-rd-amount__control plus-color cursor-pointer" (click)="incrementAmount()">+</button>
+    </div>
+    
+
+    <h3 class="item-rd__title">Total</h3>
+    <h5 class="item-rd__value">${{(product.amount * product.prices[0].cost).toFixed(2)}}</h5>
+</section>

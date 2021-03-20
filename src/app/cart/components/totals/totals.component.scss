@@ -59,3 +59,28 @@
     margin: 15px 10px;
   }
 }
+@media (max-width: 800px) {
+  .cartTotals {
+    margin: 50px auto;
+    width: 90%;
+    &__title {
+      font-size: 2rem;
+    }
+    &-information {
+      &__feature {
+        h4 {
+          font-size: 1.6rem;
+        }
+      }
+      &__value {
+        h5 {
+          font-size: 1.4rem;
+        }
+      }
+    }
+    &-button {
+      width: 80%;
+      font-size: 1.6rem;
+    }
+  }
+}

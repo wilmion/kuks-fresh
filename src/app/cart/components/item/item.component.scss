@@ -58,9 +58,9 @@
     }
   }
 }
-.plus-color {
-  background-color: $color-primary;
-}
-.remove-color {
-  background-color: $color-secundary;
+
+@media (max-width: 800px) {
+  .cartItem {
+    display: none;
+  }
 }

@@ -63,3 +63,50 @@ $color-titles: #b91c44;
     }
   }
 }
+@media (max-width: 800px) {
+  .home {
+    &-products {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 350px;
+    }
+    &-firstBlock {
+      margin: 15% 0;
+      align-items: center;
+      &__title {
+        font-size: 1.4rem;
+      }
+      &__input {
+        width: 40%;
+        font-size: 1.4rem;
+      }
+      &__icon-search {
+        width: 20px;
+        height: auto;
+      }
+      &__filter {
+        width: 30px;
+        &:hover {
+          background-color: #912e01;
+        }
+        img {
+          width: 10px;
+          padding: 10px 0;
+        }
+      }
+    }
+    &-popular {
+      margin: 300px 0 0;
+      &__title {
+        font-size: 2.0rem;
+      }
+    }
+    &-filtered {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      &-option {
+        width: 90%;
+      }
+    }
+  }
+}

@@ -54,3 +54,28 @@
     }
   }
 }
+@media (max-width: 800px) {
+  .admin-footer {
+    flex-direction: column;
+    width: 90%;
+    margin: 25px auto;
+    &-first {
+      margin: 15px 0;
+      &__text {
+        font-size: 1.3rem;
+      }
+      &__option {
+        font-size: 1.3rem;
+      }
+    }
+    &-second {
+      margin: 15px 0;
+      &__control {
+        font-size: 1.3rem;
+      }
+      &__nPage {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}

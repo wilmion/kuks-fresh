@@ -14,6 +14,11 @@ export class HeaderComponent implements OnInit {
   isLogued:boolean = false;
   image:string = ""
 
+  //UI
+
+  menuShow:boolean = false;
+
+
   constructor(
     private store:Store<{cart:IProductsUser[] , user:IUser}>
   ) {
@@ -25,6 +30,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  toggleMenu():void {
+    this.menuShow = !this.menuShow;
   }
 
 }

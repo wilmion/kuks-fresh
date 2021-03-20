@@ -78,6 +78,30 @@
                 <td class="table-file-item">$ {{order.total}}</td>
             </tr>
         </table>
+        <section class="table-rd">
+            <div class="table-rd-file" *ngFor="let order of showOrders">
+                <div class="table-rd-item">
+                    <input type="checkbox" class="table-rd-item__checkBox" (click)="setCurrentOrder($event , order)">
+                </div>
+                <p class="table-rd-item"><strong>Date : </strong> {{convertData(order.date)}}</p>
+                <p class="table-rd-item"><strong>Id : </strong> {{order.id}}</p>
+                <p class="table-rd-item"><strong>User : </strong> {{order.user_name}}</p>
+                <div class="table-rd-item">
+                    <strong>Products : </strong>
+                    <button class="table-rd-item__button tbl-btn__pdtcs">{{order.products.length}} products</button>
+                </div>
+
+                <p class="table-rd-item"><strong>Direction : </strong> {{order.location.direction}}</p>
+                <p class="table-rd-item"><strong>Location : </strong> {{order.location.city}}</p>
+                <p class="table-rd-item"><strong>Country </strong> {{order.location.country}}</p>
+            
+                <div class="table-rd-item">
+                    <strong>Status: </strong>
+                    <button [class]="order.pendding? 'table-rd-item__button tbl-btn__pndg' : 'table-rd-item__button tbl-btn__apvrd '" (click)="toggleStateOrder(order)" >{{order.pendding ? 'pendding' : 'completed'}}</button>
+                </div>
+                <div class="table-rd-item"><strong>Total : </strong> $ {{order.total}}</div>
+            </div>
+        </section>
         <h3 *ngIf="showOrders.length === 0 && !isLoading" class="table-notResults">Not Results</h3>
         <app-loading *ngIf="isLoading"></app-loading>
     </section>

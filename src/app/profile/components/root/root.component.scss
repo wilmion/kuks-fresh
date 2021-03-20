@@ -50,3 +50,28 @@
   border-radius: 25px;
   font-size: 1.8rem;
 }
+
+@media (max-width: 800px) {
+  .profile {
+    &-settings {
+      grid-template-columns: 1fr;
+    }
+    &-logout {
+      width: 70%;
+      font-size: 1.5rem;
+    }
+    &-schedules {
+      &__title {
+        font-size: 2.5rem;
+      }
+      a {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .adminPanel {
+    width: 60%;
+    margin: 25px auto;
+    font-size: 1.5rem;
+  }
+}

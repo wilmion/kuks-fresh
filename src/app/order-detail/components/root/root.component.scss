@@ -69,3 +69,27 @@
     margin: 25px 0;
   }
 }
+@media (max-width: 800px) {
+  .orderDetail {
+    &__title {
+      font-size: 2.5rem;
+    }
+    &-time {
+      width: 90%;
+    }
+    &__products {
+      &--grid {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        app-product {
+          width: 90%;
+          margin: 15px auto;
+        }
+      }
+    }
+    &__titleUserInformation {
+      font-size: 2.5rem;
+    }
+  }
+}

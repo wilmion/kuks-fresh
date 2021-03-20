@@ -130,6 +130,9 @@
     margin: 50px 0;
     text-align: center;
   }
+  &-rd {
+    display: none;
+  }
 }
 .tbl-btn__pndg {
   background-color: $color-secundary;
@@ -139,4 +142,76 @@
 }
 .tbl-btn__apvrd {
   background-color: $color-primary;
+}
+
+@media (max-width: 800px) {
+  .ordersAdmin {
+    &__title {
+      font-size: 2.5rem;
+    }
+    &-actions {
+      flex-direction: column;
+      &-filters {
+        select {
+          margin: 20px auto;
+          display: block;
+        }
+        &__viewDetails {
+          margin: 10px auto;
+          display: block;
+        }
+      }
+      &-search {
+        margin: 10px auto;
+      }
+    }
+    &-information {
+      &-item {
+        &__subtitle {
+          font-size: 1.3rem;
+        }
+        &__title {
+          font-size: 2rem;
+          small {
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+  }
+  .table {
+    width: 95%;
+    margin: 3% auto;
+    &-file {
+      display: none;
+    }
+    &-notResults {
+      font-size: 1.5rem;
+    }
+    &-rd {
+      display: block;
+      border: rgba($color: #000000, $alpha: 0.4) solid 1px;
+      padding: 10px;
+      margin: 25px auto;
+      &-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        margin: 25px auto;
+        strong {
+          font-size: 1.6rem;
+          font-weight: 600;
+          margin-right: 10px;
+        }
+        &__button {
+          color: white;
+          font-size: 1.3rem;
+          padding: 10px;
+          border-radius: 15px;
+          border: none;
+        }
+      }
+    }
+  }
 }

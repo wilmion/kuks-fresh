@@ -50,3 +50,8 @@ $color-terciario-oscure: #50627a;
     }
   }
 }
+@media (max-width: 800px) {
+  .horario {
+    width: 100%;
+  }
+}

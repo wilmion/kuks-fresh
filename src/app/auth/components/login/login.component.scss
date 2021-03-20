@@ -63,3 +63,30 @@
     }
   }
 }
+@media (max-width: 800px) {
+  .register {
+    &-label {
+      &__input {
+        font-size: 1.3rem;
+      }
+    }
+    &-finally {
+      flex-direction: column;
+      &__button {
+        width: 90%;
+        margin: 10px auto;
+      }
+      &-terms {
+        p {
+          font-size: 1.3rem;
+        }
+      }
+    }
+    &-error {
+      padding: 7px;
+      p {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

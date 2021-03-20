@@ -93,3 +93,42 @@
     background-color: #923307;
   }
 }
+
+@media (max-width: 800px) {
+  .information {
+    &__title {
+      font-size: 2.3rem;
+      text-align: center;
+    }
+    &__subtitle {
+      font-size: 1.6rem;
+      text-align: center;
+    }
+    &__description {
+      font-size: 1.5rem;
+      text-align: center;
+      padding: 0 5px;
+    }
+    &-cuisine {
+      flex-direction: column;
+      &__item {
+        margin: 10px auto;
+        width: 90%;
+      }
+    }
+    &-none-background {
+      flex-direction: column;
+      &__item {
+        margin: 10px auto;
+        width: 90%;
+      }
+    }
+  }
+  .agree {
+    width: 90%;
+    font-size: 1.5rem;
+    img {
+      width: 25px;
+    }
+  }
+}

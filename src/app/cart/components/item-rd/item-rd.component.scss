@@ -1,0 +1,60 @@
+@import "../../../app.component.scss";
+
+.item-rd {
+  display: none;
+}
+@media (max-width: 800px) {
+  .item-rd {
+    display: block;
+    width: 90%;
+    margin: 25px auto;
+    border: rgba($color: #000000, $alpha: 0.4) solid 1px;
+    padding: 15px;
+    i {
+      display: block;
+      font-size: 1.5rem;
+      margin-left: auto;
+    }
+    &__title {
+      color: black;
+      font-weight: 800;
+      font-size: 1.6rem;
+      text-align: center;
+      margin: 15px 0;
+    }
+    &__value {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 100;
+      margin: 10px 0;
+    }
+    &__image {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      border-radius: 15px;
+      img {
+        width: inherit;
+        height: auto;
+      }
+    }
+    &-amount {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &__value {
+        font-size: 1.6rem;
+        font-weight: 100;
+        margin: 0 10px;
+      }
+      &__control {
+        display: block;
+        width: 30px;
+        border-radius: 100%;
+        border: none;
+        height: 30px;
+        color: white;
+      }
+    }
+  }
+}
