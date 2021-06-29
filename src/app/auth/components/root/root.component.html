@@ -22,7 +22,7 @@
         <div class="auth_nav__line"></div>
     </nav>
     <section class="auth-logre">
-        <app-register *ngIf="param === 'register'" (eventLogin)="logIn($event)"></app-register>
+        <app-register *ngIf="param === 'register'" (eventLogin)="param = 'login'"></app-register>
         <app-login *ngIf="param === 'login'" (eventLogin)="logIn($event)"></app-login>
     </section>
 </section>

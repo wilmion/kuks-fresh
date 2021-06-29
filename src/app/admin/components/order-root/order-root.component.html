@@ -62,7 +62,7 @@
                     <input type="checkbox" class="table-file-item__checkBox" (click)="setCurrentOrder($event , order)">
                 </td>
                 <td class="table-file-item">{{convertData(order.date)}}</td>
-                <td class="table-file-item">{{order.id}}</td>
+                <td class="table-file-item">{{order._id}}</td>
                 <td class="table-file-item">{{order.user_name}}</td>
                 <td class="table-file-item">
                     <button class="table-file-item__button tbl-btn__pdtcs">{{order.products.length}} products</button>
@@ -84,7 +84,7 @@
                     <input type="checkbox" class="table-rd-item__checkBox" (click)="setCurrentOrder($event , order)">
                 </div>
                 <p class="table-rd-item"><strong>Date : </strong> {{convertData(order.date)}}</p>
-                <p class="table-rd-item"><strong>Id : </strong> {{order.id}}</p>
+                <p class="table-rd-item"><strong>Id : </strong> {{order._id}}</p>
                 <p class="table-rd-item"><strong>User : </strong> {{order.user_name}}</p>
                 <div class="table-rd-item">
                     <strong>Products : </strong>

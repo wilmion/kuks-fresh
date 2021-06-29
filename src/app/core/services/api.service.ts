@@ -1,59 +1,66 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
 
-import { IProduct ,IScheduleConfigDay,IUser } from '../models/interfaces';
+import {
+  IProduct,
+  IResponse,
+  IResponseLogin,
+  IScheduleConfigDay,
+  IUser,
+} from '../models/interfaces';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
+  API: string = 'https://kuks-fresh.herokuapp.com';
 
-  API:string = "http://localhost:3000";
-  
+  constructor(private http: HttpClient) {}
 
-  
-  constructor(
-    private http:HttpClient
-  ) { }
-
-  getAll():Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(`${this.API}/products`);
+  getAll(): Observable<IResponse<IProduct[]>> {
+    return this.http.get<IResponse<IProduct[]>>(`${this.API}/products`);
   }
-  getUser(password:number | string):Observable<IUser>{
-    return this.http.get<IUser>(`${this.API}/users/${password}`);
+  getUsers(): Observable<IResponse<IUser[]>> {
+    //check me
+    return this.http.get<IResponse<IUser[]>>(`${this.API}/users`);
   }
-  getUsers():Observable<IUser[]>{
-    return this.http.get<IUser[]>(`${this.API}/users`);
+  login(data: { email: string; password: string }) {
+    return this.http.post<IResponse<IResponseLogin>>(
+      `${this.API}/auth/login`,
+      data
+    );
   }
-  getExistUser(email:string):Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${this.API}/user/${email}`);
-  }
-  getSchedulesConfigDay():Observable<IScheduleConfigDay[]>{
-    return this.http.get<IScheduleConfigDay[]>(`${this.API}/orderScheduleTime`);
+  getSchedulesConfigDay(): Observable<IResponse<IScheduleConfigDay[]>> {
+    return this.http.get<IResponse<IScheduleConfigDay[]>>(
+      `${this.API}/schedules-times/`
+    );
   }
 
   //Put
 
-  updateUser(user:IUser, id:string) {
-    return this.http.put<IUser>(`${this.API}/users/${id}`, user)
+  updateUser(user: IUser, id: string) {
+    return this.http.patch<IResponse<string>>(`${this.API}/users/${id}`, user);
   }
-  updateProduct(product:IProduct ):Observable<IProduct>{
-    return this.http.put<IProduct>(`${this.API}/product/${product.id}` , product);
+  updateProduct(product: IProduct) {
+    return this.http.patch<IResponse<string>>(
+      `${this.API}/products/${product._id}`,
+      product
+    );
   }
 
   //Delete
 
-  deleteProduct(productId:number){
-    return this.http.delete(`${this.API}/product/${productId}`);
+  deleteProduct(productId: number) {
+    return this.http.delete(`${this.API}/products/${productId}`);
   }
 
   //Post
 
-  postProduct(product:IProduct):Observable<IProduct>{
-    return this.http.post<IProduct>(`${this.API}/products` , product);
+  postProduct(product: IProduct) {
+    return this.http.post<IResponse<string>>(`${this.API}/products`, product);
   }
-  postUser(user:IUser):Observable<IUser>{
-    return this.http.post<IUser>(`${this.API}/users` , user);
+  register(user: any) {
+    return this.http.post<IResponse<string>>(`${this.API}/auth/register`, user);
   }
 }
