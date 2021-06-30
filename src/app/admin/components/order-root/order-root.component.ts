@@ -48,6 +48,7 @@ export class OrderRootComponent implements OnInit {
         const modifiquedSchedule = {
           ...schedule,
           user_name: user.name,
+          user_id: user._id as string,
         };
         schedules.push(modifiquedSchedule);
       });
@@ -189,7 +190,7 @@ export class OrderRootComponent implements OnInit {
     const order = this.currentSelectedOrder;
 
     if (order) {
-      buttonDetails.dataset.href = `/order/${order.user_name}/${order._id}`;
+      buttonDetails.dataset.href = `/order/${order.user_id}/${order._id}`;
     }
   }
 
@@ -199,33 +200,13 @@ export class OrderRootComponent implements OnInit {
     this.isLoading = true;
 
     if (this.users) {
-      const user: IUser = <IUser>(
-        this.users.find((u) => u.name === order.user_name)
-      );
-
       const schedule: any = { ...order };
 
       delete schedule.user_name;
 
-      const schedules: IScheduleData[] = user.shedules.filter(
-        (s) => s._id !== schedule._id
-      );
-
-      const updateUser: IUser = {
-        ...user,
-        shedules: [...schedules, schedule],
-      };
-
-      this.apiService
-        .updateUser(updateUser, updateUser._id as string)
-        .subscribe(
-          () => {
-            this.fetchData();
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
+      this.apiService.updateSchedule(schedule._id, schedule).subscribe(() => {
+        this.fetchData();
+      });
     }
   }
 

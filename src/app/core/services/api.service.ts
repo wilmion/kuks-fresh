@@ -7,6 +7,7 @@ import {
   IResponse,
   IResponseLogin,
   IScheduleConfigDay,
+  IScheduleData,
   IUser,
 } from '../models/interfaces';
 
@@ -48,10 +49,16 @@ export class ApiService {
       product
     );
   }
+  updateSchedule(_id: string, scheduleData: IScheduleData) {
+    return this.http.patch<IResponse<string>>(
+      `${this.API}/schedules-users/${_id}`,
+      scheduleData
+    );
+  }
 
   //Delete
 
-  deleteProduct(productId: number) {
+  deleteProduct(productId: string) {
     return this.http.delete(`${this.API}/products/${productId}`);
   }
 

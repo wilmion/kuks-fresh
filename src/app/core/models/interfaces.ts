@@ -1,5 +1,5 @@
 export interface IProduct {
-  _id: string;
+  _id?: string;
   image: string;
   title: string;
   reviews: {
@@ -95,6 +95,7 @@ export interface ILocation {
 }
 export interface IOrder extends IScheduleData {
   user_name: string;
+  user_id?: string;
 }
 export interface IProductsUser extends IProduct {
   amount: number;

@@ -10,7 +10,10 @@ import { IProduct, IUser, IScheduleConfigDay } from '../core/models/interfaces';
 import { SET_PRODUCTS } from '../store/products/products.actions';
 import { setConfigs } from '../store/scheduleConfig/scheduleConfig.actions';
 import { signUp } from '../store/user/user.actions';
-import { getItemLocalStorage } from '../core/utils/generateLocal';
+import {
+  getItemLocalStorage,
+  writeLocalStorage,
+} from '../core/utils/generateLocal';
 
 @Component({
   selector: 'app-layout',
@@ -47,6 +50,20 @@ export class LayoutComponent implements OnInit {
       const user: IUser = <IUser>JSON.parse(userAuth);
 
       this.userState.dispatch(signUp({ user }));
+
+      let password = getItemLocalStorage('pass') as string;
+      password = password.replace(/[ '"]+/g, '');
+
+      this.apiService
+        .login({
+          email: user.email,
+          password,
+        })
+        .subscribe((data) => {
+          const token = data.response.token;
+
+          writeLocalStorage('token', token);
+        });
     }
   }
   setScheduleConfig(): void {

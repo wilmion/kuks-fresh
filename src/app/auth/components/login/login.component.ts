@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { IResponse, IResponseLogin } from 'src/app/core/models/interfaces';
+import { writeLocalStorage } from 'src/app/core/utils/generateLocal';
 import { ApiService } from '../../../core/services/api.service';
 
 @Component({
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
     const values = this.form.value;
     const email: string = values.email;
     const password: string = values.password;
+    writeLocalStorage('pass', password);
 
     this.apiService.login({ email, password }).subscribe(
       (res) => {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Params , ActivatedRoute } from '@angular/router'
+import { Params, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IProduct } from 'src/app/core/models/interfaces';
@@ -7,33 +7,28 @@ import { IProduct } from 'src/app/core/models/interfaces';
 @Component({
   selector: 'app-root',
   templateUrl: './root.component.html',
-  styleUrls: ['./root.component.scss']
+  styleUrls: ['./root.component.scss'],
 })
 export class RootComponent implements OnInit {
-
-  product:IProduct | undefined;
-  isLoading:boolean = true;
+  product: IProduct | undefined;
+  isLoading: boolean = true;
 
   constructor(
     private router: ActivatedRoute,
-    private store:Store<{products:IProduct[]}>
+    private store: Store<{ products: IProduct[] }>
   ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.router.params
-    .subscribe((param:Params) => {
-      const id:string = param.id;
-      this.getProduct(Number(id));
-      
+    this.router.params.subscribe((param: Params) => {
+      const id: string = param.id;
+      this.getProduct(id);
     });
   }
-  getProduct(id:number):void{
-    this.store.select('products')
-    .subscribe(data => {
-      this.product = data.find(p => p.id === id);
+  getProduct(id: string): void {
+    this.store.select('products').subscribe((data) => {
+      this.product = data.find((p) => p._id === id);
       this.isLoading = data.length === 0;
     });
   }
-
 }

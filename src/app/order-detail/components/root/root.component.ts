@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import {
   IDateTime,
@@ -16,7 +17,7 @@ import { ApiService } from '../../../core/services/api.service';
 })
 export class RootComponent implements OnInit {
   //params
-  user_name: string = 'NONE';
+  user_id: string = 'NONE';
   order_id: string = '-1';
 
   //order
@@ -26,20 +27,38 @@ export class RootComponent implements OnInit {
   constructor(
     private router: ActivatedRoute,
     private ApiService: ApiService,
-    private route: Router
-  ) {}
+    private route: Router,
+    private store: Store<{ user: IUser }>
+  ) {
+    this.store.select('user').subscribe((user) => {
+      this.user = user;
+    });
+  }
 
   ngOnInit(): void {
     this.router.params.subscribe((params: Params) => {
-      this.user_name = params.user;
+      this.user_id = params.user;
       this.order_id = params.id;
       this.getOrder();
     });
   }
   getOrder(): void {
+    if (this.user && this.user._id === this.user_id) {
+      const schedules: IScheduleData = <IScheduleData>(
+        this.user.shedules.find((s) => s._id === this.order_id)
+      );
+      this.order = {
+        ...schedules,
+        user_name: this.user.name,
+      };
+    } else {
+      this.getOrderIsAdmin();
+    }
+  }
+  getOrderIsAdmin(): void {
     this.ApiService.getUsers().subscribe((data) => {
       const user: IUser | undefined = data.response.find(
-        (u) => u.name.toLowerCase() === this.user_name.toLowerCase()
+        (u) => u._id === this.user_id
       );
       if (user) {
         const schedules: IScheduleData = <IScheduleData>(

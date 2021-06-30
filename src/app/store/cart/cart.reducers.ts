@@ -1,70 +1,75 @@
-import {createReducer , on , Action} from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import { IProductsUser } from 'src/app/core/models/interfaces';
-import { addToCart , setCart , removeToCart ,clearCart , removeProduct} from './cart.actions';
+import {
+  addToCart,
+  setCart,
+  removeToCart,
+  clearCart,
+  removeProduct,
+} from './cart.actions';
 
-const cartState:IProductsUser[] = [];
+const cartState: IProductsUser[] = [];
 
 const _cartReducer = createReducer(
-    cartState,
-    on(addToCart , (state , {product}) => {
-        const existProduct = state.find(p => p.id === product.id);
-        
-        if(existProduct){
-            const i:number = state.indexOf(existProduct);
-            const newAmount:number = state[i].amount + 1;
+  cartState,
+  on(addToCart, (state, { product }) => {
+    const existProduct = state.find((p) => p._id === product._id);
 
-            const newState = [...state];
-            
+    if (existProduct) {
+      const i: number = state.indexOf(existProduct);
+      const newAmount: number = state[i].amount + 1;
 
-            const newProduct:IProductsUser = {
-                ...product ,
-                amount: newAmount
-            }
+      const newState = [...state];
 
-            newState[i] = newProduct;
+      const newProduct: IProductsUser = {
+        ...product,
+        amount: newAmount,
+      };
 
-            return [...newState ];
-        }else {
-            const newProduct:IProductsUser = {
-                ...product,
-                amount: 1
-            }
-            return [...state , newProduct]
-        }
-    }),
-    on(removeToCart , (state , {product}) => {
-        if(product.amount > 1){
-            const i:number = state.indexOf(product);
-            const newAmount:number = state[i].amount - 1;
+      newState[i] = newProduct;
 
-            const newState = [...state];
+      return [...newState];
+    } else {
+      const newProduct: IProductsUser = {
+        ...product,
+        amount: 1,
+      };
+      return [...state, newProduct];
+    }
+  }),
+  on(removeToCart, (state, { product }) => {
+    if (product.amount > 1) {
+      const i: number = state.indexOf(product);
+      const newAmount: number = state[i].amount - 1;
 
-            const newProduct:IProductsUser = {
-                ...product ,
-                amount: newAmount
-            }
+      const newState = [...state];
 
-            newState[i] = newProduct;
+      const newProduct: IProductsUser = {
+        ...product,
+        amount: newAmount,
+      };
 
-            return [...newState];
-        }else {
-            const newState = state.filter(o => o.id !== product.id);
-            return newState;
-        }
+      newState[i] = newProduct;
 
-        
-    }), 
-    on(removeProduct , (state , {product}) => {
-        const i:number = state.indexOf(product);
+      return [...newState];
+    } else {
+      const newState = state.filter((o) => o._id !== product._id);
+      return newState;
+    }
+  }),
+  on(removeProduct, (state, { product }) => {
+    const i: number = state.indexOf(product);
 
-        const newState = [...state];
-        newState.splice(i , 1);
+    const newState = [...state];
+    newState.splice(i, 1);
 
+    return [...newState];
+  }),
+  on(clearCart, (state) => []),
+  on(setCart, (state, { cart }) => cart)
+);
 
-        return [...newState];
-    }),
-    on(clearCart , (state) => []),
-    on(setCart , (state , {cart} ) => cart)
-)
-
-export const cartReducer = (state:IProductsUser[] | undefined , actions : Action) => _cartReducer(state , actions);
+export const cartReducer = (
+  state: IProductsUser[] | undefined,
+  actions: Action
+) => _cartReducer(state, actions);
