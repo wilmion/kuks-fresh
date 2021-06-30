@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { signUp } from '@root/store/user/user.actions';
+import { clearCart } from '@root/store/cart/cart.actions';
+
 import {
   IDateTime,
   IProductsUser,
@@ -6,15 +11,12 @@ import {
   IScheduleData,
   IUser,
 } from 'src/app/core/models/interfaces';
-import { Router } from '@angular/router';
 
-import { ApiService } from '../../../core/services/api.service';
-import { Store } from '@ngrx/store';
-import { signUp } from '../../../store/user/user.actions';
-import { clearCart } from '../../../store/cart/cart.actions';
+import { ApiService } from '@core/services/api.service';
 
-import { months, getDay } from '../../../core/utils/dateUtils';
-import { writeLocalStorage } from '../../../core/utils/generateLocal';
+import { months, getDay } from '@core/utils/dateUtils';
+import { writeLocalStorage } from '@core/utils/generateLocal';
+import { updateUserData } from '@core/utils/store.util';
 
 @Component({
   selector: 'app-root',
@@ -94,16 +96,21 @@ export class RootComponent implements OnInit {
 
     if (!scheduleDateExist && this.user && this.cart.length !== 0) {
       this.isLoading = true;
-      const userUpdated: IUser = {
-        ...this.user,
+
+      const userUpdated: Partial<IUser> = {
         shedules: [valueRefined],
       };
+
       this.apiService
         .updateUser(userUpdated, this.user._id as string)
         .subscribe(
           (data) => {
-            this.store.dispatch(signUp({ user: userUpdated }));
-            writeLocalStorage('user', userUpdated);
+            updateUserData(
+              this.apiService,
+              this.user ? this.user.email : '',
+              this.store
+            );
+
             this.isLoading = false;
 
             this.store.dispatch(clearCart());

@@ -1,6 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { IProduct } from '../../../core/models/interfaces';
+
+import { IProduct } from '@core/models/interfaces';
+
+import {
+  calculatePuntation,
+  getImageByTypeProduct,
+  sumStarsProduct,
+} from '@core/utils/products.util';
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -8,8 +16,6 @@ import { IProduct } from '../../../core/models/interfaces';
 })
 export class ProductComponent implements OnInit {
   @Input() product: IProduct | undefined;
-  title: string = 'Title Product Name';
-  background: string = 'assets/jpg/pakistani chicken platter.jpg';
   imageType: string = 'assets/icon/breakfast-icon.svg';
   reviews: number = 0;
   countrys: string[] = ['Country 1', 'Country 2'];
@@ -24,49 +30,22 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.product) {
-      this.title = this.product.title;
-      this.background = this.product.image;
-      switch (this.product.type) {
-        case 'lunch':
-          this.imageType = 'assets/icon/lunch-icon.svg';
-          break;
-        case 'drinks':
-          this.imageType = 'assets/icon/drinks-icon.svg';
-          break;
-        case 'breakFast':
-          this.imageType = 'assets/icon/breakfast-icon.svg';
-          break;
-        case 'Desserts':
-          this.imageType = 'assets/icon/desert-icon.svg';
-          break;
-        case 'fastFood':
-          this.imageType = 'assets/icon/fastFood-icon.svg';
-          break;
-      }
+      this.imageType = getImageByTypeProduct(this.product);
 
       const reviews = this.product.reviews;
 
-      this.reviews =
-        reviews.one_start +
-        reviews.two_start +
-        reviews.three_start +
-        reviews.for_start +
-        reviews.five_start;
+      this.reviews = sumStarsProduct(reviews);
       this.countrys = this.product.from;
       this.cookTime = this.product.time_delivery;
 
-      this.calculateStars(this.product, this.reviews);
+      this.calculateStars(this.product);
     }
   }
-  calculateStars(product: IProduct, totalReviews: number): void {
-    const reviews = product.reviews;
-    const denominador: number =
-      reviews.five_start * 5 +
-      reviews.for_start * 4 +
-      reviews.three_start * 3 +
-      reviews.two_start * 2 +
-      reviews.one_start * 1;
-    const puntuation = Math.round(denominador / totalReviews);
+
+  //Calcula la calificación del producto
+  calculateStars(product: IProduct): void {
+    const puntuation = calculatePuntation(product);
+    // Muestra en pantalla por un patrón
     switch (puntuation) {
       case 1:
         this.starsActive = [1];

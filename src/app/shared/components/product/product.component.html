@@ -1,11 +1,11 @@
-<section class="home-products-product" (click)="redirectTo()">
+<section class="home-products-product" (click)="redirectTo()" *ngIf="product">
     <section class="home-products-product__image">
-        <img [src]="background" [alt]="title">
+        <img [src]="product.image" [alt]="product.title">
         <div class="type">
             <img [src]="imageType" alt="type icon">
         </div>
     </section>
-    <h2 class="home-products-product__title">{{title}}</h2>
+    <h2 class="home-products-product__title">{{product.title}}</h2>
     <section class="home-products-product-starts">
         <div class="home-products-product-starts__images">
             <img src="assets/icon/start-active-icon.svg" *ngFor="let i of starsActive" alt="estrella" />

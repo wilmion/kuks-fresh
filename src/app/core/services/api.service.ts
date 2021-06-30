@@ -40,7 +40,7 @@ export class ApiService {
 
   //Put
 
-  updateUser(user: IUser, id: string) {
+  updateUser(user: Partial<IUser>, id: string) {
     return this.http.patch<IResponse<string>>(`${this.API}/users/${id}`, user);
   }
   updateProduct(product: IProduct) {

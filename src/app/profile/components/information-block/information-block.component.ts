@@ -1,15 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
-
 import { Store } from '@ngrx/store';
-import { signUp } from '../../../store/user/user.actions';
+import { signUp } from '@root/store/user/user.actions';
 
-import { ApiService } from '../../../core/services/api.service';
-import { writeLocalStorage } from '../../../core/utils/generateLocal';
 import {
   IProfileFrame,
   IProfileFrameValues,
   IUser,
-} from 'src/app/core/models/interfaces';
+} from '@core/models/interfaces';
+
+import { ApiService } from '@core/services/api.service';
+
+import { writeLocalStorage } from '@core/utils/generateLocal';
 
 @Component({
   selector: 'app-information-block',
@@ -32,12 +33,14 @@ export class InformationBlockComponent implements OnInit {
     });
   }
 
+  // Muestra / Oculta el icono de editamiendo de usuario
   showEditIcon(i: number, show: boolean): void {
     if (this.dataFrame) {
       this.dataFrame.configs[i].edit = show;
     }
   }
 
+  // Prepara el cambio
   toggleEdit(i: number): void {
     if (this.dataFrame) {
       if (this.dataFrame.configs[i].edit) {
@@ -47,6 +50,7 @@ export class InformationBlockComponent implements OnInit {
     }
   }
 
+  // Edita el valor que cambiastes
   updatedValue(i: number): void {
     this.isLoading = true;
 
@@ -56,23 +60,15 @@ export class InformationBlockComponent implements OnInit {
 
     let value: string = config.value;
 
-    if (config.keyObject === 'id') {
-      const email: IProfileFrameValues = <IProfileFrameValues>(
-        dF.configs.find((c) => c.keyObject === 'email')
-      );
-
-      value = `${value}&${email.value}`;
-    }
-
-    const putUser: IUser = {
-      ...user,
+    const putUser: Partial<IUser> = {
       [config.keyObject]: value,
     };
 
     this.apiService.updateUser(putUser, user._id as string).subscribe(
-      (data) => {
+      () => {
         writeLocalStorage('user', putUser);
-        this.store.dispatch(signUp({ user: putUser }));
+        const newUser: IUser = { ...user, ...putUser };
+        this.store.dispatch(signUp({ user: newUser }));
       },
       (err) => {
         alert('hubo un error');

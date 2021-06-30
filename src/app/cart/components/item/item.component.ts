@@ -1,40 +1,44 @@
-import { Component, OnInit , Input } from '@angular/core';
-
+import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { removeToCart , addToCart , removeProduct} from '../../../store/cart/cart.actions';
 
-import { IProductsUser } from 'src/app/core/models/interfaces';
+import { IProductsUser } from '@core/models/interfaces';
+
+import {
+  removeToCart,
+  addToCart,
+  removeProduct,
+} from '@root/store/cart/cart.actions';
 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
-  styleUrls: ['./item.component.scss']
+  styleUrls: ['./item.component.scss'],
 })
 export class ItemComponent implements OnInit {
+  @Input() product: IProductsUser | undefined;
 
-  @Input() product:IProductsUser | undefined;
+  constructor(private store: Store<{ cart: IProductsUser[] }>) {}
 
-  constructor(
-    private store:Store<{cart:IProductsUser[]}>
-  ) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  incrementAmount():void{
-    const product:any = {...this.product};
+  //Incrementa la cantidad de productos en 1
+  incrementAmount(): void {
+    const product: any = { ...this.product };
     delete product.amount;
-    this.store.dispatch(addToCart({product : product}))
-  }
-  deleteAmount():void{
-    const product = <IProductsUser> this.product;
-
-    this.store.dispatch(removeToCart({product:product}));
-  }
-  deleteProduct():void {
-    const product:IProductsUser = <IProductsUser> this.product;
-
-    this.store.dispatch(removeProduct({product:product}));
+    this.store.dispatch(addToCart({ product: product }));
   }
 
+  //Borra una unidad el producto
+  deleteAmount(): void {
+    const product = <IProductsUser>this.product;
+
+    this.store.dispatch(removeToCart({ product: product }));
+  }
+
+  //Elimina el producto
+  deleteProduct(): void {
+    const product: IProductsUser = <IProductsUser>this.product;
+
+    this.store.dispatch(removeProduct({ product: product }));
+  }
 }

@@ -2,13 +2,7 @@ export interface IProduct {
   _id?: string;
   image: string;
   title: string;
-  reviews: {
-    five_start: number;
-    for_start: number;
-    three_start: number;
-    two_start: number;
-    one_start: number;
-  };
+  reviews: Review;
   prices: { cost: number; moneda: '$' | '€' }[];
   from: string[];
   time_delivery: string;
@@ -115,6 +109,13 @@ export interface IProfileFrameValues {
   edit: boolean;
 }
 
+export interface Review {
+  five_start: number;
+  for_start: number;
+  three_start: number;
+  two_start: number;
+  one_start: number;
+}
 // Api
 
 export interface IResponse<T> {

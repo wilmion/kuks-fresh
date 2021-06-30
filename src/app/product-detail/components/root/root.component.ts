@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { IProduct } from 'src/app/core/models/interfaces';
+
+import { IProduct } from '@core/models/interfaces';
+import { searchByIdProduct } from '@core/utils/products.util';
 
 @Component({
   selector: 'app-root',
@@ -25,9 +26,11 @@ export class RootComponent implements OnInit {
       this.getProduct(id);
     });
   }
+
+  //Obtiene el producto
   getProduct(id: string): void {
     this.store.select('products').subscribe((data) => {
-      this.product = data.find((p) => p._id === id);
+      this.product = searchByIdProduct(data, id);
       this.isLoading = data.length === 0;
     });
   }
