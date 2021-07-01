@@ -1,9 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UpdateStoreService } from '../../../core/services/updateStore/update-store.service';
-import { ApiService } from '../../../core/services/api.service';
-import { IProduct } from '../../../core/models/interfaces';
+import { IProduct } from '@core/models/interfaces';
+
+import { UpdateStoreService } from '@core/services/updateStore/update-store.service';
+import { ApiService } from '@core/services/api.service';
+
+import { calculateStars, sumStarsProduct } from '@core/utils/products.util';
 
 @Component({
   selector: 'app-product-admin',
@@ -26,48 +29,25 @@ export class ProductAdminComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.product) {
-      this.calculateStars(this.product, this.getTotalReviews());
+      this.calculateStars(this.product);
     }
   }
-  calculateStars(product: IProduct, totalReviews: number): void {
-    const reviews = product.reviews;
-    const denominador: number =
-      reviews.five_start * 5 +
-      reviews.for_start * 4 +
-      reviews.three_start * 3 +
-      reviews.two_start * 2 +
-      reviews.one_start * 1;
-    const puntuation = Math.round(denominador / totalReviews);
-    switch (puntuation) {
-      case 1:
-        this.starsActive = [1];
-        this.starsInactive = [1, 2, 3, 4];
-        break;
-      case 2:
-        this.starsActive = [1, 2];
-        this.starsInactive = [1, 2, 3];
-        break;
-      case 3:
-        this.starsActive = [1, 2, 3];
-        this.starsInactive = [1, 2];
-        break;
-      case 4:
-        this.starsActive = [1, 2, 3, 4];
-        this.starsInactive = [1];
-        break;
-      case 5:
-        this.starsActive = [1, 2, 3, 4, 5];
-        this.starsInactive = [];
-        break;
-    }
+  // Calcula la calificacion del producto
+  calculateStars(product: IProduct): void {
+    const [active, inactive] = calculateStars(product);
+    this.starsActive = active;
+    this.starsInactive = inactive;
   }
 
+  // Actualiza el store
   refresh(): void {
     this.updateStoreService.updated();
   }
+
+  // Elimina un producto
   removeProduct(): void | null {
     if (!this.product) return null;
-    const productId: string = this.product._id as string;
+    const productId = this.product._id as string;
 
     this.apiService.deleteProduct(productId).subscribe(
       () => {
@@ -76,6 +56,8 @@ export class ProductAdminComponent implements OnInit {
       (error) => console.log(error)
     );
   }
+
+  // Envia al admin a la página de editamiento del producto
   editProduct(): void | null {
     if (!this.product) return null;
 
@@ -83,17 +65,11 @@ export class ProductAdminComponent implements OnInit {
 
     this.router.navigate([url]);
   }
-  //computed
 
+  // Retorna el total de reviews
   getTotalReviews(): number {
     if (!this.product) return 0;
-    const p: IProduct = this.product;
-    const total: number =
-      p.reviews.one_start +
-      p.reviews.two_start +
-      p.reviews.three_start +
-      p.reviews.for_start +
-      p.reviews.five_start;
+    const total: number = sumStarsProduct(this.product.reviews);
     return total;
   }
 }

@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import { UpdateStoreService } from '../../../core/services/updateStore/update-store.service';
-import { ApiService } from '../../../core/services/api.service';
+import { IUser } from '@core/models/interfaces';
 
-import { IUser } from 'src/app/core/models/interfaces';
+import { UpdateStoreService } from '@core/services/updateStore/update-store.service';
+import { ApiService } from '@core/services/api.service';
 
 @Component({
   selector: 'app-profile-root',
@@ -47,9 +47,11 @@ export class ProfileRootComponent implements OnInit, OnDestroy {
     this.userSubcription.unsubscribe();
   }
 
+  //Actualiza los valores en tiempo real
   setValuesInputs(): void {
     if (this.user && this.user._id !== '-1') {
       const user: IUser = this.user;
+
       this.form = this.formBuilder.group({
         name: [user.name, Validators.required],
         image: [user.image, Validators.required],
@@ -58,14 +60,14 @@ export class ProfileRootComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Actualiza el usuario
   updateUser(): void {
     if (this.user) {
       this.isLoading = true;
 
       const value = this.form.value;
 
-      const newDatesOfUser: IUser = {
-        ...this.user,
+      const newDatesOfUser: Partial<IUser> = {
         name: value.name,
         image: value.image,
         job: value.job,

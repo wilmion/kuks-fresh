@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { IProduct } from '@core/models/interfaces';
 
 import {
-  calculatePuntation,
+  calculateStars,
   getImageByTypeProduct,
   sumStarsProduct,
 } from '@core/utils/products.util';
@@ -44,30 +44,9 @@ export class ProductComponent implements OnInit {
 
   //Calcula la calificación del producto
   calculateStars(product: IProduct): void {
-    const puntuation = calculatePuntation(product);
-    // Muestra en pantalla por un patrón
-    switch (puntuation) {
-      case 1:
-        this.starsActive = [1];
-        this.starsInactive = [1, 2, 3, 4];
-        break;
-      case 2:
-        this.starsActive = [1, 2];
-        this.starsInactive = [1, 2, 3];
-        break;
-      case 3:
-        this.starsActive = [1, 2, 3];
-        this.starsInactive = [1, 2];
-        break;
-      case 4:
-        this.starsActive = [1, 2, 3, 4];
-        this.starsInactive = [1];
-        break;
-      case 5:
-        this.starsActive = [1, 2, 3, 4, 5];
-        this.starsInactive = [];
-        break;
-    }
+    const [active, inactive] = calculateStars(product);
+    this.starsActive = active;
+    this.starsInactive = inactive;
   }
   redirectTo(): void {
     if (this.product) {

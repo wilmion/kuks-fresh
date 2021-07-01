@@ -5,10 +5,7 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-
 import { Store } from '@ngrx/store';
-
-import { getItemLocalStorage } from '../utils/generateLocal';
 
 import { Observable } from 'rxjs';
 import { IUser } from '../models/interfaces';
@@ -22,11 +19,6 @@ export class AdminGuardGuard implements CanActivate {
   constructor(private store: Store<{ user: IUser }>) {
     this.store.select('user').subscribe((user) => {
       this.admin = user._id != '-1' && user.admin;
-      const userLocal = getItemLocalStorage('user');
-      if (userLocal) {
-        const userLocalData: IUser = JSON.parse(userLocal);
-        this.admin = userLocalData.admin;
-      }
     });
   }
 

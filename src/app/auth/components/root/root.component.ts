@@ -35,8 +35,10 @@ export class RootComponent implements OnInit {
   }
   logIn(res: IResponse<IResponseLogin>) {
     this.StoreUser.dispatch(signUp({ user: res.response.user }));
+
     writeLocalStorage('user', res.response.user);
     writeLocalStorage('token', res.response.token);
+
     this.router.navigate(['/']);
   }
 }

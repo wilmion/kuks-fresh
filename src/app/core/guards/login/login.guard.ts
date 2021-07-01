@@ -6,15 +6,12 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-
 import { Store } from '@ngrx/store';
-import { signUp } from '../../../store/user/user.actions';
+import { signUp } from '@root/store/user/user.actions';
 
-import {
-  writeLocalStorage,
-  getItemLocalStorage,
-} from '../../../core/utils/generateLocal';
 import { IUser } from '../../models/interfaces';
+
+import { getItemLocalStorage } from '@core/utils/generateLocal';
 
 @Injectable({
   providedIn: 'root',
@@ -23,9 +20,6 @@ export class LoginGuard implements CanActivate {
   logIn: boolean = false;
 
   constructor(private store: Store<{ user: IUser }>) {
-    this.store.select('user').subscribe((user) => {
-      this.logIn = user._id !== '-1';
-    });
     this.verificateAuth();
   }
 

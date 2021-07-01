@@ -14,6 +14,7 @@ import {
   getItemLocalStorage,
   writeLocalStorage,
 } from '../core/utils/generateLocal';
+import { updateUserData } from '@core/utils/store.util';
 
 @Component({
   selector: 'app-layout',
@@ -38,34 +39,25 @@ export class LayoutComponent implements OnInit {
     });
     this.signUp();
   }
+
+  // Obtiene todos los productos
   setProducts(): void {
     this.apiService.getAll().subscribe((data) => {
-      console.log(data);
       this.productsState.dispatch(SET_PRODUCTS({ products: data.response }));
     });
   }
+
+  // Obtener el usuario
   signUp(): void {
     const userAuth: null | string = getItemLocalStorage('user');
     if (userAuth) {
-      const user: IUser = <IUser>JSON.parse(userAuth);
+      const user: IUser = JSON.parse(userAuth);
 
-      this.userState.dispatch(signUp({ user }));
-
-      let password = getItemLocalStorage('pass') as string;
-      password = password.replace(/[ '"]+/g, '');
-
-      this.apiService
-        .login({
-          email: user.email,
-          password,
-        })
-        .subscribe((data) => {
-          const token = data.response.token;
-
-          writeLocalStorage('token', token);
-        });
+      updateUserData(this.apiService, user.email, this.userState);
     }
   }
+
+  // GetScheduleConfigs
   setScheduleConfig(): void {
     this.apiService.getSchedulesConfigDay().subscribe((data) => {
       this.schedulesConfigState.dispatch(

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { convertDataToString } from '@core/utils/dateUtils';
+import { getScheduleConvertToOrder } from '@core/utils/schedules.util';
 import { Store } from '@ngrx/store';
 
 import {
@@ -42,33 +44,24 @@ export class RootComponent implements OnInit {
       this.getOrder();
     });
   }
+
+  // Obtener la ordén si eres el usuario
   getOrder(): void {
     if (this.user && this.user._id === this.user_id) {
-      const schedules: IScheduleData = <IScheduleData>(
-        this.user.shedules.find((s) => s._id === this.order_id)
-      );
-      this.order = {
-        ...schedules,
-        user_name: this.user.name,
-      };
+      this.order = getScheduleConvertToOrder(this.user, this.order_id);
     } else {
       this.getOrderIsAdmin();
     }
   }
+
+  // Obtener la ordén si eres admin
   getOrderIsAdmin(): void {
     this.ApiService.getUsers().subscribe((data) => {
       const user: IUser | undefined = data.response.find(
         (u) => u._id === this.user_id
       );
       if (user) {
-        const schedules: IScheduleData = <IScheduleData>(
-          user.shedules.find((s) => s._id === this.order_id)
-        );
-
-        this.order = {
-          ...schedules,
-          user_name: user.name,
-        };
+        this.order = getScheduleConvertToOrder(user, this.order_id);
         this.user = user;
       } else {
         this.route.navigate(['/']);
@@ -78,10 +71,8 @@ export class RootComponent implements OnInit {
 
   //computed
 
+  // Contrulle la fecha
   buildDate(dateTime: IDateTime): string {
-    const date = dateTime.date;
-    const month = dateTime.month;
-    const year = dateTime.year;
-    return `${date} / ${month} / ${year}`;
+    return convertDataToString(dateTime);
   }
 }

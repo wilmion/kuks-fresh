@@ -34,8 +34,8 @@ export const searchByIdProduct = (products: IProduct[], id: string) => {
   return products.find((p) => p._id === id);
 };
 
-// Calcula la puntuación por las reviews de un producto
-export const calculatePuntation = (product: IProduct) => {
+// Calcula la puntuación por las reviews de un producto sobre su calificación , retorna un patrón
+export const calculateStars = (product: IProduct) => {
   const reviews = product.reviews;
   const totalReviews = sumStarsProduct(product.reviews);
 
@@ -47,7 +47,34 @@ export const calculatePuntation = (product: IProduct) => {
     reviews.one_start * 1;
 
   const puntuation = Math.round(denominador / totalReviews);
-  return puntuation;
+
+  let starsActive: number[] = [];
+  let starsInactive: number[] = [];
+
+  switch (puntuation) {
+    case 1:
+      starsActive = [1];
+      starsInactive = [1, 2, 3, 4];
+      break;
+    case 2:
+      starsActive = [1, 2];
+      starsInactive = [1, 2, 3];
+      break;
+    case 3:
+      starsActive = [1, 2, 3];
+      starsInactive = [1, 2];
+      break;
+    case 4:
+      starsActive = [1, 2, 3, 4];
+      starsInactive = [1];
+      break;
+    case 5:
+      starsActive = [1, 2, 3, 4, 5];
+      starsInactive = [];
+      break;
+  }
+
+  return [starsActive, starsInactive];
 };
 
 // Retorna un tipo de imagen si el product tiene un tipo en especial

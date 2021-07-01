@@ -1,3 +1,5 @@
+import { actions } from './tuplas';
+
 export interface IProduct {
   _id?: string;
   image: string;
@@ -49,6 +51,7 @@ export interface IDateTime {
 }
 export interface IUser {
   email: string;
+  password?: string;
   _id?: string;
   name: string;
   job: string;
@@ -94,6 +97,13 @@ export interface IOrder extends IScheduleData {
 export interface IProductsUser extends IProduct {
   amount: number;
 }
+export interface Review {
+  five_start: number;
+  for_start: number;
+  three_start: number;
+  two_start: number;
+  one_start: number;
+}
 
 //builds
 
@@ -108,14 +118,12 @@ export interface IProfileFrameValues {
   value: string;
   edit: boolean;
 }
-
-export interface Review {
-  five_start: number;
-  for_start: number;
-  three_start: number;
-  two_start: number;
-  one_start: number;
+export interface IMapNavigation {
+  icon: string;
+  text: string;
+  param: actions;
 }
+
 // Api
 
 export interface IResponse<T> {

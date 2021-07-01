@@ -7,6 +7,7 @@ import { logOut } from '@root/store/user/user.actions';
 import { buildSettingMock } from '@core/mocks/settings-profile.mock';
 
 import { IDateTime, IProfileFrame, IUser } from '@core/models/interfaces';
+
 import { cleanItemStorage } from '@core/utils/generateLocal';
 import { convertDataToString } from '@core/utils/dateUtils';
 
@@ -35,6 +36,8 @@ export class RootComponent implements OnInit {
   // Se va de la sesión
   logOut(): void {
     cleanItemStorage('user');
+    cleanItemStorage('pass');
+    cleanItemStorage('token');
     this.store.dispatch(logOut());
     document.location.href = '/';
   }

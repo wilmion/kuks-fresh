@@ -3,8 +3,8 @@
     <section class="profile-settings">
         <app-information-block *ngFor="let s of settings" [dataFrame]="s"></app-information-block>
     </section>
-    <section class="profile-schedules" *ngFor="let s of user.shedules">
-        <h2 class="profile-schedules__title">Schedules List</h2>
+    <h2 class="profile-schedules__title">Schedules List</h2>
+    <section class="profile-schedules" *ngFor="let s of user.shedules">    
         <a [routerLink]="'/order/' + user._id + '/' + s._id">Schedule the {{convertTime(s.date)}} </a>
     </section>
     <a routerLink="/admin/profile" class="adminPanel" *ngIf="user.admin">Admin Panel</a>

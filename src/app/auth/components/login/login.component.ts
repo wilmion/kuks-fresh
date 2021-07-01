@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
     const values = this.form.value;
     const email: string = values.email;
     const password: string = values.password;
+
     writeLocalStorage('pass', password);
 
     this.apiService.login({ email, password }).subscribe(

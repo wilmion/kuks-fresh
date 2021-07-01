@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { ApiService } from '../../../core/services/api.service';
+import { IUser, IOrder, IDateTime } from '@core/models/interfaces';
 
-import {
-  IUser,
-  IOrder,
-  IDateTime,
-  IScheduleData,
-} from '../../../core/models/interfaces';
-import { convertDataToString, months } from '../../../core/utils/dateUtils';
+import { ApiService } from '@core/services/api.service';
+
+import { convertDataToString, months } from '@core/utils/dateUtils';
+import { convertScheduleToOrder } from '@core/utils/schedules.util';
 
 @Component({
   selector: 'app-order-root',
@@ -39,18 +35,17 @@ export class OrderRootComponent implements OnInit {
   ngOnInit(): void {
     this.fetchData();
   }
+
+  //Convierte los schedules a ordenes
   convertToSchedules(users: IUser[]): void {
     const schedules: IOrder[] = [];
 
     users.forEach((user) => {
       const schdls = user.shedules;
       schdls.forEach((schedule) => {
-        const modifiquedSchedule = {
-          ...schedule,
-          user_name: user.name,
-          user_id: user._id as string,
-        };
-        schedules.push(modifiquedSchedule);
+        schedules.push(
+          convertScheduleToOrder(schedule, user.name, user._id as string)
+        );
       });
     });
 
@@ -60,8 +55,20 @@ export class OrderRootComponent implements OnInit {
     this.schedules = this.showOrders;
   }
 
-  //events
+  // Obtiene todos los usuarios del backend
+  fetchData(): void {
+    this.isLoading = true;
 
+    this.apiService.getUsers().subscribe(
+      (data) => {
+        this.convertToSchedules(data.response);
+        this.isLoading = false;
+      },
+      (error) => (this.isLoading = false)
+    );
+  }
+
+  // Filtra si la ordén esta aprovada
   filteredAprovedOrders(event: any): void | null {
     const aproved: boolean = event.target.value === 'true';
 
@@ -87,6 +94,7 @@ export class OrderRootComponent implements OnInit {
     this.showOrders = filteredOrders;
   }
 
+  // Filtra por Actividad de la ordén
   filteredActiveOrders(event: any): void | null {
     const value: string = event.target.value;
     const actived: boolean = value === 'true';
@@ -127,6 +135,7 @@ export class OrderRootComponent implements OnInit {
     }
   }
 
+  // Filtra por busquedad
   filteredSearch(event: any): void {
     const value: string = event.target.value.toLowerCase();
 
@@ -148,6 +157,7 @@ export class OrderRootComponent implements OnInit {
     }
   }
 
+  // Resetea los filtros
   resetFilters(): void {
     const filters = this.filteresData;
 
@@ -156,12 +166,15 @@ export class OrderRootComponent implements OnInit {
     }
   }
 
+  // Activa / Desactiva la busqueda
   changeActivateSearch(): void {
     this.activedSearch = !this.activedSearch;
   }
 
+  // Selecciona la orden
   setCurrentOrder(event: any, order: IOrder): void {
     const el: HTMLInputElement = event.target;
+
     const inputsCHND: any = document.querySelectorAll('input');
 
     const inputs: HTMLInputElement[] = [...inputsCHND];
@@ -174,19 +187,16 @@ export class OrderRootComponent implements OnInit {
 
     const active: boolean = el.checked;
 
-    if (active) {
-      this.currentSelectedOrder = order;
-    } else {
-      this.currentSelectedOrder = undefined;
-    }
+    this.currentSelectedOrder = active ? order : undefined;
+
     this.asingDetails();
   }
 
+  // Anticipa el boton para cuando quieras ver los detalles de la ordén
   asingDetails(): void {
-    const buttonDetails: HTMLButtonElement = <HTMLButtonElement>(
-      document.getElementById('detailsAnchor')
-    );
-
+    const buttonDetails = document.getElementById(
+      'detailsAnchor'
+    ) as HTMLButtonElement;
     const order = this.currentSelectedOrder;
 
     if (order) {
@@ -194,6 +204,7 @@ export class OrderRootComponent implements OnInit {
     }
   }
 
+  // Cambia el estado de la ordén desde el backend
   toggleStateOrder(order: IOrder): void {
     order.pendding = !order.pendding;
 
@@ -210,18 +221,7 @@ export class OrderRootComponent implements OnInit {
     }
   }
 
-  fetchData(): void {
-    this.isLoading = true;
-
-    this.apiService.getUsers().subscribe(
-      (data) => {
-        this.convertToSchedules(data.response);
-        this.isLoading = false;
-      },
-      (error) => (this.isLoading = false)
-    );
-  }
-
+  // Va a los detalles de la orden
   navigateToOrderDetail(event: any): void {
     const element: HTMLButtonElement = event.target;
 
@@ -230,12 +230,12 @@ export class OrderRootComponent implements OnInit {
     window.open(URL, '_blank');
   }
 
-  //computed
-
+  //Convierte fechas a un string
   convertData(dateTime: IDateTime): string {
     return convertDataToString(dateTime);
   }
 
+  // Retona la suma total
   getSumTotal(): number {
     let sumTotal: number = 0;
 
@@ -246,6 +246,7 @@ export class OrderRootComponent implements OnInit {
     return sumTotal;
   }
 
+  // Filtra por ordenes que sobrán
   getNOrdersPendding(): IOrder[] {
     const ordersPending = this.showOrders.filter((s) => s.pendding === true);
     return ordersPending;

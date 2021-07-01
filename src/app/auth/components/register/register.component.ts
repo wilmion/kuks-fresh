@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { createUser } from '@core/utils/auth.util';
 
 import { IUser } from 'src/app/core/models/interfaces';
 import { ApiService } from '../../../core/services/api.service';
@@ -42,27 +43,11 @@ export class RegisterComponent implements OnInit {
     const email: string = values.email;
     const password: string = values.password;
 
-    this.createUser(name, email, password);
+    const newUser: IUser = createUser(name, email, password);
+    this.register(newUser);
   }
-  createUser(name: string, email: string, password: string): void {
-    const newUser: any = {
-      name,
-      email,
-      password,
-      job: 'Not Defined',
-      admin: false,
-      image:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Crystal_Clear_kdm_user_female.svg/1200px-Crystal_Clear_kdm_user_female.svg.png',
-      city: 'Not Defined',
-      country: 'Not Defined',
-      direction: 'Not Defined',
-      dni: 'Not Defined',
-      phoneNumber: 'Not Defined',
-      houseNumber: 'Not Defined',
-      shedules: [],
-    };
-
-    this.apiService.register(newUser).subscribe(
+  register(user: IUser): void {
+    this.apiService.register(user).subscribe(
       (user) => {
         this.registerStatus.loading = false;
         this.eventLogin.emit(true);
