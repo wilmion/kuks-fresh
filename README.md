@@ -1,6 +1,7 @@
 # KuksFresh
 
-Proyecto de una e-comerce , avanzado
+Proyecto de una e-comerce .
+Esta app es una app de ventas de comida a domicilio.
 
 ##### Tecnologias
 
@@ -10,26 +11,9 @@ Proyecto de una e-comerce , avanzado
 
 > Recuerda que todos los derechos del diseño a ** Saquib Shah** por su diseño [Link](https://dribbble.com/shots/11589829-Kuk-Fresh "Link")
 
-#### Comandos
+Deploy : [kuks-fresh](https://kuks-fresh.netlify.app/ "kuks-fresh")
+Backend: [kuks fresh backend](https://github.com/wilmion/kuks-fresh-backend "kuks fresh backend")
 
-- Correr servidor local
-
-```javascript
-npm run start | npm start
-```
-
-- Encender Fake API
-
-```javascript
-npm run server
-```
-
-- Construir
-
-```javascript
-npm run build
-```
-
-###### Proyecto terminado  
+###### Proyecto terminado
 
 ###### Recuerda nunca pares de Aprender 💚💚💚💚💚💚
