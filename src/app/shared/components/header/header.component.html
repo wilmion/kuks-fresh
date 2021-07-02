@@ -1,49 +1,114 @@
-<section 
-    class="header-menu" 
-    [style]="menuShow? 'transform: translateX(0);': 'transform: translateX(-100%);'"
+<section
+  class="header-menu"
+  [style]="
+    menuShow ? 'transform: translateX(0);' : 'transform: translateX(-100%);'
+  "
 >
-    <nav class="header-menu-navigation">
-        <ul class="header-menu-navigation-list">
-            <li>
-                <a routerLink="/profile" class="header-menu-navigation-list__item header-menu-navigation-list--image" *ngIf="isLogued">
-                    <img [src]="image" alt="user icon">
-                </a>
-            </li>
-            <li><a routerLink="/" class="header-menu-navigation-list__item">Find</a></li>
-            <li><a routerLink="/about" class="header-menu-navigation-list__item">About Us</a></li>
-            <li><a routerLink="/howitworks" class="header-menu-navigation-list__item">How It Works</a></li>
-            <li><a routerLink="/contact" class="header-menu-navigation-list__item">Contact Us</a></li>
-            <li (click)="toggleMenu()">Close</li>
-        </ul>
-    </nav>
-    <a routerLink="/cart" class="header-menu__cart" *ngIf="isLogued">     
-        <img src="assets/icon/cart-icon.svg" alt="cart icon" >
-        <span> ({{cart.length}}) items</span>
+  <nav class="header-menu-navigation">
+    <ul class="header-menu-navigation-list">
+      <li>
+        <a
+          routerLink="/profile"
+          (click)="toggleMenu()"
+          class="
+            header-menu-navigation-list__item header-menu-navigation-list--image
+          "
+          *ngIf="isLogued"
+        >
+          <img [src]="image" alt="user icon" />
+        </a>
+      </li>
+      <li>
+        <a
+          routerLink="/"
+          (click)="toggleMenu()"
+          class="header-menu-navigation-list__item"
+          >Find</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/about"
+          (click)="toggleMenu()"
+          class="header-menu-navigation-list__item"
+          >About Us</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/howitworks"
+          (click)="toggleMenu()"
+          class="header-menu-navigation-list__item"
+          >How It Works</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/contact"
+          (click)="toggleMenu()"
+          class="header-menu-navigation-list__item"
+          >Contact Us</a
+        >
+      </li>
+      <li (click)="toggleMenu()">Close</li>
+    </ul>
+  </nav>
+  <a
+    routerLink="/cart"
+    (click)="toggleMenu()"
+    class="header-menu__cart"
+    *ngIf="isLogued"
+  >
+    <img src="assets/icon/cart-icon.svg" alt="cart icon" />
+    <span> ({{ cart.length }}) items</span>
+  </a>
+  <div class="logInButton-container rd">
+    <a class="logInButton" routerLink="/auth/login" *ngIf="!isLogued">
+      <i class="fas fa-sign-in-alt"></i>
+      <p>Sign Up</p>
     </a>
+  </div>
 </section>
-<header class="header"> 
-    <h2 class="header__loge">Kuks Fresh</h2>
-    <nav class="header-navigation">
-        <ul class="header-navigation-list">
-            <li><a routerLink="/" class="header-navigation-list__item">Find</a></li>
-            <li><a routerLink="/about" class="header-navigation-list__item">About Us</a></li>
-            <li><a routerLink="/howitworks" class="header-navigation-list__item">How It Works</a></li>
-            <li><a routerLink="/contact" class="header-navigation-list__item">Contact Us</a></li>
-            <li>
-                <a routerLink="/profile" class="header-navigation-list__item header-navigation-list--image" *ngIf="isLogued">
-                    <img [src]="image" alt="user icon">
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <a routerLink="/cart" class="header__cart" *ngIf="isLogued">     
-        <img src="assets/icon/cart-icon.svg" alt="cart icon" >
-        <span> ({{cart.length}}) items</span>
+<header class="header">
+  <h2 class="header__loge">Kuks Fresh</h2>
+  <nav class="header-navigation">
+    <ul class="header-navigation-list">
+      <li><a routerLink="/" class="header-navigation-list__item">Find</a></li>
+      <li>
+        <a routerLink="/about" class="header-navigation-list__item">About Us</a>
+      </li>
+      <li>
+        <a routerLink="/howitworks" class="header-navigation-list__item"
+          >How It Works</a
+        >
+      </li>
+      <li>
+        <a routerLink="/contact" class="header-navigation-list__item"
+          >Contact Us</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/profile"
+          class="header-navigation-list__item header-navigation-list--image"
+          *ngIf="isLogued"
+        >
+          <img [src]="image" alt="user icon" />
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <a routerLink="/cart" class="header__cart" *ngIf="isLogued">
+    <img src="assets/icon/cart-icon.svg" alt="cart icon" />
+    <span> ({{ cart.length }}) items</span>
+  </a>
+  <button class="header__menu" (click)="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </button>
+  <div class="logInButton nord" *ngIf="!isLogued">
+    <a class="logInButton" routerLink="/auth/login">
+      <i class="fas fa-sign-in-alt"></i>
+      <p>Sign Up</p>
     </a>
-    <button class="header__menu" (click)="toggleMenu()">
-        <i class="fas fa-bars"></i>
-    </button>
-    <div class="logInButton-container">
-        <a class="logInButton" routerLink="/auth/login" *ngIf="!isLogued"><i class="fas fa-sign-in-alt"></i></a>
-    </div>
+  </div>
 </header>

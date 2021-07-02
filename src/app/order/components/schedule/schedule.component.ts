@@ -184,9 +184,6 @@ export class ScheduleComponent implements OnInit, AfterViewInit, OnChanges {
   addSchedule(): void {
     this.scheduleAdded.emit(this.informationShedule);
   }
-  removeSchedule(): void {
-    this.scheduleRemove.emit(this.index - 2);
-  }
   //Computed
   getNumber(from: boolean): string {
     if (from) {

@@ -53,6 +53,8 @@ export class LayoutComponent implements OnInit {
     if (userAuth) {
       const user: IUser = JSON.parse(userAuth);
 
+      this.userState.dispatch(signUp({ user }));
+
       updateUserData(this.apiService, user.email, this.userState);
     }
   }

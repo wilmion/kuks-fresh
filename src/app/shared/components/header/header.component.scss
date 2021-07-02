@@ -72,22 +72,6 @@
       margin: auto 15px;
     }
   }
-  .logInButton {
-    text-align: center;
-    background-color: $color-primary;
-    color: white;
-    border-radius: 15px;
-    border: none;
-    width: 90%;
-    text-decoration: none;
-    font-size: 1.6rem;
-    padding: 15px;
-    &-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
   &__menu {
     display: none;
   }
@@ -95,6 +79,31 @@
     display: none;
   }
 }
+.logInButton {
+  text-align: center;
+  background-color: $color-primary;
+  color: white;
+  border-radius: 15px;
+  border: none;
+  width: 70%;
+  text-decoration: none;
+  font-size: 1.6rem;
+  padding: 10px;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  &-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.rd {
+  display: none;
+}
+
 @media (max-width: 950px) {
   .header {
     display: flex;
@@ -181,6 +190,12 @@
       }
     }
   }
+  .rd {
+    display: block;
+  }
+  .nord {
+    display: none;
+  }
 }
 @media (min-width: 950px) and (max-width: 1140px) {
   .header {
@@ -192,5 +207,10 @@
         width: 100%;
       }
     }
+  }
+}
+@media (min-width: 950px) {
+  .no-rd {
+    display: flex;
   }
 }

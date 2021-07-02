@@ -10,6 +10,7 @@ import { IDateTime, IProfileFrame, IUser } from '@core/models/interfaces';
 
 import { cleanItemStorage } from '@core/utils/generateLocal';
 import { convertDataToString } from '@core/utils/dateUtils';
+import { setTitle } from '@core/utils/setTitle.util';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,9 @@ export class RootComponent implements OnInit {
     this.settings = buildSettingMock(user);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setTitle('My profile');
+  }
 
   // Se va de la sesión
   logOut(): void {

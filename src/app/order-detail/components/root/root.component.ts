@@ -2,15 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { convertDataToString } from '@core/utils/dateUtils';
 import { getScheduleConvertToOrder } from '@core/utils/schedules.util';
+import { setTitle } from '@core/utils/setTitle.util';
 import { Store } from '@ngrx/store';
 
-import {
-  IDateTime,
-  IOrder,
-  IScheduleData,
-  IUser,
-} from '../../../core/models/interfaces';
-import { ApiService } from '../../../core/services/api.service';
+import { IDateTime, IOrder, IUser } from '@core/models/interfaces';
+import { ApiService } from '@core/services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -42,6 +38,7 @@ export class RootComponent implements OnInit {
       this.user_id = params.user;
       this.order_id = params.id;
       this.getOrder();
+      setTitle(`Schedule N° ${params.id} from user ID ${params.user}`);
     });
   }
 

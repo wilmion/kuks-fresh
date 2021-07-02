@@ -1,28 +1,37 @@
 <section class="order">
-    <h2 class="order__title">"Schedule a Kuk"</h2>
-    <section class="order-select">
-        <section class="order-select-item">
-            <h2 class="order-select-item__title">Select Date and Time</h2>
-            <p class="order-select-item__des">Note : If booking right after or before another booking , please factor in 20 mins for commute</p>
-            <app-horario [setDatesUser]="dates" [cambios]="schedules.length" (selectDate)="setDateTime($event)"></app-horario>
-        </section>
-        <section class="order-select-item">
-            <img src="assets/jpg/schelude-background.jpg" alt="order schelude">
-        </section>
+  <h2 class="order__title">"Schedule a Kuk"</h2>
+  <section class="order-select">
+    <section class="order-select-item">
+      <h2 class="order-select-item__title">Select Date and Time</h2>
+      <p class="order-select-item__des">
+        Note : If booking right after or before another booking , please factor
+        in 20 mins for commute
+      </p>
+      <app-horario
+        [setDatesUser]="dates"
+        [cambios]="schedules.length"
+        (selectDate)="setDateTime($event)"
+      ></app-horario>
     </section>
-    <div class="order__line"></div>
-    <section class="order-schedules" *ngIf="!isLoading && scheduleConfigActual">
-        <app-schedule (scheduleAdded)="addSchedule($event)" [dateTimes]="dateActual" [informationShedule]="scheduleConfigActual"  ></app-schedule>
-        <app-schedule *ngFor="let schedule of schedules;let i = index" 
-            (scheduleAdded)="addSchedule($event)"
-            (scheduleRemove)="deleteSchedule($event)" 
-            [informationShedule]="schedule" 
-            [dateTimes]="schedule.date"
-            [index]="i+2"
-            
-        ></app-schedule>
+    <section class="order-select-item">
+      <img src="assets/jpg/schelude-background.jpg" alt="order schelude" />
     </section>
-    <app-loading *ngIf="isLoading"></app-loading>
-    <app-error-alert [message]="error" *ngIf="error !== ''"></app-error-alert>
+  </section>
+  <div class="order__line"></div>
+  <section class="order-schedules" *ngIf="!isLoading && scheduleConfigActual">
+    <app-schedule
+      (scheduleAdded)="addSchedule($event)"
+      [dateTimes]="dateActual"
+      [informationShedule]="scheduleConfigActual"
+    ></app-schedule>
+    <app-schedule
+      *ngFor="let schedule of schedules; let i = index"
+      (scheduleAdded)="addSchedule($event)"
+      [informationShedule]="schedule"
+      [dateTimes]="schedule.date"
+      [index]="i + 2"
+    ></app-schedule>
+  </section>
+  <app-loading *ngIf="isLoading"></app-loading>
+  <app-error-alert [message]="error" *ngIf="error !== ''"></app-error-alert>
 </section>
-

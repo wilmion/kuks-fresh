@@ -61,13 +61,14 @@ export class InformationBlockComponent implements OnInit {
     let value: string = config.value;
 
     const putUser: Partial<IUser> = {
+      shedules: [],
       [config.keyObject]: value,
     };
 
     this.apiService.updateUser(putUser, user._id as string).subscribe(
       () => {
-        writeLocalStorage('user', putUser);
         const newUser: IUser = { ...user, ...putUser };
+        writeLocalStorage('user', newUser);
         this.store.dispatch(signUp({ user: newUser }));
       },
       (err) => {

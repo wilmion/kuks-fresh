@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { setTitle } from '@core/utils/setTitle.util';
 
 import { Store } from '@ngrx/store';
 import { IProductsUser, IUser } from 'src/app/core/models/interfaces';
@@ -18,5 +19,7 @@ export class RootComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setTitle('Cart');
+  }
 }

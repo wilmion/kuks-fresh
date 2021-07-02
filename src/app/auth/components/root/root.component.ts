@@ -10,6 +10,7 @@ import {
   IUser,
 } from 'src/app/core/models/interfaces';
 import { signUp } from '../../../store/user/user.actions';
+import { setTitle } from '@core/utils/setTitle.util';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,7 @@ export class RootComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.param = params.mode;
+      setTitle(this.param.toUpperCase());
     });
   }
   navigateToURl(url: string): void {

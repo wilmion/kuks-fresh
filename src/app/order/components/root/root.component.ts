@@ -15,8 +15,8 @@ import {
 import { ApiService } from '@core/services/api.service';
 
 import { months, getDay } from '@core/utils/dateUtils';
-import { writeLocalStorage } from '@core/utils/generateLocal';
 import { updateUserData } from '@core/utils/store.util';
+import { setTitle } from '@core/utils/setTitle.util';
 
 @Component({
   selector: 'app-root',
@@ -69,6 +69,7 @@ export class RootComponent implements OnInit {
       this.dates = schedules.map((schedule) => schedule.date);
       this.user = data;
       this.isLoading = data.email !== 'NONE';
+      setTitle('Schedule of ' + this.user.name);
     });
 
     this.store.select('scheduleConfigs').subscribe((data) => {
@@ -105,15 +106,18 @@ export class RootComponent implements OnInit {
         .updateUser(userUpdated, this.user._id as string)
         .subscribe(
           (data) => {
+            this.store.dispatch(clearCart());
+
             updateUserData(
               this.apiService,
               this.user ? this.user.email : '',
-              this.store
+              this.store,
+              () => {
+                document.location.href = '/';
+              }
             );
 
             this.isLoading = false;
-
-            this.store.dispatch(clearCart());
           },
           (error) => (this.isLoading = false)
         );
@@ -152,28 +156,6 @@ export class RootComponent implements OnInit {
         },
         products: [...this.cart],
       };
-    }
-  }
-
-  deleteSchedule(index: number): void {
-    this.isLoading = true;
-    this.error = '';
-    if (this.user) {
-      const userUpdated: IUser = {
-        ...this.user,
-        shedules: this.user.shedules.filter((v, i) => i !== index),
-      };
-
-      this.apiService
-        .updateUser(userUpdated, this.user._id as string)
-        .subscribe(
-          (data) => {
-            this.store.dispatch(signUp({ user: userUpdated }));
-            this.isLoading = false;
-            writeLocalStorage('user', userUpdated);
-          },
-          (error) => console.log(error)
-        );
     }
   }
 }

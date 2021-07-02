@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { IProduct } from '@core/models/interfaces';
 import { searchByIdProduct } from '@core/utils/products.util';
+import { setTitle } from '@core/utils/setTitle.util';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +33,7 @@ export class RootComponent implements OnInit {
     this.store.select('products').subscribe((data) => {
       this.product = searchByIdProduct(data, id);
       this.isLoading = data.length === 0;
+      if (this.product) setTitle(this.product.title);
     });
   }
 }

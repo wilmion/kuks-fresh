@@ -8,6 +8,7 @@ import {
   searchByTitleProduct,
   sortProductByStars,
 } from '@core/utils/products.util';
+import { setTitle } from '@core/utils/setTitle.util';
 
 @Component({
   selector: 'app-home',
@@ -33,7 +34,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setTitle('Home');
+  }
 
   //Devuelve los productos más populares por estrellas.
   filteredPopular(products: IProduct[]): void {

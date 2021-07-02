@@ -13,7 +13,7 @@ export function updateUserData(
   store: Store<{
     user: IUser;
   }>,
-  orders?: (user: IUser) => any
+  callback?: (user: IUser) => any
 ) {
   let password = getItemLocalStorage('pass') as string;
   password = password.replace(/[ '"]+/g, '');
@@ -27,6 +27,6 @@ export function updateUserData(
     writeLocalStorage('token', token);
     writeLocalStorage('user', user);
 
-    if (orders) orders(user);
+    if (callback) callback(user);
   });
 }
